@@ -3,8 +3,6 @@ body{
 
 }
 #box{
-    border: 5px;
-    margin: 3%;
     padding: .5em;
     float: center;
     width: 10%;
