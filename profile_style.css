@@ -1,11 +1,3 @@
-header {
-    background-color: rgba(25, 124, 211, 0.219);
-}
-body{
-    background-color:None;
-}
-/*All Code Below is for stlying the top bar below title */
-
 .topbar {
     overflow: hidden;
     background-color: #ccc;      /* #e9e9e9 */
@@ -52,42 +44,4 @@ body{
     .topbar input[type=text] {
       border: 1px solid #ccc;
     }
-  }
-
-#wrapper{
-    width: 100%;
-    border: 1px solid black;
-    overflow: hidden;
-}
-#center{
-    background-color: lightgrey;
-    display: flex;
-    float: left;
-    overflow: auto;
-    padding: 1%;
-    margin: auto;
-    width: 60%;
-}
-#center p{
-    text-align: left;
-    font-size: medium;
-}
-#right{
-    background-color:darkgrey;
-    float: right;
-    overflow: auto;
-    margin: auto;
-    padding: 1%;
-    width: 35%;
-}
-#right p{
-    text-align: left;
-    font-size: medium;
-}
-
-
-.footer {
-    background-color: #F1F1F1;
-    text-align: center;
-    padding: 10px;
   }
