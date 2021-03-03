@@ -1,41 +1,46 @@
-<html lang="en">
-<header>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign up Page</title>
-    <h1>Sign up!</h1>
+  <html lang="en">
+  <header>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Sign up Page</title>
+      <h1>Sign up!</h1>
 
-    <link rel="stylesheet" href="login_style.css">
-</header>
-<body>
-    <h3>Please enter your information</h3>
+      <link rel="stylesheet" href="login_style.css">
+  </header>
 
-    <div>
-        back to login Page
-        <form id = "signup" action="login.html">
-            <input type="submit" value="Login!" />
-        </form>
-    </div>
+  <body>
+    <a href="homepage.html">Home</a>
+      <h3>Please enter your information</h3>
 
-    <div id = "box">
-        <form action = profile.html id = "input">
-        <p> First Name: <input type = "text" name = "firstname" id= "fname" required> </p>
-        <p> Last Name: <input type = "text" name = "lastname" id= "lname" required> </p>
-        <p>Date of Birth: <input type = "text" name = "bday" id= "bday" required></p>  
-        <p>Gender: 
-            <p>Male<input type="radio" name="gender" id="gendermale"></p>
+      <div>
+          back to login Page
+          <form id="signup" action="login.html">
+              <input type="submit" value="Login!" />
+          </form>
+      </div>
 
-            <p>Female<input type="radio" name="gender" id="genderfemale"></p></p>
+      <div id="box">
+          <form action=profile.html id="input">
+              <p> First Name: <input type="text" name="firstname" id="fname" required> </p>
+              <p> Last Name: <input type="text" name="lastname" id="lname" required> </p>
+              <p>Date of Birth: <input type="text" name="bday" id="bday" required></p>
+              <div id="gender">
+              <p>Gender: </p>
+              <p>Male<input type="radio" name="gender" id="gendermale"></p>
 
-        <p>E-mail:<input type = "text" name = "email" id= "email" required> </p>
-        <p>Password:<input type = "password" name = "psw" id = "password" required> </p>
-        <br>
-        <input type = "submit" value = "Login!"><input type="reset">
-    </form>
-    </div>
+              <p>Female<input type="radio" name="gender" id="genderfemale"></p>
+            </div>
+
+              <p>E-mail:<input type="text" name="email" id="email" required> </p>
+              <p>Password:<input type="password" name="psw" id="password" required> </p>
+              <br>
+              <input type="submit" value="Login!"><input type="reset">
+          </form>
+      </div>
 
 
-    
-</body>
-</html>
+
+  </body>
+
+  </html>

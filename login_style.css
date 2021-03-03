@@ -1,22 +1,38 @@
 body{
     background-color:#ccc;
-
+}
+main{
+    padding:20rem;
+    text-align: center;
+    border: 2px solid black;
+    margin: 5rem;
 }
 #box{
-    padding: .5em;
+
     float: center;
-    width: 10%;
+
     clear: both;
     border-color: black;
 }
 #signup{
-    margin-left: 10%;
+
     float: center;
 }
-h1{
-    margin-left: 5%
-}
+
 #input{
     align-items: center;
 
+}
+ul li{
+    list-style-type: none;
+}
+ul{
+    padding: 0
+}
+.info{
+    margin-left:35%;
+    text-align:left;
+}
+#email{
+    width: 195;
 }

@@ -45,3 +45,7 @@
       border: 1px solid #ccc;
     }
   }
+
+  #profile_photo{
+      display:inline-flex;
+  }
