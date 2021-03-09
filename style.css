@@ -87,6 +87,13 @@ form{
 #login:hover{
     background-color:lightsalmon
 }
+#go{
+    background-color: lightyellow;
+
+}
+#go:hover {
+    background-color: lightsalmon; 
+}
 
   
   /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
