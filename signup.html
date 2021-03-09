@@ -4,43 +4,135 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Sign up Page</title>
-      <h1>Sign up!</h1>
+
 
       <link rel="stylesheet" href="login_style.css">
   </header>
 
   <body>
-    <a href="homepage.html">Home</a>
-      <h3>Please enter your information</h3>
+      <main>
+          <h1>Sign up!</h1>
+          <a href="homepage.html">Home</a>
+          <h3>Please enter your information</h3>
 
-      <div>
-          back to login Page
-          <form id="signup" action="login.html">
-              <input type="submit" value="Login!" />
-          </form>
-      </div>
+          <div>
+              back to login Page
+              <form id="signup" action="login.html">
+                  <input type="submit" value="Login!" />
+              </form>
+          </div>
 
-      <div id="box">
-          <form action=profile.html id="input">
-              <p> First Name: <input type="text" name="firstname" id="fname" required> </p>
-              <p> Last Name: <input type="text" name="lastname" id="lname" required> </p>
-              <p>Date of Birth: <input type="text" name="bday" id="bday" required></p>
-              <div id="gender">
-              <p>Gender: </p>
-              <p>Male<input type="radio" name="gender" id="gendermale"></p>
+          <div id="box">
+              <form action=profile.html id="input">
+                  <p class="text_info info"> First Name: <input type="text" name="firstname" id="fname" required> </p>
+                  <p class="text_info info"> Last Name: <input type="text" name="lastname" id="lname" required> </p>
+                  <p class="text_info info">
+                      Date of Birth:
+                      <select name="Month" id="Months" required>
+                          <option value="NULL">Month</option>
+                          <option value="January">Jan</option>
+                          <option value="February">Feb</option>
+                          <option value="March">Mar</option>
+                          <option value="April">Apr</option>value="February">February</option>
+                          <option value="May">May</option>
+                          <option value="June">Jun</option>
+                          <option value="July">Jul</option>
+                          <option value="August">Aug</option>
+                          <option value="September">Sep</option>
+                          <option value="October">Oct</option>
+                          <option value="November">Nov</option>
+                          <option value="December">Dec</option>
+                      </select>
+                      <select name="Day" id="Date">
+                          <option value="NULL">Day</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+                          <option value="13">13</option>
+                          <option value="14">14</option>
+                          <option value="15">15</option>
+                          <option value="16">16</option>
+                          <option value="17">17</option>
+                          <option value="18">18</option>
+                          <option value="19">19</option>
+                          <option value="20">20</option>
+                          <option value="21">21</option>
+                          <option value="22">22</option>
+                          <option value="23">23</option>
+                          <option value="24">24</option>
+                          <option value="25">25</option>
+                          <option value="26">26</option>
+                          <option value="27">27</option>
+                          <option value="28">28</option>
+                          <option value="29">29</option>
+                          <option value="30">30</option>
+                          <option value="31">31</option>
 
-              <p>Female<input type="radio" name="gender" id="genderfemale"></p>
-            </div>
+                      </select>
+                      <select name="Year" id="Years">
+                          <option value="NULL">Year</option>
+                          <option value="2002">2002</option>
+                          <option value="2001">2001</option>
+                          <option value="2000">2000</option>
+                          <option value="1999">1999</option>
+                          <option value="1998">1998</option>
+                          <option value="1997">1997</option>
+                          <option value="1996">1996</option>
+                          <option value="1995">1995</option>
+                          <option value="1994">1994</option>
+                          <option value="1993">1993</option>
+                          <option value="1992">1992</option>
+                          <option value="1991">1991</option>
+                          <option value="1990">1990</option>
+                          <option value="1989">1989</option>
+                          <option value="1988">1988</option>
+                          <option value="1987">1987</option>
+                          <option value="1986">1986</option>
+                          <option value="1985">1985</option>
+                          <option value="1984">1984</option>
+                          <option value="1983">1983</option>
+                          <option value="1982">1982</option>
+                          <option value="1981">1981</option>
+                          <option value="1980">1980</option>
+                          <option value="1979">1979</option>
+                          <option value="1978">1978</option>
+                          <option value="1977">1977</option>
+                          <option value="1976">1976</option>
+                          <option value="1975">1975</option>
+                          <option value="1974">1974</option>
+                          <option value="1973">1973</option>
+                          <option value="1972">1972</option>
+                          <option value="1971">1971</option>
+                          <option value="1970">1970</option>
+                      </select>
+                  </p>
+                  <div class="text_info" id="gender">
+                      <p class="gender">Gender: </p>
+                      <div id="genoptions">
+                      <p class="gender">Male<input type="radio" name="gender" id="gendermale"></p>
 
-              <p>E-mail:<input type="text" name="email" id="email" required> </p>
-              <p>Password:<input type="password" name="psw" id="password" required> </p>
-              <br>
-              <input type="submit" value="Login!"><input type="reset">
-          </form>
-      </div>
+                      <p class="gender">Female<input type="radio" name="gender" id="genderfemale"></p>
+                    </div>
+                  </div>
+
+                  <p class="text_info info">E-mail:<input type="text" name="email" id="email" required> </p>
+                  <p class="text_info info">Password:<input type="password" name="psw" id="password" required> </p>
+                  <br>
+                  <input type="submit" value="Login!"><input type="reset">
+              </form>
+          </div>
 
 
-
+      </main>
   </body>
 
   </html>

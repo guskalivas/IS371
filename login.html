@@ -9,6 +9,7 @@
 
 <body>
     <main>
+        <div id="login_info">
         <a href="homepage.html">Home</a>
         <h1>Login!</h1>
         <div>
@@ -26,12 +27,14 @@
 
         <div id="box">
             <form action="homepage.html ">
-                <p class="info">E-mail:<input type="text" name="email" id="email" required> </p>
-                <p class="info">Password:<input type="password" name="psw" id="password" required></p>
+                <p class="info">E-mail:<input type="text" name="email" placeholder="Enter your username" id="email" required> </p>
+                <p class="info">Password:<input type="password" name="psw" placeholder="Enter your password" id="password" required></p>
                 <br>
-                <input type="submit" value="Login!"><input type="reset">
+                <input class="buttons"type="submit" value="Login!">
+                <input class="buttons" type="reset" value="Reset">
             </form>
         </div>
+    </div>
     </main>
 </body>
 
