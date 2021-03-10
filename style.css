@@ -22,6 +22,11 @@ h1{
 .left_nav{
     float: left;
 }
+
+.search_bar{
+    padding: 14px 16px;
+    margin-right: .5rem;
+}
 .topbar a{
     text-decoration: none;
     font-size: 17px;
@@ -60,7 +65,6 @@ input[type=text]:active{
 input[type=button]{
     font-size: 17px;
     padding: 14px;   
-    margin-right:1rem;
     border-radius: 2rem;
     outline:none;
 }
@@ -68,18 +72,20 @@ input[type=button]:hover{
     background-color: lightpink;
 }
 form{
-    display:inline;
     margin: 0;
+    width:100%;
 }
-.nav_right{
-    float:right;
+#go, #value_search{
+    display:inline;
 }
+
+
 .right_nav{
-    float: right;
+    float:right;
 }
 #signup{
     background-color: lightsalmon;
-    margin-right: 0;
+
 }
 #signup:hover{
     background-color: salmon;
@@ -89,6 +95,11 @@ form{
 }
 #go{
     background-color: lightyellow;
+    float:right;
+
+}
+#value_search{
+    width:80%;
 
 }
 #go:hover {
@@ -98,11 +109,11 @@ form{
   
   /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
 @media screen and (max-width: 600px) {
-    .left_nav, .topbar input[type=text] {
+    .left_nav, .right_nav, .search_bar {
       float: none;
       display: block;
       text-align: left;
-      width: 100%;
+      width: 95%;
       margin: 0;
       padding: 14px;
     }
