@@ -10,7 +10,8 @@
         SWITCHED link
         <link rel="stylesheet" href="style.css">
     -->
-    <link rel="stylesheet" href="">
+    <!--
+
     <h1><img src="banner.jpg" alt="banner" id="banner"></h1>
     <p>
         Name Ideas:
@@ -40,9 +41,171 @@
         <a class="right_nav" id="login" href="login.html">Login</a>
 
     </nav>
+     -->
 </header>
 
 <body>
+    <!-- NAV Section-->
+
+    <div class="navbar has-background-primary-light">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <div class="navbar-item">
+                    <!-- find imagee or Logo maybe from font awesome-->
+                    <a >
+                        <img src="logo.png" width="80" height="90">
+                    </a>
+                </div>
+                <i class="far fa-speakers"></i>
+            </div>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <div class="navbar-item">
+                    <a class = "button-is-light">Profile</a>
+                </div>
+                <div class="navbar-item">
+
+                    <a id= "loginbutton">Login
+                        </a>
+                </div>
+                <div class="navbar-item has-text-centered ">
+                    <a>
+                        <form class = "mt-4" id="search_form" action="https://google.com">
+                            <input type="text" placeholder="Search Songs" name="q" id="value_search">
+                            <input id="go" type="button" value="Go">
+                        </form>
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <a>Sign-Up</a>
+                </div>
+                <div class="navbar-item">
+                    <a>Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAME Make a post section-->
+    <div class="section has-background-primary">
+        <div class="container">
+            <h1 class="is-size-3 has-text-weight-bold">Cypher Songs</h1>
+            <!-- will need to fix this part-->
+            <p class = "mt-5"> 
+            Post a song or playlist: <textarea name="" id="" cols="90" rows="1"></textarea></p>
+        </div>
+        </div>
+
+
+        <!--Main content: Post section plus profile info on the side-->
+    <div class="section has-background-primary-light">
+        <div class="container">
+            <div class="columns">
+                <!--Main content-->
+                <div class="section column is-8 p-6">
+                    <div class="card">
+                        <div class = "card-image has-text-centered">
+                            <p>Post: By who</p>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Song: etc</li>
+                                <li>Album</li>
+                                <li>Author: etc</li>
+                                <li>Image: maybe</li>
+            
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="card mt-4">
+                        <div class = "card-image has-text-centered">
+                            <p>Post: By who</p>
+                         </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Song: etc</li>
+                                <li>Album</li>
+                                <li>Author: etc</li>
+                                <li>Image: maybe</li>
+            
+                            </ul>
+                           
+                        </div>
+                    </div>
+
+                </div>
+                <!--related content-->
+                <div class="column is-4 has-background-light p-6">
+
+                    <!--Message for user contact us-->
+                    <div class="message">
+                        <div class="message-header">
+                            Profile
+                        </div>
+                        <div class="message-body">
+                           <p> 
+                               <ul>
+                                   <li>Name</li>
+                                   <li>Friends</li>
+                                   <li>Posts</li>
+                                   <li>Songs</li>
+                               </ul>
+                           </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="modal" id = "mymodal">
+        <div class="modal-background" id = "modalbg"></div>
+        <div class="modal-content p-6 has-background-white">
+            <h1 class="has-size-3 title">Login!</h1>
+            <form>
+                <!--NAME-->
+                <div class="field">
+                    <label class="label">Username</label>
+                    <div class="control">
+                        <input type="text" name="" id="">
+                    </div>
+                </div>
+                <!--Password-->
+                <div class="field">
+                    <label class="label">Password</label>
+                    <div class="control">
+                        <input type="text" name="" id="">
+
+                    </div>
+                </div>
+                <!-- Submit  -->
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="m3 button is-link">submit</button>
+                    </div>
+                </div>
+                <div class= "content has-text-centered">
+                    <a class = "has-text-centered"><img src="logo.png" width="80" height="90"></a>
+                </div>
+            </div>
+        </div>  
+
+
+                
+
+    <!--
+
     <div id="wrapper" class="border">
         <div id="center" class="border">
             <p>
@@ -100,17 +263,40 @@
     </div>
 
 
-</body>
-<footer>
-    <p id="foot">End of Website @Mason and @Gus final project</p>
-</footer>
 
+    -->
+
+<div class="footer">
+    <div class="content has-text-centered">
+        <p>Website By Mason and Gus</p>
+        <a ><img src="logo.png" width="80" height="90"></a>     
+    </div>
+</div>
+
+</body>
 </html>
 
-<script type="text/javascript">
+<script>
+
+    // grab the button
+    var mybutton = document.querySelector("#loginbutton");
+    mybutton.addEventListener('click', function(){
+       //grab model
+       var mymodal = document.querySelector("#mymodal");
+       mymodal.classList.add('is-active');
+    })
+
+    //attach event on modal-background
+    var modalbg = document.querySelector("#modalbg");
+    modalbg.addEventListener('click', function() {
+        mymodal.classList.remove('is-active');
+    })
+
+    //This doesnt work theres an error on it canot set property 'onsubmit' of null
     document.getElementById(search_form).onsubmit = function () {
         window.location = 'http://www.google.com/search?q=site:yoursitename.com ' + document.getElementById(
             "value_search").value;
         return false;
     }
+
 </script>
