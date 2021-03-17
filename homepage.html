@@ -10,42 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
         integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
         crossorigin="anonymous" />
-    <!--
-        SWITCHED link
-        <link rel="stylesheet" href="style.css">
-    -->
-    <!--
 
-    <h1><img src="banner.jpg" alt="banner" id="banner"></h1>
-    <p>
-        Name Ideas:
-        <ul>
-            <li>Social Songs</li>
-            <li>Groove</li>
-            <li>Fade</li>
-            <li>Cypher*</li>
-            <li>Flow*</li>
-            <li>Block Party</li>
-            <li>Off the charts*</li>
-            <li>Reverb</li>
-        </ul>
-    </p>
-    <nav class="topbar">
-        <a class="left_nav" href="profile.html">My Profile</a>
-        <a class="left_nav" href="yoursongs.html">My Songs</a>
-        <a class="left_nav" href="about.html">About</a>
-        <div class="right_nav">
-            <form id="search_form" action="https://google.com">
-                <input type="text" placeholder="Search Songs" name="q" id="value_search">
-                <input id="go" type="button" value="Go">
-            </form>
-
-        </div>
-        <a class="right_nav" id="signup" href="signup.html">Sign Up</a>
-        <a class="right_nav" id="login" href="login.html">Login</a>
-
-    </nav>
-     -->
+    <link rel="stylesheet" href="style.css">
 </header>
 
 <body>
@@ -56,8 +22,8 @@
             <div class="navbar-item">
                 <div class="navbar-item">
                     <!-- find imagee or Logo maybe from font awesome-->
-                    <a >
-                        <img src="logo.png" width="80" height="90">
+                    <a>
+                        <img src="images/logo.png">
                     </a>
                 </div>
                 <i class="far fa-speakers"></i>
@@ -71,16 +37,19 @@
         <div class="navbar-menu">
             <div class="navbar-start">
                 <div class="navbar-item">
-                    <a class = "button-is-light">Profile</a>
+                    <a class="button-is-light">Profile</a>
                 </div>
                 <div class="navbar-item">
-
-                    <a id= "loginbutton">Login
-                        </a>
+                    <!-- <div id="login_modal" class="modal">
+                        <div class="modal-background"></div>
+                        <div class="modal-content p-4 has-background-success-light"></div>
+                    </div> -->
+                    <a id="loginbutton">Login
+                    </a>
                 </div>
                 <div class="navbar-item has-text-centered ">
                     <a>
-                        <form class = "mt-4" id="search_form" action="https://google.com">
+                        <form class="mt-4" id="search_form" action="https://google.com">
                             <input type="text" placeholder="Search Songs" name="q" id="value_search">
                             <input id="go" type="button" value="Go">
                         </form>
@@ -89,60 +58,100 @@
             </div>
             <div class="navbar-end">
                 <div class="navbar-item">
-                    <a>Sign-Up</a>
+                    <a id="sign_up_button">Sign-Up</a>
                 </div>
                 <div class="navbar-item">
-                    <a>Contact Us</a>
+                    <a id="contact_button">Contact Us</a>
                 </div>
             </div>
         </div>
     </div>
 
+    
     <!-- NAME Make a post section-->
-    <div class="section has-background-primary">
-        <div class="container">
-            <h1 class="is-size-3 has-text-weight-bold">Cypher Songs</h1>
-            <!-- will need to fix this part-->
-            <p class = "mt-5"> 
-            Post a song or playlist: <textarea name="" id="" cols="90" rows="1"></textarea></p>
+    <div id="banner" class="hero is-medium is-link has-text-centered">
+        <div class="hero-body">
+            <div class="container is-wide-screen">
+                <h1 class="is-size-3 has-text-weight-bold" style="font-family:Verdana, Geneva, Tahoma, sans-serif">Cypher Songs</h1>
+                <!-- will need to fix this part-->
+                <p class="mt-5">
+                    <input type="text" class="input is-rounded has-text-centered" placeholder="Search for a song/artist/album"  width="50%">
+                </p>
+            </div>
         </div>
-        </div>
+    </div>
 
 
-        <!--Main content: Post section plus profile info on the side-->
+    <!--Main content: Post section plus profile info on the side-->
     <div class="section has-background-primary-light">
         <div class="container">
             <div class="columns">
                 <!--Main content-->
-                <div class="section column is-8 p-6">
-                    <div class="card">
-                        <div class = "card-image has-text-centered">
-                            <p>Post: By who</p>
+                <div class="section column is-8 pl-6 pr-6 pt-0">
+                    <div class="card mb-6">
+                        <div class="card-image">
+                            <div class="image is-3by2">
+                                <img src="images/song_example.jpg" alt="">
+                            </div>
                         </div>
-                        <div class="card-content">
+                        <div class="media mb-0">
+                            <div class="media-left">
+                                <div class="image is-96x96">
+                                <img src="images/logo.png" alt="">
+                            </div>
+                            </div>
+                            <div class="media-content">
+                                <div class="title">Mason Guell</div>
+                                <div class="subtitle">@mason</div>
+                            </div>
+                        </div>
+                        <div class="card-content has-text-centered">
                             <ul>
-                                <li>Song: etc</li>
-                                <li>Album</li>
-                                <li>Author: etc</li>
-                                <li>Image: maybe</li>
-            
+                                <li><a href="https://www.youtube.com/watch?v=S1kyno4u9cQ" target="_blank">Cold War</a></li>
+                                <li><i>Cautious Clay</i></li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+
+                    <div class="card">
+                        <div class="card-image">
+                            <div class="image is-3by2">
+                                <img src="images/song_example2.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="media mb-0">
+                            <div class="media-left">
+                                <div class="image is-96x96">
+                                <img src="images/logo.png" alt="">
+                            </div>
+                            </div>
+                            <div class="media-content">
+                                <div class="title">Mason Guell</div>
+                                <div class="subtitle">@mason</div>
+                            </div>
+                        </div>
+                        <div class="card-content has-text-centered">
+                            <ul>
+                                <li><a href="https://www.youtube.com/watch?v=L53gjP-TtGE" target="_blank">Power</a></li>
+                                <li><i>Kanye West</i></li>
                             </ul>
                         </div>
                     </div>
-                    
-                    <div class="card mt-4">
-                        <div class = "card-image has-text-centered">
+
+                    <div class="card mt-6">
+                        <div class="card-image has-text-centered">
                             <p>Post: By who</p>
-                         </div>
+                        </div>
                         <div class="card-content">
                             <ul>
                                 <li>Song: etc</li>
                                 <li>Album</li>
                                 <li>Author: etc</li>
                                 <li>Image: maybe</li>
-            
+
                             </ul>
-                           
+
                         </div>
                     </div>
 
@@ -156,14 +165,14 @@
                             Profile
                         </div>
                         <div class="message-body">
-                           <p> 
-                               <ul>
-                                   <li>Name</li>
-                                   <li>Friends</li>
-                                   <li>Posts</li>
-                                   <li>Songs</li>
-                               </ul>
-                           </p>
+                            <p>
+                                <ul>
+                                    <li>Name</li>
+                                    <li>Friends</li>
+                                    <li>Posts</li>
+                                    <li>Songs</li>
+                                </ul>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -173,9 +182,9 @@
     </div>
 
 
-    <div class="modal" id = "mymodal">
-        <div class="modal-background" id = "modalbg"></div>
-        <div class="modal-content p-6 has-background-white">
+    <div class="modal" id="my_login_modal">
+        <div class="modal-background" id="modalbg_login"></div>
+        <div class="modal-content p-6 has-background-primary-light has-text-centered">
             <h1 class="has-size-3 title">Login!</h1>
             <form>
                 <!--NAME-->
@@ -190,110 +199,115 @@
                     <label class="label">Password</label>
                     <div class="control">
                         <input type="text" name="" id="">
-
                     </div>
                 </div>
                 <!-- Submit  -->
-                <div class="field is-grouped">
-                    <div class="control">
-                        <button class="m3 button is-link">submit</button>
+                <div class="has-text-centered">
+                    <div class="control m-3">
+                        <button class="m-3 button is-link">Login</button>
                     </div>
                 </div>
-                <div class= "content has-text-centered">
-                    <a class = "has-text-centered"><img src="logo.png" width="80" height="90"></a>
+                <div class="content has-text-centered">
+                    <a class="has-text-centered"><img src="images/logo.png" width="80" height="90"></a>
                 </div>
-            </div>
-        </div>  
+                </form>
+        </div>
+    </div>
 
+    <div class="modal" id="my_sign_up_modal">
+        <div class="modal-background" id="modalbg_sign_up"></div>
+        <div class="modal-content p-6 has-background-primary-light has-text-centered">
+            <h1 class="has-size-3 title">Sign-up!</h1>
+            <form>
+                <!--NAME-->
+                <div class="field">
+                    <label class="label">Username</label>
+                    <div class="control">
+                        <input type="text" name="" id="">
+                    </div>
+                </div>
+                <!--Password-->
+                <div class="field">
+                    <label class="label">Password</label>
+                    <div class="control">
+                        <input type="text" name="" id="">
+                    </div>
+                </div>
+                <!-- Submit  -->
+                <div class="has-text-centered">
+                    <div class="control m-3">
+                        <button class="m-3 button is-link">Create Account</button>
+                    </div>
+                </div>
+                <div class="content has-text-centered">
+                    <a class="has-text-centered"><img src="images/logo.png" width="80" height="90"></a>
+                </div>
+            </form>
+        </div>
+    </div>
 
-                
-
-    <!--
-
-    <div id="wrapper" class="border">
-        <div id="center" class="border">
-            <p>
-                Make a post: TExT box or post box here
-                Post a song or album: <textarea id="post" name="post" rows="1" cols="35"></textarea>
+    <div class="modal" id="my_contact_modal">
+        <div class="modal-background" id="modalbg_contact"></div>
+        <div class="modal-content p-6 has-background-primary-light has-text-centered">
+            <h1 class="has-size-3 title">Contact Us!</h1>
+            <form>
+                <p>
+                <a href="mailto:mguell@wisc.edu?cc=wkalivas@wisc.edu&subject=Cypher Inquiry">Send us an email!</a>
             </p>
-            <div id="first" class="border">
-                <h5>Post: Name</h5>
-                <ul>
-                    <li>Song: etc</li>
-                    <li>Album</li>
-                    <li>Author: etc</li>
-                    <li>Image: maybe</li>
-
-                </ul>
-            </div>
-            <div id="first" class="border">
-                <h5>Post: Name</h5>
-                <ul>
-                    <li>Song: etc</li>
-                    <li>Album</li>
-                    <li>Author: etc</li>
-                    <li>Image: maybe</li>
-
-                </ul>
-
-            </div>
-            <div id="first" class="border">
-                <h5>Post: Name</h5>
-                <ul>
-                    <li>Song: etc</li>
-                    <li>Album</li>
-                    <li>Author: etc</li>
-                    <li>Image: maybe</li>
-                    Will need to figure out how to load these from database/friends and put into html
-                </ul>
-
-            </div>
-            
+            </form>
         </div>
-
-        <div id="right" class="border">
-            <h3>NAME</h3>
-            <ul>
-                <li>Name</li>
-                <li>Number of Friends</li>
-                <li>Number of Posts</li>
-                <li>Top Song</li>
-                <li>etc</li>
-
-            </ul>
-
-        </div>
-
     </div>
 
 
 
-    -->
-
-<div class="footer">
-    <div class="content has-text-centered">
-        <p>Website By Mason and Gus</p>
-        <a ><img src="logo.png" width="80" height="90"></a>     
+    <div class="footer">
+        <div class="content has-text-centered">
+            <p>Website By Mason and Gus</p>
+            <a><img src="images/logo.png" width="80" height="90"></a>
+        </div>
     </div>
-</div>
 
 </body>
+
 </html>
 
 <script>
-
     // grab the button
-    var mybutton = document.querySelector("#loginbutton");
-    mybutton.addEventListener('click', function(){
-       //grab model
-       var mymodal = document.querySelector("#mymodal");
-       mymodal.classList.add('is-active');
+    var my_login_button = document.querySelector("#loginbutton");
+    my_login_button.addEventListener('click', function () {
+        //grab model
+        var my_login_modal = document.querySelector("#my_login_modal");
+        my_login_modal.classList.add('is-active');
+    })
+
+    var my_sign_up_button = document.querySelector("#sign_up_button");
+    my_sign_up_button.addEventListener('click', function () {
+        //grab model
+        var my_sign_up_modal = document.querySelector("#my_sign_up_modal");
+        my_sign_up_modal.classList.add('is-active');
+    })
+
+    var my_contact_button = document.querySelector("#contact_button");
+    my_contact_button.addEventListener('click', function () {
+        //grab model
+        var my_contact_modal = document.querySelector("#my_contact_modal");
+        my_contact_modal.classList.add('is-active');
     })
 
     //attach event on modal-background
-    var modalbg = document.querySelector("#modalbg");
-    modalbg.addEventListener('click', function() {
-        mymodal.classList.remove('is-active');
+    var modalbg_login = document.querySelector("#modalbg_login");
+    modalbg_login.addEventListener('click', function () {
+        my_login_modal.classList.remove('is-active');
+    })
+
+    var modalbg_sign_up = document.querySelector("#modalbg_sign_up");
+    modalbg_sign_up.addEventListener('click', function () {
+        my_sign_up_modal.classList.remove('is-active');
+    })
+
+    var modalbg_contact = document.querySelector("#modalbg_contact");
+    modalbg_contact.addEventListener('click', function () {
+        my_contact_modal.classList.remove('is-active');
     })
 
     //This doesnt work theres an error on it canot set property 'onsubmit' of null
@@ -302,5 +316,4 @@
             "value_search").value;
         return false;
     }
-
 </script>
