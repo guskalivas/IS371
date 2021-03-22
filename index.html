@@ -12,6 +12,7 @@
         crossorigin="anonymous" />
 
     <link rel="stylesheet" href="style.css">
+    
 </header>
 
 <body>
@@ -86,10 +87,11 @@
                 </p>
             </div>
             <!-- MIGHT be easier to pull up a screen on this button for user to input picture/song info/post info-->
+            <!-- NEED to FIX button and JS for button to pull up a post form-->
             <div class="mt-6">
                 <p>
-                    <button id= "post_button" class = "button is-size-5 is-outlined has-text-weight-bold Rounded" style = "font-family:Verdana, Geneva, Tahoma, sans-serif">
-                        Make a Post
+                    <button class = "button is-size-5 is-outlined has-text-weight-bold Rounded" style = "font-family:Verdana, Geneva, Tahoma, sans-serif">
+                        <a id = "post_button">Make a Post</a>
                     </button>
                 </p>
             </div>
@@ -282,6 +284,18 @@
         </div>
     </div>
 
+    <div class="modal" id= "make_a_post_modal">
+        <div class="modal-background" id="modalbg_post">
+            <div class="modal-content p-6 has-background-primary-light has-text-centered">
+                <h1 class="has-size-3 title">Post a Song!</h1>
+                <form>
+                
+                </form>
+            </div>
+        </div>
+    </div>
+
+
     <div class="modal" id = "my_profile_modal">
         <div class="modal-background" id = "modalbg_profile">
             <div class="modal-content p-6 has-background-primary-light has-text-centered">
@@ -297,8 +311,6 @@
             </div>
             
             </div>
-
-
     
         </div>
     </div>
@@ -317,6 +329,18 @@
 </html>
 
 <script>
+    var make_a_post = document.querySelector("#post_button");
+    make_a_post.addEventListener('click', function() {
+        var post_modal = document.querySelector("#make_a_post_modal");
+        post_modal.classList.add('is-active');
+    })
+
+    var modalbg_post = document.querySelector("#modalbg_post");
+    modalbg_post.addEventListener('click', function() {
+        post_modal.classList.remove('is-active');
+    })
+
+
 
     var my_profile_button = document.querySelector("#my_profile_button");
     my_profile_button.addEventListener('click', function() {
