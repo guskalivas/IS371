@@ -37,28 +37,11 @@
         <div class="navbar-menu">
             <div class="navbar-start">
                 <div class="navbar-item">
-                    <a id = "my_profile_button" class="button-is-light has-text-weight-bold">Profile</a>
+                    <a id="my_profile_button" class="button-is-light has-text-weight-bold">Profile</a>
                 </div>
                 <div class="navbar-item">
-                    <!-- <div id="login_modal" class="modal">
-                        <div class="modal-background"></div>
-                        <div class="modal-content p-4 has-background-success-light"></div>
-                    </div> -->
-                    <a class = "has-text-weight-bold" id="loginbutton">Login
-                    </a>
-
+                    <a id="loginbutton" class="has-text-weight-bold">Login</a>
                 </div>
-                <!--TOOK this search bar out to use bottom bigger one
-
-                <div class="navbar-item has-text-centered ">
-                    <a>
-                        <form class="mt-4" id="search_form" action="https://google.com">
-                            <input type="text" placeholder="Search Songs" name="q" id="value_search">
-                            <input id="go" type="button" value="Go">
-                        </form>
-                    </a>
-                </div>
-                -->
             </div>
             <div class="navbar-end">
                 <div class="navbar-item">
@@ -103,7 +86,7 @@
     <div class="section has-background-primary-light">
         <div class="container">
             <div class="columns">
-                <!--Main content-->
+                <!-- MAIN CONTENT IN MIDDLE-->
                 <div class="section column is-8 pl-6 pr-6 pt-0">
                     <div class="card mb-6">
                         <div class="card-image">
@@ -175,18 +158,18 @@
                         </div>
                         <div class="card-content has-text-centered">
                             <ul>
-                                <li><a href="https://www.youtube.com/watch?v=L53gjP-TtGE" target="_blank">Power</a></li>
+                                <li><a href="https://www.youtube.com/watch?v=L53gjP-TtGE" target="_blank">Runaway</a></li>
                                 <li><i>Kanye West</i></li>
                             </ul>
                         </div>
                     </div>
 
                 </div>
-                <!--related content-->
-                <div class="column is-4 has-background-light p-6">
+                <!-- PROFILE CONTENT ON RIGHT SIDE -->
+                <div class="column is-4 has-background-light p-6 is-offset-6"  style="position:fixed; height:50%; width:20%" >
 
                     <!--Message for user contact us-->
-                    <div class="message is-medium hero-body is-link">
+                    <div class="message is-medium hero-body is-link"  style="position:fixed">
                         <div class="message-header">
                             Your Profile
                         </div>
@@ -284,12 +267,43 @@
         </div>
     </div>
 
+
+
+    <!-- So are we going to make the user insert the song information or are we going to have a database of songs to choose from?
+    I think it might be easier (at least for now) to let the user enter the song name/song artist/song image rather than trying 
+to create a whole database. I know we need a database for this project, but we could just store user information/friends/
+songs they have posted -->
+<!-- I think if they enter the song name, song image, and song artist - we can do the rest by creating a post with these things -->
+<!-- I was thinking maybe we could add a link option where a user could enter the song link - either to spotify, apple music, or youtube.
+This way users can just click the link and listen to the song right away -->
     <div class="modal" id= "make_a_post_modal">
         <div class="modal-background" id="modalbg_post">
             <div class="modal-content p-6 has-background-primary-light has-text-centered">
                 <h1 class="has-size-3 title">Post a Song!</h1>
                 <form>
-                
+                    <div class="field">
+                        <label class="label">Song Name</label>
+                        <div class="control">
+                            <input type="text" name="" id="">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Song Artist</label>
+                        <div class="control">
+                            <input type="text" name="" id="">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Song Image</label>
+                        <div class="control">
+                            <input type="file" name="" id="" accept="image/png, image/jpeg, image,jpeg">
+                        </div>
+                    </div>
+                    <div class="has-text-centered">
+                        <div class="control m-3">
+                            <input type="submit" class="p-3 is-link has-text-white has-background-link" value="Post Song">
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -300,7 +314,6 @@
         <div class="modal-background" id = "modalbg_profile">
             <div class="modal-content p-6 has-background-primary-light has-text-centered">
                <h1 class="has-size-3 title">Your Profile!</h1>
-
                <div class="is-flex-grow-0">
                <figure class="image is-128x128 is-align-items-flex-start">
                 <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
@@ -315,8 +328,6 @@
         </div>
     </div>
 
-
-
     <div class="footer">
         <div class="content has-text-centered">
             <p>Website By Mason and Gus</p>
@@ -329,19 +340,21 @@
 </html>
 
 <script>
+    // post button
     var make_a_post = document.querySelector("#post_button");
     make_a_post.addEventListener('click', function() {
         var post_modal = document.querySelector("#make_a_post_modal");
         post_modal.classList.add('is-active');
     })
 
+    // can't get out of this modal without refreshing the page - NEED TO FIX
     var modalbg_post = document.querySelector("#modalbg_post");
     modalbg_post.addEventListener('click', function() {
         post_modal.classList.remove('is-active');
     })
 
 
-
+    // profile button
     var my_profile_button = document.querySelector("#my_profile_button");
     my_profile_button.addEventListener('click', function() {
         var my_profile_modal = document.querySelector("#my_profile_modal");
@@ -355,38 +368,38 @@
 
 
 
-    // grab the button
+    // login button
     var my_login_button = document.querySelector("#loginbutton");
     my_login_button.addEventListener('click', function () {
-        //grab model
         var my_login_modal = document.querySelector("#my_login_modal");
         my_login_modal.classList.add('is-active');
     })
-    
 
-    var my_sign_up_button = document.querySelector("#sign_up_button");
-    my_sign_up_button.addEventListener('click', function () {
-        //grab model
-        var my_sign_up_modal = document.querySelector("#my_sign_up_modal");
-        my_sign_up_modal.classList.add('is-active');
-    })
-
-    var my_contact_button = document.querySelector("#contact_button");
-    my_contact_button.addEventListener('click', function () {
-        //grab model
-        var my_contact_modal = document.querySelector("#my_contact_modal");
-        my_contact_modal.classList.add('is-active');
-    })
-
-    //attach event on modal-background
     var modalbg_login = document.querySelector("#modalbg_login");
     modalbg_login.addEventListener('click', function () {
         my_login_modal.classList.remove('is-active');
     })
 
+    
+    // sign up button
+    var my_sign_up_button = document.querySelector("#sign_up_button");
+    my_sign_up_button.addEventListener('click', function () {
+        var my_sign_up_modal = document.querySelector("#my_sign_up_modal");
+        my_sign_up_modal.classList.add('is-active');
+    })
+
     var modalbg_sign_up = document.querySelector("#modalbg_sign_up");
     modalbg_sign_up.addEventListener('click', function () {
         my_sign_up_modal.classList.remove('is-active');
+    })
+
+
+
+    // contact button
+    var my_contact_button = document.querySelector("#contact_button");
+    my_contact_button.addEventListener('click', function () {
+        var my_contact_modal = document.querySelector("#my_contact_modal");
+        my_contact_modal.classList.add('is-active');
     })
 
     var modalbg_contact = document.querySelector("#modalbg_contact");
