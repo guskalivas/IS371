@@ -17,7 +17,7 @@
 
 <body>
     <!-- NAV Section-->
-    <div class="navbar has-background-primary-light">
+    <div class="navbar has-background-info">
         <div class="navbar-brand">
             <div class="navbar-item">
                 <div class="navbar-item">
@@ -37,18 +37,21 @@
         <div class="navbar-menu">
             <div class="navbar-start">
                 <div class="navbar-item">
-                    <a id="my_profile_button" class="button-is-light has-text-weight-bold">Profile</a>
+                    <a id="my_profile_button" class="button-is-light has-text-weight-bold has-text-black">Profile</a>
                 </div>
                 <div class="navbar-item">
-                    <a id="loginbutton" class="has-text-weight-bold">Login</a>
+                    <a id="loginbutton" class="has-text-weight-bold has-text-black">Login</a>
                 </div>
+            </div>
+            <div class="navbar-item">
+                <h1 class="is-size-3 has-text-weight-bold has-text-black" style="font-family:Verdana, Geneva, Tahoma, sans-serif">Cypher Songs</h1>
             </div>
             <div class="navbar-end">
                 <div class="navbar-item">
-                    <a class = "has-text-weight-bold" id="sign_up_button">Sign-Up</a>
+                    <a class = "has-text-weight-bold has-text-black" id="sign_up_button">Sign-Up</a>
                 </div>
                 <div class="navbar-item">
-                    <a class = "has-text-weight-bold" id="contact_button">Contact Us</a>
+                    <a class = "has-text-weight-bold has-text-black" id="contact_button">Contact Us</a>
                 </div>
             </div>
         </div>
@@ -56,25 +59,40 @@
 
     
     <!-- NAME Make a post section-->
-    <div id="banner" class="hero is-medium is-link has-text-centered ">
-        <!-- HERO BODY - trying to center-->
-        <div class="hero-title">
+    <!-- <div id="banner" class="hero is-medium has-text-centered ">
+        HERO BODY - trying to center-->
+        <!-- <div class="hero-title">
             <div class="container is-wide-screen">
-                <h1 class="is-size-3 has-text-weight-bold" style="font-family:Verdana, Geneva, Tahoma, sans-serif">Cypher Songs</h1>
-                <!-- will need to fix this part-->
+                will need to fix this part-->
 
-                <p class="mt-4">
+                <!-- <p class="mt-4">
                     <form id="search_form" action="https://google.com">
                     <input type="text" id = "value_search" class="input is-rounded has-text-centered" placeholder="Search for a song/artist/album"  width="50%">
                     </form>
-                </p>
-            </div>
+                </p> -->
+            <!-- </div> -->
             <!-- MIGHT be easier to pull up a screen on this button for user to input picture/song info/post info-->
             <!-- NEED to FIX button and JS for button to pull up a post form-->
-            <div class="mt-6">
-                <p>
-                    <button class = "button is-size-5 is-outlined has-text-weight-bold Rounded" style = "font-family:Verdana, Geneva, Tahoma, sans-serif">
-                        <a id = "post_button">Make a Post</a>
+            
+        <!-- </div> -->
+    <!-- </div> -->
+    <!-- <div class="section p-0 has-background-primary-light">
+    <div class="mt-4 column  is-three-fifths is-offset-5">
+        <p>
+            <button class = "column is-one-quarter button is-size-5 has-background-light is-outlined has-text-weight-bold Rounded" style = "font-family:Verdana, Geneva, Tahoma, sans-serif">
+                <a id = "post_button" class="has-text-black">Make a Post</a>
+            </button>
+        </p>
+    </div> -->
+</div>
+    <div class="container">
+        <div class="columns">
+            <div class="section mb-3 column is-three-fifths is-offset-one-fifth pl-6 pr-6" >
+                <p class="" >
+                    <button  id = "post_button" class="pl-6 is-outlined has-text-weight-bold button is-size-3" 
+                    style = "width:100%; font-family:Verdana, Geneva, Tahoma, sans-serif; background:lightcoral"
+                    >
+                        <a class="has-text-black" >Make a Post</a>
                     </button>
                 </p>
             </div>
@@ -83,11 +101,11 @@
 
 
     <!--Main content: Post section plus profile info on the side-->
-    <div class="section has-background-primary-light">
         <div class="container">
             <div class="columns">
+                
                 <!-- MAIN CONTENT IN MIDDLE-->
-                <div class="section column is-three-fifths is-offset-one-fifth-widescreen pl-6 pr-6 pt-0 is-offset-2-desktop">
+                <div class="section column is-three-fifths is-offset-one-fifth-widescreen pl-6 pr-6 pt-0">
                     <div class="card mb-6">
                         <div class="card-image">
                             <div class="image is-3by2">
@@ -277,7 +295,7 @@ songs they have posted -->
 <!-- I was thinking maybe we could add a link option where a user could enter the song link - either to spotify, apple music, or youtube.
 This way users can just click the link and listen to the song right away -->
     <div class="modal" id= "make_a_post_modal">
-        <div class="modal-background" id="modalbg_post">
+        <div class="modal-background" id="modalbg_post"></div>
             <div class="modal-content p-6 has-background-primary-light has-text-centered">
                 <h1 class="has-size-3 title">Post a Song!</h1>
                 <form>
@@ -306,12 +324,12 @@ This way users can just click the link and listen to the song right away -->
                     </div>
                 </form>
             </div>
-        </div>
+        
     </div>
 
 
     <div class="modal" id = "my_profile_modal">
-        <div class="modal-background" id = "modalbg_profile">
+        <div class="modal-background" id = "modalbg_profile"></div>
             <div class="modal-content p-6 has-background-primary-light has-text-centered">
                <h1 class="has-size-3 title">Your Profile!</h1>
                <div class="is-flex-grow-0">
@@ -325,7 +343,7 @@ This way users can just click the link and listen to the song right away -->
             
             </div>
     
-        </div>
+        
     </div>
 
     <div class="footer">
@@ -415,3 +433,6 @@ This way users can just click the link and listen to the song right away -->
         return false;
     }
 </script>
+
+<!-- center profile modal -->
+<!-- add logo to profile and contact us and make post -->
