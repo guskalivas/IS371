@@ -86,10 +86,10 @@ psb.addEventListener('click', (e) => {
     let artist = document.querySelector('#artist').value;
     let songImage = document.querySelector('#song-image').value;
     let songLink = document.querySelector('#song-link').value;
-
+    
     console.log(name);
 
-    if (name != "" && artist != "" && songLink != "" && songImge != ""){ //make sure user enters enough info
+    if (name != "" && artist != "" && songLink != "" && songImage != ""){ //make sure user enters enough info
     let temp = document.querySelector('#main-content').innerHTML;
     let content = document.querySelector('#main-content');
    
@@ -104,7 +104,7 @@ psb.addEventListener('click', (e) => {
                     <div class="media mb-0">
                         <div class="media-left">
                             <div class="image is-96x96">
-                                <img src="images/logo.png" alt="">
+                                <img src="images/smallLogo.png" alt="">
                             </div>
                         </div>
                         <div class="media-content">
