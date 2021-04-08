@@ -329,6 +329,7 @@ This way users can just click the link and listen to the song right away -->
             <h1 class="has-size-3 title">Post a Song!</h1>
             <h3><b>You must enter a song name, artist, image, and link for the post to work</b></h3>
             <br>
+    
             <form>
                 <div class="field">
                     <label class="label">Song Name</label>
@@ -371,6 +372,7 @@ This way users can just click the link and listen to the song right away -->
                             value="Post Song">
                     </div>
                 </div>
+        
             </form>
         </div>
 
@@ -390,7 +392,7 @@ This way users can just click the link and listen to the song right away -->
                         </figure>
                         <br>
                         <form action="upload.php" method="post" enctype="multipart/form-data">
-                            Select Profile Picture:
+                            Select Profile Picture: 
                             <p><input type="file" name="fileToUpload" id="fileToUpload"></p>
                             <p><input class = "has-text-left" type="submit" value="UploadImage" name="submit"></p>
                           </form>
@@ -416,14 +418,14 @@ This way users can just click the link and listen to the song right away -->
                         </ul>
                     -->
                     </div>
-                    <div id="Info" class = "tabcontent">
+                    <div id="Info" class = "tabcontent is-hidden">
                         <h3 class = "title">Your information</h3>
                         <p>Name: </p>
                         <p>Username: </p>
                         <p>Email: </p>
                     </div>
                         
-                    <div id = 'Friends' class = "tabcontent">
+                    <div id = 'Friends' class = "tabcontent is-hidden">
                         <h3 class="title">Friends</h3>
                         <ul>
                             <li>Friend 1</li>
@@ -432,7 +434,7 @@ This way users can just click the link and listen to the song right away -->
                        
                     </div>
 
-                    <div id = 'Likes' class = "tabcontent">
+                    <div id = 'Likes' class = "tabcontent is-hidden">
                         <h3 class="title">Liked Songs</h3>
                        <ul>
                            <li>Song1</li>
@@ -441,7 +443,7 @@ This way users can just click the link and listen to the song right away -->
                        </ul>
                     
                     </div>
-                    <div id = 'Posts' class = "tabcontent">
+                    <div id = 'Posts' class = "tabcontent is-hidden">
                         <h3 class="title">Songs Posted</h3>
                         <ul>
                             <li>Post 1</li>

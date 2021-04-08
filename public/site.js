@@ -132,29 +132,16 @@ psb.addEventListener('click', (e) => {
     post_modal.classList.remove('is-active'); //exits modal
 })
 
-// var profile_info_tab = document.querySelector('#profile_info_tab');
-// profile_info_tab.addEventListener('click', function(){
-//     var info = document.querySelector('#Info');
-//     console.log(info);
-//     info.classList.remove("is-hidden");
-//     info.classList.add("is-active");
-//     info.classList.remove("is-active");
-// })
-
-// var profile_friend_tab = document.querySelector('#profile_friend_tab');
-// profile_friend_tab.addEventListener('click', function(){
-//     var Friends = document.querySelector('#Friends');
-//     console.log(Friends);
-//     Friends.classList.remove("is-hidden");
-//     Friends.classList.add("is-active");
-// })
 
 function openPage(evt, pageName) {
+
     // Hide all elements with class="tabcontent" by default */
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
-     tabcontent[i].style.display = "none";
+    tabcontent[i].classList.remove('is-hidden');
+    tabcontent[i].classList.add("is-active");
+    tabcontent[i].style.display = "none";
     }
   
     tablinks = document.getElementsByClassName("tablinks");
