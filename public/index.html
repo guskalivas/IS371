@@ -216,13 +216,13 @@
         
            <div class="column is-two-fifiths">
             <div style ="background-color:lightseagreen; height: 60vh;overflow:hidden;" class="column message is-hero is-black ">
-                <div class="message-header" >
+                <div class="message-header" id = "my_profile_button" >
                     Your Profile
                 </div>
                 <div class="message-body has-text-weight-bold has-text-black" >
                     <p>
                         <ul>
-                            <li>Gus Kalivas</li>
+                            <li ><a id="my_profile_button"s style= "text-decoration:none;">Gus Kalivas</a></li>
                             <li>20 Friends</li>
                             <li>1 Post</li>
                             <li>20 Liked Songs</li>
@@ -392,7 +392,7 @@ This way users can just click the link and listen to the song right away -->
                         <form action="upload.php" method="post" enctype="multipart/form-data">
                             Select Profile Picture:
                             <p><input type="file" name="fileToUpload" id="fileToUpload"></p>
-                            <p><input class = "has-text-left" type="submit" value="Upload Image" name="submit"></p>
+                            <p><input class = "has-text-left" type="submit" value="UploadImage" name="submit"></p>
                           </form>
                         
                     </div>
@@ -400,32 +400,53 @@ This way users can just click the link and listen to the song right away -->
                
                 <div class="column is-8">
                     <div class="tabs is-center is-small  is-toggle" id = "tabs">
+                        <!-- NEEDS TO BE RE-DONE KINDA WORKS-->
                         <ul>
-                            <!-- NEEDS TO BE RE-DONE KINDA WORKS-->
-                            <li class = "is-active"><a href = '#' onclick="openPage('Info')"><i class="fas fa-info-circle"></i>Your Info</a></li>
-                            <li ><a href = '#' onclick="openPage('Friends')"><i class="fas fa-users"></i>Friends</a></li>
-                            <li ><a href = '#' onclick = "openPage('Posts')"><i class="fas fa-image"></i>Your Posts</a></li>
-                            <li ><a href = '#' onclick = "openPage('Likes')"><i class="fas fa-music"></i>Likes</a></li>
+                           
+                            <li  class = "tablinks"><a href = '#' onclick="openPage(event,'Info')"><i class="fas fa-info-circle"></i>Your Info</a></li>
+                            <li class = "tablinks"><a href = '#' onclick= "openPage(event, 'Friends')"><i class="fas fa-users"></i>Friends</a></li>
+                            <li class = "tablinks"><a href = '#' onclick = "openPage(event, 'Posts')"><i class="fas fa-image"></i>Your Posts</a></li>
+                            <li class = "tablinks"><a href = '#' onclick = "openPage(event,'Likes')"><i class="fas fa-music"></i>Likes</a></li>
+                        </ul> 
+                        <!-- <ul>
+                            <li><a id = profile_info_tab><i class="fas fa-info-circle"></i>Your Info</a></li>
+                            <li><a id = profile_friend_tab><i class="fas fa-users"></i>Friends</a></li>
+                            <li><a id = profile_post_tab><i class="fas fa-image"></i>Posts</a></li>
+                            <li><a id = profile_likes_tab><i class="fas fa-music"></i>Likes</a></li>
                         </ul>
-
+                    -->
                     </div>
                     <div id="Info" class = "tabcontent">
-                        <h3>Your information</h3>
+                        <h3 class = "title">Your information</h3>
                         <p>Name: </p>
                         <p>Username: </p>
                         <p>Email: </p>
                     </div>
                         
                     <div id = 'Friends' class = "tabcontent">
-                        my friends are:
+                        <h3 class="title">Friends</h3>
+                        <ul>
+                            <li>Friend 1</li>
+                            <li>Friend 2</li>
+                        </ul>
+                       
                     </div>
 
                     <div id = 'Likes' class = "tabcontent">
-                        <h3>I Like this Song</h3>
+                        <h3 class="title">Liked Songs</h3>
+                       <ul>
+                           <li>Song1</li>
+                           <li>Song2</li>
+
+                       </ul>
                     
                     </div>
                     <div id = 'Posts' class = "tabcontent">
-                        <h3>These are my posts</h3>
+                        <h3 class="title">Songs Posted</h3>
+                        <ul>
+                            <li>Post 1</li>
+                            <li>Post 2</li>
+                        </ul>
                     
                     </div>
                    
@@ -436,7 +457,6 @@ This way users can just click the link and listen to the song right away -->
         </div>
 
         </div>
-
 
     </div>
 

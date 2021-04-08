@@ -14,11 +14,14 @@ modalbg_post.addEventListener('click', function() {
 
 
 // profile button
-var my_profile_button = document.querySelector("#my_profile_button");
-my_profile_button.addEventListener('click', function() {
-    var my_profile_modal = document.querySelector("#my_profile_modal");
-    my_profile_modal.classList.add('is-active');
+var my_profile_button = document.querySelectorAll("#my_profile_button");
+console.log(my_profile_button);
+for (const button of my_profile_button){
+    button.addEventListener('click', function() {
+        var my_profile_modal = document.querySelector("#my_profile_modal");
+        my_profile_modal.classList.add('is-active');
 })
+}
 
 var modalbg_profile = document.querySelector("#modalbg_profile");
 modalbg_profile.addEventListener('click', function() {
@@ -129,25 +132,38 @@ psb.addEventListener('click', (e) => {
     post_modal.classList.remove('is-active'); //exits modal
 })
 
-function openPage(pageName) {
+// var profile_info_tab = document.querySelector('#profile_info_tab');
+// profile_info_tab.addEventListener('click', function(){
+//     var info = document.querySelector('#Info');
+//     console.log(info);
+//     info.classList.remove("is-hidden");
+//     info.classList.add("is-active");
+//     info.classList.remove("is-active");
+// })
+
+// var profile_friend_tab = document.querySelector('#profile_friend_tab');
+// profile_friend_tab.addEventListener('click', function(){
+//     var Friends = document.querySelector('#Friends');
+//     console.log(Friends);
+//     Friends.classList.remove("is-hidden");
+//     Friends.classList.add("is-active");
+// })
+
+function openPage(evt, pageName) {
     // Hide all elements with class="tabcontent" by default */
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
+     tabcontent[i].style.display = "none";
     }
   
-    // Remove the background color of all tablinks/buttons
-    tablinks = document.getElementsByClassName("tablink");
+    tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].style.backgroundColor = "";
-    }
+    tablinks[i].className = tablinks[i].className.replace("is-hidden", " is-active");
+  }
   
     // Show the specific tab content
     document.getElementById(pageName).style.display = "block";
-  
-    // Add the specific color to the button used to open the tab content
+    evt.currentTarget.classList += " is-active"
   }
-  
-  // Get the element with id="defaultOpen" and click on it
  
