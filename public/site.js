@@ -194,7 +194,7 @@ psb.addEventListener('click', (e) => {
 
     if (name != "" && artist != "" && songLink != "" && songImage != "") { //make sure user enters enough info
         // let temp = document.querySelector('#main-content').innerHTML;
-        // let content = document.querySelector('#main-content');
+        let content = document.querySelector('#main-content');
         let content_html = "";
 
         posts_to_show.forEach((post) => {
