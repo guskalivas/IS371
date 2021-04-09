@@ -1,18 +1,41 @@
-const all_posts = [];
+// ******** THINGS WE STILL NEED TO DO ********
+// 1. add friend/delete friend button
+// 2. like button/functionality
+// 3. maybe find something to add to the left side of the screen that is kind of empty
+// 4. implement sign up features for users like we did in class
+// 5. make the navbar-burger work to show the navbar content when clicked
+// 6. figure out how to upload user image for profile/song post
+// 7. functionability with only showing friends posts
+// 8. ???
+//  Anything else you can think of adding for now?
 
-// post button
+const all_posts = []; //stores all posts from users
+
+// make a post button
 var make_a_post = document.querySelector("#post_button");
 var post_modal = document.querySelector("#make_a_post_modal");
 make_a_post.addEventListener('click', function () {
-
     post_modal.classList.add('is-active');
 })
 
-// can't get out of this modal without refreshing the page - NEED TO FIX
+// exit out of make a post modal
 var modalbg_post = document.querySelector("#modalbg_post");
 modalbg_post.addEventListener('click', function () {
     post_modal.classList.remove('is-active');
 })
+
+// profile button
+var profile_modal = document.querySelector("#my_profile_modal");
+var profile_button = document.querySelector("#my_profile_button");
+profile_button.addEventListener('click', function () {
+    profile_modal.classList.add('is-active');
+})
+
+// exit out of profile modal
+// var modalbg_profile = document.querySelector("#modalbg_profile");
+// modalbg_profile.addEventListener('click', function () {
+//     profile_modal.classList.remove('is-active');
+// })
 
 
 // profile info button
@@ -70,9 +93,9 @@ for (const button of my_profile_likes_button) {
     })
 }
 
+
 var modalbg_profile = document.querySelector("#modalbg_profile");
 modalbg_profile.addEventListener('click', function () {
-
     profile_likes.classList.remove('is-active');
     profile_friends.classList.remove('is-active');
     profile_posts.classList.remove('is-active');
@@ -126,21 +149,11 @@ modalbg_contact.addEventListener('click', function () {
 })
 
 
-//This doesnt work theres an error on it canot set property 'onsubmit' of null
-// document.getElementById(search_form).onsubmit = function () {
-//     window.location = 'http://www.google.com/search?q=site:yoursitename.com ' + document.getElementById(
-//         "value_search").value;
-//     return false;
-// }
-
-
 
 // posting a song and updating main page content
 let psb = document.querySelector('#psb');
 
-
-
-
+// submit song post action
 psb.addEventListener('click', (e) => {
     e.preventDefault();
 
@@ -174,15 +187,14 @@ psb.addEventListener('click', (e) => {
         }
     }
 
-    console.log(posts_to_show);
+    // console.log(posts_to_show);
 
-    console.log(song_content);
-    console.log(all_posts);
+    // console.log(song_content);
+    // console.log(all_posts);
 
     if (name != "" && artist != "" && songLink != "" && songImage != "") { //make sure user enters enough info
-        let temp = document.querySelector('#main-content').innerHTML;
-        let content = document.querySelector('#main-content');
-
+        // let temp = document.querySelector('#main-content').innerHTML;
+        // let content = document.querySelector('#main-content');
         let content_html = "";
 
         posts_to_show.forEach((post) => {
@@ -213,17 +225,11 @@ psb.addEventListener('click', (e) => {
 
                 </div>
             `
-            content_html += newSong
+            content_html += newSong //adds song to main content
         })
-
-
         // post template
-
         content.innerHTML = content_html; //puts new song first on timeline
-    //    content.innerHTML += temp; //adds back all other songs
     }
-
-
     post_modal.classList.remove('is-active'); //exits modal
 })
 

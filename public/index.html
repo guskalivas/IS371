@@ -20,14 +20,15 @@
     <div class="navbar has-background-black has-text-white">
         <div class="navbar-brand">
             <div class="navbar-item">
+                <!-- small logo on top left of screen -->
                 <div class="navbar-item">
-                    <!-- find image or Logo maybe from font awesome-->
-                    <a>
+                    <a href="">
                         <img src="images/smallLogo.png">
                     </a>
                 </div>
                 <i class="far fa-speakers"></i>
             </div>
+            <!-- navbar burger for small screens -->
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
@@ -36,9 +37,11 @@
         </div>
         <div class="navbar-menu">
             <div class="navbar-start">
+                <!-- click to open up user profile modal-->
                 <div class="navbar-item">
                     <a id="my_profile_button" class="button-is-light has-text-weight-bold has-text-white">Profile</a>
                 </div>
+                <!-- click to open up login modal -->
                 <div class="navbar-item">
                     <a id="loginbutton" class="has-text-weight-bold has-text-white">Login</a>
                 </div>
@@ -47,53 +50,27 @@
             <div class="navbar-item p-0 pr-5">
                 <h1 class="is-size-3 has-text-weight-bold"
                     style="font-family:'Helvetica Neue', serif; color:lightseagreen"><b>Cypher Songs</b></h1>
-                <!-- <a>
-                    <img src="images/2.png"  style="max-height: none; height:100px; width:200px">
-                </a> -->
             </div>
             <div class="navbar-end">
+                <!-- click to open up sign up modal -->
                 <div class="navbar-item">
                     <a class="has-text-weight-bold has-text-white" id="sign_up_button">Sign-Up</a>
                 </div>
+                <!-- click to open up contact modal -->
                 <div class="navbar-item">
                     <a class="has-text-weight-bold has-text-white" id="contact_button">Contact Us</a>
                 </div>
             </div>
         </div>
     </div>
+    <!-- END OF NAVBAR -->
 
 
-    <!-- NAME Make a post section-->
-    <!-- <div id="banner" class="hero is-medium has-text-centered ">
-        HERO BODY - trying to center-->
-    <!-- <div class="hero-title">
-            <div class="container is-wide-screen">
-                will need to fix this part-->
-
-    <!-- <p class="mt-4">
-                    <form id="search_form" action="https://google.com">
-                    <input type="text" id = "value_search" class="input is-rounded has-text-centered" placeholder="Search for a song/artist/album"  width="50%">
-                    </form>
-                </p> -->
-    <!-- </div> -->
-    <!-- MIGHT be easier to pull up a screen on this button for user to input picture/song info/post info-->
-    <!-- NEED to FIX button and JS for button to pull up a post form-->
-
-    <!-- </div> -->
-    <!-- </div> -->
-    <!-- <div class="section p-0 has-background-primary-light">
-    <div class="mt-4 column  is-three-fifths is-offset-5">
-        <p>
-            <button class = "column is-one-quarter button is-size-5 has-background-light is-outlined has-text-weight-bold Rounded" style = "font-family:Verdana, Geneva, Tahoma, sans-serif">
-                <a id = "post_button" class="has-text-black">Make a Post</a>
-            </button>
-        </p>
-    </div> -->
-    <!-- </div> -->
+   <!-- START OF MIDDLE SECTION UNDER NAV -->
     <section class="hero is-small has-background-info-light">
         <div class="hero-body has-text-centered">
             <p class="title">
-               Welcome to <br><b><i>Cypher Songs</i></b>
+                Welcome to <br><b><i>Cypher Songs</i></b>
             </p>
             <p class="subtitle mb-2">
                 Have you ever gone on Instagram, Snapchat or any other social media and seen a song posted - you
@@ -114,10 +91,12 @@
             </div>
         </div>
     </section>
+    <!-- END OF TOP MIDDLE SECTION -->
+    <!-- MAKE A POST BUTTON -->
     <div class="container">
-        <div class="columns" >
+        <div class="columns">
             <div class="section mb-3 column is-three-fifths is-offset-one-fifth pl-6 pr-6">
-                <p class="" >
+                <p class="">
                     <button id="post_button" class="pl-6 is-outlined has-text-weight-bold button is-size-3 is-rounded"
                         style="width:100%; font-family:Verdana, Geneva, Tahoma, sans-serif; background:lightcoral">
                         <a class="has-text-black">Make a Post</a>
@@ -130,11 +109,12 @@
 
 
     <!--Main content: Post section plus profile info on the side-->
-    <div class="container"  >
+    <div class="container">
         <div class="columns">
-            
+
             <!-- MAIN CONTENT IN MIDDLE-->
-            <div id="main-content" style = "height:110vh; overflow:auto;" class ="section column is-three-fifths is-offset-one-fifth-widescreen pl-6 pr-6 pt-0" >
+            <div id="main-content" style="height:110vh; overflow:auto;"
+                class="section column is-three-fifths is-offset-one-fifth-widescreen pl-6 pr-6 pt-0">
                 <div class="card mb-6">
                     <div class="card-image">
                         <div class="image is-3by2">
@@ -210,34 +190,36 @@
                         </ul>
                     </div>
                 </div>
-            
+
             </div>
 
-        
-           <div class="column is-two-fifiths">
-            <div style ="background-color:lightseagreen; height: 60vh;overflow:hidden;" class="column message is-hero is-black ">
-                <div class="message-header" id = "my_profile_button" >
-                    Your Profile
-                </div>
-                <div class="message-body has-text-weight-bold has-text-black" >
-                    <p>
-                        <ul>
-                            <li><a id="my_profile_info_button" style= "text-decoration:none;">Gus Kalivas</a></li>
-                            <li><a id="my_profile_friends_button" style= "text-decoration:none;">20 Friends</a></li>
-                            <li><a id="my_profile_posts_button" style= "text-decoration:none;">1 Post</a></li>
-                            <li><a id="my_profile_likes_button" style= "text-decoration:none;">20 Liked Songs</a></li>
-                        </ul>
-                    </p>
+            <!-- SIDE PROFILE SECTION -->
+            <div class="column is-two-fifths">
+                <div style="background-color:lightseagreen; height: 60vh;overflow:hidden;"
+                    class="column message is-hero is-black ">
+                    <div class="message-header" id="my_profile_button">
+                        Your Profile
+                    </div>
+                    <div class="message-body has-text-weight-bold has-text-black">
+                        <p>
+                            <ul>
+                                <li><a id="my_profile_info_button" style="text-decoration:none;">Gus Kalivas</a></li>
+                                <li><a id="my_profile_friends_button" style="text-decoration:none;">20 Friends</a></li>
+                                <li><a id="my_profile_posts_button" style="text-decoration:none;">1 Post</a></li>
+                                <li><a id="my_profile_likes_button" style="text-decoration:none;">20 Liked Songs</a>
+                                </li>
+                            </ul>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
         </div>
     </div>
 
 
-
+    <!-- LOGIN MODAL -->
     <div class="modal" id="my_login_modal">
         <div class="modal-background" id="modalbg_login"></div>
         <div class="modal-content p-6 has-background-primary-light has-text-centered">
@@ -269,7 +251,9 @@
             </form>
         </div>
     </div>
+    <!-- END OF LOGIN MODAL -->
 
+    <!-- SIGN-UP MODAL -->
     <div class="modal" id="my_sign_up_modal">
         <div class="modal-background" id="modalbg_sign_up"></div>
         <div class="modal-content p-6 has-background-primary-light has-text-centered">
@@ -301,7 +285,10 @@
             </form>
         </div>
     </div>
+    <!-- END OF SIGN-UP MODAL -->
 
+
+    <!-- CONTACT MODAL -->
     <div class="modal" id="my_contact_modal">
         <div class="modal-background" id="modalbg_contact"></div>
         <div class="modal-content p-6 has-background-primary-light has-text-centered">
@@ -310,32 +297,22 @@
                 <p>
                     <a href="mailto:mguell@wisc.edu?cc=wkalivas@wisc.edu&subject=Cypher Inquiry">Send us an email!</a>
                 </p>
-                
             </form>
             <div class="">
-               <!-- <a class="has-text-centered"><img src="images/smallLogo.png" width="80" height="90"></a>-->
                 <a class="has-text-centered"><img src="images/logo-full.png" width="275" height="190"></a>
             </div>
-           
         </div>
     </div>
+    <!-- END OF CONTACT MODAL -->
 
 
-
-    <!-- So are we going to make the user insert the song information or are we going to have a database of songs to choose from?
-    I think it might be easier (at least for now) to let the user enter the song name/song artist/song image rather than trying 
-to create a whole database. I know we need a database for this project, but we could just store user information/friends/
-songs they have posted --> <!-- ****YES I THINK WE JUST HAVE THEM POST IT ALL, DEFINTELY FOR NOW AT LEAST-->
-    <!-- I think if they enter the song name, song image, and song artist - we can do the rest by creating a post with these things -->
-    <!-- I was thinking maybe we could add a link option where a user could enter the song link - either to spotify, apple music, or youtube.
-This way users can just click the link and listen to the song right away -->
+    <!-- USER MAKE A POST MODAL -->
     <div class="modal" id="make_a_post_modal">
         <div class="modal-background" id="modalbg_post"></div>
         <div class="modal-content p-6 has-background-primary-light has-text-centered">
             <h1 class="has-size-3 title">Post a Song!</h1>
             <h3><b>You must enter a song name, artist, image, and link for the post to work</b></h3>
             <br>
-    
             <form>
                 <div class="field">
                     <label class="label">Song Name</label>
@@ -355,9 +332,6 @@ This way users can just click the link and listen to the song right away -->
                         <input type="file" name="" id="" accept="image/png, image/jpeg, image,jpeg">
                     </div>
                 </div> -->
-
-                <!-- Don't know how to take a user uploaded image but taking an image from the web does work- only downfall 
-                is the quality is worse which we should probably try to avoid bad quality photos -->
                 <div class="field">
                     <label class="label">Song Image</label>
                     <p>Please copy an image address from the web</p>
@@ -378,12 +352,14 @@ This way users can just click the link and listen to the song right away -->
                             value="Post Song">
                     </div>
                 </div>
-        
             </form>
         </div>
-
     </div>
+    <!-- END OF MAKE A POST MODAL -->
 
+
+
+    <!-- PROFILE MODAL -->
     <div class="modal" id="my_profile_modal">
         <div class="modal-background" id="modalbg_profile"></div>
         <div class="modal-content p-6 has-background-primary-light has-text-centered">
@@ -391,31 +367,33 @@ This way users can just click the link and listen to the song right away -->
             <div class="columns">
                 <div class="column is-4">
                     <div class="is-flex-grow-0">
-
                         <!-- NEED TO FIGURE OUT UPLOAD IMAGES AND DISPLAY MIGHT NEED PHP-->
+                        <!-- **I am not familiar with PHP, but if you can figure out how to upload images, that would be awesome! -Mason** -->
                         <figure class="image is-128x128 is-align-items-flex-start">
-                        <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+                            <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
                         </figure>
                         <br>
                         <form action="upload.php" method="post" enctype="multipart/form-data">
-                            Select Profile Picture: 
+                            Select Profile Picture:
                             <p><input type="file" name="fileToUpload" id="fileToUpload"></p>
-                            <p><input class = "has-text-left" type="submit" value="UploadImage" name="submit"></p>
-                          </form>
-                        
+                            <p><input class="has-text-left" type="submit" value="UploadImage" name="submit"></p>
+                        </form>
+
                     </div>
                 </div>
-               
                 <div class="column is-8">
-                    <div class="tabs is-center is-small  is-toggle" id = "tabs">
+                    <div class="tabs is-center is-small  is-toggle" id="tabs">
                         <!-- NEEDS TO BE RE-DONE KINDA WORKS-->
                         <ul>
-                           
-                            <li  class = "tablinks"><a href = '#' onclick="openPage(event,'Info')"><i class="fas fa-info-circle"></i>Your Info</a></li>
-                            <li class = "tablinks"><a href = '#' onclick= "openPage(event, 'Friends')"><i class="fas fa-users"></i>Friends</a></li>
-                            <li class = "tablinks"><a href = '#' onclick = "openPage(event, 'Posts')"><i class="fas fa-image"></i>Your Posts</a></li>
-                            <li class = "tablinks"><a href = '#' onclick = "openPage(event,'Likes')"><i class="fas fa-music"></i>Likes</a></li>
-                        </ul> 
+                            <li class="tablinks"><a href='#' onclick="openPage(event,'Info')"><i
+                                        class="fas fa-info-circle"></i>Your Info</a></li>
+                            <li class="tablinks"><a href='#' onclick="openPage(event, 'Friends')"><i
+                                        class="fas fa-users"></i>Friends</a></li>
+                            <li class="tablinks"><a href='#' onclick="openPage(event, 'Posts')"><i
+                                        class="fas fa-image"></i>Your Posts</a></li>
+                            <li class="tablinks"><a href='#' onclick="openPage(event,'Likes')"><i
+                                        class="fas fa-music"></i>Likes</a></li>
+                        </ul>
                         <!-- <ul>
                             <li><a id = profile_info_tab><i class="fas fa-info-circle"></i>Your Info</a></li>
                             <li><a id = profile_friend_tab><i class="fas fa-users"></i>Friends</a></li>
@@ -424,49 +402,50 @@ This way users can just click the link and listen to the song right away -->
                         </ul>
                     -->
                     </div>
-                    <div id="Info" class = "tabcontent is-hidden">
-                        <h3 class = "title">Your information</h3>
+
+                    <!-- USER UNFO TAB -->
+                    <div id="Info" class="tabcontent is-hidden">
+                        <h3 class="title">Your information</h3>
                         <p>Name: </p>
                         <p>Username: </p>
                         <p>Email: </p>
                     </div>
-                        
-                    <div id = 'Friends' class = "tabcontent is-hidden">
+
+                    <!-- USER FRIENDS TAB -->
+                    <div id='Friends' class="tabcontent is-hidden">
                         <h3 class="title">Friends</h3>
                         <ul>
                             <li>Friend 1</li>
                             <li>Friend 2</li>
                         </ul>
-                       
                     </div>
 
-                    <div id = 'Likes' class = "tabcontent is-hidden">
+                    <!-- USER LIKES TAB -->
+                    <div id='Likes' class="tabcontent is-hidden">
                         <h3 class="title">Liked Songs</h3>
-                       <ul>
-                           <li>Song1</li>
-                           <li>Song2</li>
-
-                       </ul>
-                    
+                        <ul>
+                            <li>Song1</li>
+                            <li>Song2</li>
+                        </ul>
                     </div>
-                    <div id = 'Posts' class = "tabcontent is-hidden">
+
+                    <!-- USER POSTS TAB -->
+                    <div id='Posts' class="tabcontent is-hidden">
                         <h3 class="title">Songs Posted</h3>
                         <ul>
                             <li>Post 1</li>
                             <li>Post 2</li>
                         </ul>
-                    
                     </div>
-                   
-                   
-                                            
+                    
                 </div>
-            
+            </div>
         </div>
-
-        </div>
-
     </div>
+    <!-- END OF PROFILE MODAL -->
+
+
+
 
     <div class="footer">
         <div class="content has-text-centered">
@@ -474,15 +453,7 @@ This way users can just click the link and listen to the song right away -->
             <a><img src="images/smallLogo.png" width="80" height="90"></a>
         </div>
     </div>
-
 </body>
-    
-
 </html>
 
-<script src="site.js">
-
-</script>
-
-<!-- center profile modal -->
-<!-- add logo to profile and contact us and make post -->
+<script src="site.js"></script>
