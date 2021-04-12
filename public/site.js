@@ -319,7 +319,7 @@ signup_form.addEventListener('submit', (e) => {
 })
 
 // sign in 
-let login_form = document.querySelector('#login_form');s
+let login_form = document.querySelector('#login_form');
 login_form.addEventListener('submit', (e) =>{
   e.preventDefault();
   let email_ = document.querySelector('#login_username').value;
