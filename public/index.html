@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Songs Social Media</title>
+    <title>Cypher Songs</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
 
@@ -19,23 +19,22 @@
     <!-- NAV Section-->
     <div class="navbar has-background-black has-text-white">
         <div class="navbar-brand">
-            <div class="navbar-item">
                 <!-- small logo on top left of screen -->
                 <div class="navbar-item">
                     <a href="">
                         <img src="images/smallLogo.png">
                     </a>
                 </div>
-                <i class="far fa-speakers"></i>
-            </div>
+               
             <!-- navbar burger for small screens -->
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
             </a>
         </div>
-        <div class="navbar-menu">
+        <div class="navbar-menu" id = "navMenu">
             <div class="navbar-start">
                 <!-- click to open up user profile modal-->
                 <div class="navbar-item">
@@ -46,13 +45,18 @@
                     <a id="loginbutton" class="has-text-weight-bold has-text-white">Login</a>
                 </div>
             </div>
+
             <!-- NEED TO FIND BETTER FONT -->
             <div class="navbar-item p-0 pr-5">
                 <h1 class="is-size-3 has-text-weight-bold"
                     style="font-family:'Helvetica Neue', serif; color:lightseagreen"><b>Cypher Songs</b></h1>
             </div>
+
             <div class="navbar-end">
                 <!-- click to open up sign up modal -->
+                <div class="navbar-item">
+                    <a class="has-text-weight-bold has-text-white" id="sign_out_button">Sign-Out</a>
+                </div>
                 <div class="navbar-item">
                     <a class="has-text-weight-bold has-text-white" id="sign_up_button">Sign-Up</a>
                 </div>
@@ -98,7 +102,9 @@
             <div class="section mb-3 column is-three-fifths is-offset-one-fifth pl-6 pr-6">
                 <p class="">
                     <button id="post_button" class="pl-6 is-outlined has-text-weight-bold button is-size-3 is-rounded"
-                        style="width:100%; font-family:Verdana, Geneva, Tahoma, sans-serif; background:lightcoral">
+                        style="width:100%; font-family:Verdana, Geneva, Tahoma, sans-serif; background:lightseagreen">
+                        <!--lightcoral changed post button from light coral to lightseagreen to match logo colors-->
+                        
                         <a class="has-text-black">Make a Post</a>
                     </button>
                 </p>
@@ -111,10 +117,37 @@
     <!--Main content: Post section plus profile info on the side-->
     <div class="container">
         <div class="columns">
+            <div class="column is-2.5">
+                <div style="background-color:lightseagreen; height: 40vh;overflow:hidden;"
+                    class="column message is-hero is-black ">
+                    <div class="message-header" id="my_profile_button">
+                       Add/Remove Friends!
+                    </div>
+                    <div class="mt-2 has-text-weight-bold has-text-black">
+                            <p class="control has-icons-left">
+                              <input class="input" type="text" placeholder="Search">
+                              <span class="icon is-left">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                              </span>
+                            </p>
+                          </div>
+                    </div>
+                
+            </div>
 
             <!-- MAIN CONTENT IN MIDDLE-->
+            <!--
+                removed from main column to get 3 columns:
+                is-three-fifths is-offset-one-fifth-widescree
+
+                ** commenting them here incase want to change it back
+
+                removed from profile side:
+                is-two-fifths
+
+            -->
             <div id="main-content" style="height:110vh; overflow:auto;"
-                class="section column is-three-fifths is-offset-one-fifth-widescreen pl-6 pr-6 pt-0">
+                class="section column is-7 pl-6 pr-6 pt-0">
                 <div class="card mb-6">
                     <div class="card-image">
                         <div class="image is-3by2">
@@ -158,12 +191,24 @@
                             <div class="subtitle">@mason</div>
                         </div>
                     </div>
-                    <div class="card-content has-text-centered">
-                        <ul>
-                            <li><a href="https://www.youtube.com/watch?v=L53gjP-TtGE" target="_blank">Power</a></li>
-                            <li><i>Kanye West</i></li>
-                        </ul>
+
+                <div class="columns">
+                    <div class="column is-8 mr-0">
+                        <div class="card-content has-text-centered">
+                            <ul>
+                                <li><a href="https://www.youtube.com/watch?v=L53gjP-TtGE" target="_blank">Power</a></li>
+                                <li><i>Kanye West</i></li>
+                            </ul>
+                        </div>
                     </div>
+                <!--
+                    ADDED Like Button - could remove words and just do an image - heart or thumbs up? do you like where it is, could move button too
+                -->
+                    <div class="column is-2 has-text-centered mt-5">
+                        <button id = "liked_song_button" class="button is-outlined is-rounded" style = "background-color: lightseagreen;"><i class="far fa-heart"></i><b>Like Song</b></button>
+                    </div>
+                </div>
+
                 </div>
 
                 <div class="card mt-6">
@@ -194,7 +239,7 @@
             </div>
 
             <!-- SIDE PROFILE SECTION -->
-            <div class="column is-two-fifths">
+            <div class="column is-2.5">
                 <div style="background-color:lightseagreen; height: 60vh;overflow:hidden;"
                     class="column message is-hero is-black ">
                     <div class="message-header" id="my_profile_button">
@@ -214,7 +259,6 @@
                 </div>
             </div>
 
-
         </div>
     </div>
 
@@ -224,19 +268,19 @@
         <div class="modal-background" id="modalbg_login"></div>
         <div class="modal-content p-6 has-background-primary-light has-text-centered">
             <h1 class="has-size-3 title">Login!</h1>
-            <form>
+            <form id ="login_form">
                 <!--NAME-->
                 <div class="field">
                     <label class="label">Username</label>
                     <div class="control">
-                        <input type="text" name="" id="">
+                        <input type="text" name="" id="login_username">
                     </div>
                 </div>
                 <!--Password-->
                 <div class="field">
                     <label class="label">Password</label>
                     <div class="control">
-                        <input type="text" name="" id="">
+                        <input type="text" name="" id="login_password">
                     </div>
                 </div>
                 <!-- Submit  -->
@@ -244,6 +288,9 @@
                     <div class="control m-3">
                         <button class="m-3 button is-link">Login</button>
                     </div>
+                </div>
+                <div id = "login_error" class="error has-text-danger">
+
                 </div>
                 <div class="content has-text-centered">
                     <a class="has-text-centered"><img src="images/smallLogo.png" width="80" height="90"></a>
@@ -258,19 +305,19 @@
         <div class="modal-background" id="modalbg_sign_up"></div>
         <div class="modal-content p-6 has-background-primary-light has-text-centered">
             <h1 class="has-size-3 title">Sign-up!</h1>
-            <form>
+            <form id="signup_form">
                 <!--NAME-->
                 <div class="field">
                     <label class="label">Username</label>
                     <div class="control">
-                        <input type="text" name="" id="">
+                        <input type="text" name="" id="signup_username">
                     </div>
                 </div>
                 <!--Password-->
                 <div class="field">
                     <label class="label">Password</label>
                     <div class="control">
-                        <input type="text" name="" id="">
+                        <input type="text" name="" id="signup_password">
                     </div>
                 </div>
                 <!-- Submit  -->
@@ -278,6 +325,9 @@
                     <div class="control m-3">
                         <button class="m-3 button is-link">Create Account</button>
                     </div>
+                </div>
+                <div id = "signup_error" class="error has-text-danger">
+
                 </div>
                 <div class="content has-text-centered">
                     <a class="has-text-centered"><img src="images/smallLogo.png" width="80" height="90"></a>
@@ -348,7 +398,7 @@
                 </div>
                 <div class="has-text-centered">
                     <div class="control m-3">
-                        <input type="submit" id="psb" class="p-3 is-link has-text-white has-background-link"
+                        <input type="submit" id="psb" class="button mt-0 p-3 is-link has-text-white has-background-link"
                             value="Post Song">
                     </div>
                 </div>
@@ -383,7 +433,6 @@
                 </div>
                 <div class="column is-8">
                     <div class="tabs is-center is-small  is-toggle" id="tabs">
-                        <!-- NEEDS TO BE RE-DONE KINDA WORKS-->
                         <ul>
                             <li class="tablinks"><a href='#' onclick="openPage(event,'Info')"><i
                                         class="fas fa-info-circle"></i>Your Info</a></li>
@@ -394,13 +443,6 @@
                             <li class="tablinks"><a href='#' onclick="openPage(event,'Likes')"><i
                                         class="fas fa-music"></i>Likes</a></li>
                         </ul>
-                        <!-- <ul>
-                            <li><a id = profile_info_tab><i class="fas fa-info-circle"></i>Your Info</a></li>
-                            <li><a id = profile_friend_tab><i class="fas fa-users"></i>Friends</a></li>
-                            <li><a id = profile_post_tab><i class="fas fa-image"></i>Posts</a></li>
-                            <li><a id = profile_likes_tab><i class="fas fa-music"></i>Likes</a></li>
-                        </ul>
-                    -->
                     </div>
 
                     <!-- USER UNFO TAB -->
@@ -444,15 +486,42 @@
     </div>
     <!-- END OF PROFILE MODAL -->
 
-
-
-
     <div class="footer">
         <div class="content has-text-centered">
-            <p>Website By Mason and Gus</p>
+            <p class = "has-text-weight-bold">Website By Mason and Gus</p>
             <a><img src="images/smallLogo.png" width="80" height="90"></a>
         </div>
     </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-storage.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+
+
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyD-m4jqYG3K8sN83UE50fCYprLUm6_jzPc",
+            authDomain: "is371project-fa82a.firebaseapp.com",
+            projectId: "is371project-fa82a",
+            storageBucket: "is371project-fa82a.appspot.com",
+            messagingSenderId: "581067633287",
+            appId: "1:581067633287:web:788280552789d8a2c57e22"
+          };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        // define authentication variable
+        let auth = firebase.auth();
+        let db = firebase.firestore();
+    </script>
 </body>
 </html>
 

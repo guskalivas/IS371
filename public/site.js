@@ -1,9 +1,10 @@
 // ******** THINGS WE STILL NEED TO DO ********
-// 1. add friend/delete friend button
-// 2. like button/functionality
-// 3. maybe find something to add to the left side of the screen that is kind of empty
-// 4. implement sign up features for users like we did in class
-// 5. make the navbar-burger work to show the navbar content when clicked
+// 1. add friend/delete friend button => added on side? can move it to profile maybe? or on profile side bar
+// 2. like button/functionality => added button, need functionality still id = liked_song_button
+// 3. maybe find something to add to the left side of the screen that is kind of empty =>can change back if want
+// 4. implement sign up features for users like we did in class => should be working - might need db for more then email & password
+
+// 5. make the navbar-burger work to show the navbar content when clicked => DONE can change colors etc.
 // 6. figure out how to upload user image for profile/song post
 // 7. functionability with only showing friends posts
 // 8. ???
@@ -165,6 +166,7 @@ psb.addEventListener('click', (e) => {
 
     // I made an array that stores all the songs people post
     // we will have to figure out how to get username and user info from the user
+    // => once we implement firebase, that will keep track of the current user to grab info from
     
     let song_content = {
         username: "",
@@ -254,3 +256,93 @@ function openPage(evt, pageName) {
     document.getElementById(pageName).style.display = "block";
     evt.currentTarget.classList += " is-active"
 }
+
+// NAVBar Burger
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+  
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+  
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+  
+          // Get the target from the "data-target" attribute
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+  
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+         el.classList.toggle('is-active');
+         $target.classList.toggle('is-active');
+         $target.style.backgroundColor = "black";
+
+         //$target.classList.add('has-text-black', 'has-text-weight-bold');
+        
+        });
+      });
+    }
+  
+  });
+
+  let signupbtn = document.querySelector('#sign_up_button');
+  let signupModal = document.querySelector('#my_sign_up_modal');
+  let signupModalBg = document.querySelector('#modalbg_sign_up');
+  let signup_form = document.querySelector('#signup_form');
+
+
+// Signup
+signup_form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  // grab email/pass
+  let email = document.querySelector('#signup_username').value;
+  let password = document.querySelector('#signup_password').value;
+ 
+  auth.createUserWithEmailAndPassword(email, password)
+  .then(()=>{
+
+    console.log('user created successfully');
+    //close modal
+    signupModal.classList.remove('is-active');
+    //rest form
+    signup_form.reset();
+
+  })
+  .catch((e) =>{
+    let signup_error = document.querySelector('#signup_error');
+    signup_error.innerHTML = `<p>${e.message}</p>`;
+  })
+
+
+})
+
+// sign in 
+let login_form = document.querySelector('#login_form');s
+login_form.addEventListener('submit', (e) =>{
+  e.preventDefault();
+  let email_ = document.querySelector('#login_username').value;
+  let password_ = document.querySelector('#login_password').value;
+  auth.signInWithEmailAndPassword(email_,password_)
+  .then((userCredentials) =>{
+    console.log(userCredentials.user.email + "ewith the id " + userCredentials.user.uid + " is logged in");
+
+    my_login_modal.classList.remove('is-active');
+    login_form.reset();
+  })
+  .catch((e) =>{
+    let login_error = document.querySelector('#login_error');
+    login_error.innerHTML = `<p>${e.message}</p>`;
+  })
+
+})
+
+// // sign out
+let signoutbtn = document.querySelector('#sign_out_button');
+signoutbtn.addEventListener('click', () =>{
+  auth.signOut()
+  .then((msg) =>{
+    console.log("user signed out");
+  })
+})
