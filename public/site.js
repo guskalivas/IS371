@@ -11,6 +11,7 @@
 //  Anything else you can think of adding for now?
 
 const all_posts = []; //stores all posts from users
+const users = [];
 
 // make a post button
 var make_a_post = document.querySelector("#post_button");
@@ -155,85 +156,6 @@ modalbg_contact.addEventListener('click', function () {
 let psb = document.querySelector('#psb');
 
 // submit song post action
-psb.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    let name = document.querySelector("#name").value;
-    let artist = document.querySelector('#artist').value;
-    let songImage = document.querySelector('#song-image').value;
-    let songLink = document.querySelector('#song-link').value;
-
-
-    // I made an array that stores all the songs people post
-    // we will have to figure out how to get username and user info from the user
-    // => once we implement firebase, that will keep track of the current user to grab info from
-    
-    let song_content = {
-        username: "",
-        user: "",
-        id: all_posts.length,
-        name: name,
-        artist: artist,
-        image: songImage,
-        link: songLink
-    }
-
-    all_posts.push(song_content);
-
-    const posts_to_show = [];
-
-    for (let i = 0; i < 2; ++i) { //only shows two newest posts (arbitrary for how many posts we want to show)
-        posts_to_show.push(all_posts[all_posts.length - i - 1]);
-        if (all_posts.length == 1){
-            break;
-        }
-    }
-
-    // console.log(posts_to_show);
-
-    // console.log(song_content);
-    // console.log(all_posts);
-
-    if (name != "" && artist != "" && songLink != "" && songImage != "") { //make sure user enters enough info
-        // let temp = document.querySelector('#main-content').innerHTML;
-        let content = document.querySelector('#main-content');
-        let content_html = "";
-
-        posts_to_show.forEach((post) => {
-            let newSong = `
-                <div class="card mb-6">
-                    <div class="card-image">
-                        <div class="image is-3by2">
-                            <img src="${post.image}" alt="">
-                        </div>
-                    </div>
-                    <div class="media mb-0">
-                        <div class="media-left">
-                            <div class="image is-96x96">
-                                <img src="images/smallLogo.png" alt="">
-                            </div>
-                        </div>
-                        <div class="media-content">
-                            <div class="title">${post.user}</div>
-                            <div class="subtitle">@${post.username}</div>
-                        </div>
-                    </div>
-                    <div class="card-content has-text-centered">
-                        <ul>
-                            <li><a href="${post.link}" target="_blank">${post.name}</a></li>
-                            <li><i>${post.artist}</i></li>
-                        </ul>
-                    </div>
-
-                </div>
-            `
-            content_html += newSong //adds song to main content
-        })
-        // post template
-        content.innerHTML = content_html; //puts new song first on timeline
-    }
-    post_modal.classList.remove('is-active'); //exits modal
-})
 
 
 function openPage(evt, pageName) {
@@ -257,92 +179,216 @@ function openPage(evt, pageName) {
     evt.currentTarget.classList += " is-active"
 }
 
-// NAVBar Burger
+// NAVBar Burger 
 
 document.addEventListener('DOMContentLoaded', () => {
     // Get all "navbar-burger" elements
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-  
+
     // Check if there are any navbar burgers
     if ($navbarBurgers.length > 0) {
-  
-      // Add a click event on each of them
-      $navbarBurgers.forEach( el => {
-        el.addEventListener('click', () => {
-  
-          // Get the target from the "data-target" attribute
-        const target = el.dataset.target;
-        const $target = document.getElementById(target);
-  
-          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-         el.classList.toggle('is-active');
-         $target.classList.toggle('is-active');
-         $target.style.backgroundColor = "black";
 
-         //$target.classList.add('has-text-black', 'has-text-weight-bold');
-        
+        // Add a click event on each of them
+        $navbarBurgers.forEach(el => {
+            el.addEventListener('click', () => {
+
+                // Get the target from the "data-target" attribute
+                const target = el.dataset.target;
+                const $target = document.getElementById(target);
+
+                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                el.classList.toggle('is-active');
+                $target.classList.toggle('is-active');
+                $target.style.backgroundColor = "black";
+
+                //$target.classList.add('has-text-black', 'has-text-weight-bold');
+
+            });
         });
-      });
     }
-  
-  });
+});
 
-  let signupbtn = document.querySelector('#sign_up_button');
-  let signupModal = document.querySelector('#my_sign_up_modal');
-  let signupModalBg = document.querySelector('#modalbg_sign_up');
-  let signup_form = document.querySelector('#signup_form');
+let signupbtn = document.querySelector('#sign_up_button');
+let signupModal = document.querySelector('#my_sign_up_modal');
+let signupModalBg = document.querySelector('#modalbg_sign_up');
+let signup_form = document.querySelector('#signup_form');
 
 
 // Signup
 signup_form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  // grab email/pass
-  let email = document.querySelector('#signup_username').value;
-  let password = document.querySelector('#signup_password').value;
- 
-  auth.createUserWithEmailAndPassword(email, password)
-  .then(()=>{
 
-    console.log('user created successfully');
-    //close modal
-    signupModal.classList.remove('is-active');
-    //rest form
-    signup_form.reset();
+    e.preventDefault();
+    // grab email/pass
+    let email = document.querySelector('#signup_username').value;
+    let password = document.querySelector('#signup_password').value;
+    let password2 = document.querySelector('#signup_password2').value;
 
-  })
-  .catch((e) =>{
-    let signup_error = document.querySelector('#signup_error');
-    signup_error.innerHTML = `<p>${e.message}</p>`;
-  })
+    let fName = document.querySelector("#first_name").value;
+    let lName = document.querySelector("#last_name").value;
+    let username = document.querySelector("#user_name").value;
+
+
+    if (password != password2) {
+        // we need to make sure the two passwords match or throw an error
+        // might have to do some exception handling
+    }
+
+    auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+
+            console.log('user created successfully');
+
+            // we should ask for this information so we can display it on the user profile
+            user = {
+                fName: fName,
+                lName: lName,
+                username: username,
+                id: userCredential.user.uid,
+                email: email,
+                friends: []
+            };
+
+            db.collection("Users").add(user).then((data) => {
+                console.log("User added to database");
+            })
+            //close modal
+            signupModal.classList.remove('is-active');
+            //rest form
+            signup_form.reset();
+
+        })
+        .catch((e) => {
+            let signup_error = document.querySelector('#signup_error');
+            signup_error.innerHTML = `<p>${e.message}</p>`;
+        })
 
 
 })
+
 
 // sign in 
 let login_form = document.querySelector('#login_form');
-login_form.addEventListener('submit', (e) =>{
-  e.preventDefault();
-  let email_ = document.querySelector('#login_username').value;
-  let password_ = document.querySelector('#login_password').value;
-  auth.signInWithEmailAndPassword(email_,password_)
-  .then((userCredentials) =>{
-    console.log(userCredentials.user.email + "ewith the id " + userCredentials.user.uid + " is logged in");
-
-    my_login_modal.classList.remove('is-active');
-    login_form.reset();
-  })
-  .catch((e) =>{
-    let login_error = document.querySelector('#login_error');
-    login_error.innerHTML = `<p>${e.message}</p>`;
-  })
+login_form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let email_ = document.querySelector('#login_username').value;
+    let password_ = document.querySelector('#login_password').value;
+    auth.signInWithEmailAndPassword(email_, password_)
+        .then((userCredentials) => {
+            console.log(userCredentials.user.email + " with the id " + userCredentials.user.uid + " is logged in");
+            // user_id = userCredentials.user.uid;
+            my_login_modal.classList.remove('is-active');
+            login_form.reset();
+        })
+        .catch((e) => {
+            let login_error = document.querySelector('#login_error');
+            login_error.innerHTML = `<p>${e.message}</p>`;
+        })
 
 })
+
 
 // // sign out
 let signoutbtn = document.querySelector('#sign_out_button');
-signoutbtn.addEventListener('click', () =>{
-  auth.signOut()
-  .then((msg) =>{
-    console.log("user signed out");
-  })
+signoutbtn.addEventListener('click', () => {
+    console.log(user_id);
+    auth.signOut()
+        .then((msg) => {
+            console.log("user signed out");
+        })
 })
+
+let username = "";
+let firstName = "";
+let lastName = "";
+
+db.collection("Users").get().then((data) => {
+    let userdata = data.docs;
+    userdata.forEach((findUser) => {
+        if (findUser.data().id == auth.currentUser.uid) {
+            username = findUser.data().username;
+            firstName = findUser.data().fName;
+            lastName = findUser.data().lName;
+        }
+    })
+})
+
+function showFeed() {
+    let content = document.querySelector('#main-content');
+    db.collection("Songs").get().then((data) => {
+        let songdata = data.docs;
+        let content_html = "";
+        songdata.forEach((findUserSongs) => {
+            post = findUserSongs.data();
+            if (findUserSongs.data().user == auth.currentUser.uid) {
+                    let newSong = `
+                            <div class="card mb-6">
+                                <div class="card-image">
+                                    <div class="image is-3by2">
+                                        <img src="${post.image}" alt="">
+                                    </div>
+                                </div>
+                                <div class="media mb-0">
+                                    <div class="media-left">
+                                        <div class="image is-96x96">
+                                            <img src="images/smallLogo.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="media-content">
+                                        <div class="title">${post.firstName} ${post.lastName}</div>
+                                        <div class="subtitle">@${post.username}</div>
+                                    </div>
+                                </div>
+                                <div class="card-content has-text-centered">
+                                    <ul>
+                                        <li><a href="${post.link}" target="_blank">${post.name}</a></li>
+                                        <li><i>${post.artist}</i></li>
+                                    </ul>
+                                </div>
+            
+                            </div>
+                        `
+                    content_html += newSong //adds song to main content
+                }
+        })
+        content.innerHTML = content_html; //puts new song first on timeline
+    })
+}
+
+psb.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    let name = document.querySelector("#name").value;
+    let artist = document.querySelector('#artist').value;
+    let songImage = document.querySelector('#song-image').value;
+    let songLink = document.querySelector('#song-link').value;
+
+    let song_content = {
+        firstName: firstName,
+        lastName: lastName,
+        username: username,
+        user: auth.currentUser.uid,
+        id: all_posts.length,
+        name: name,
+        artist: artist,
+        image: songImage,
+        link: songLink,
+        date: new Date()
+    }
+
+    db.collection("Songs").add(song_content).then((data) => {
+        console.log("Song added to database");
+    })
+
+    showFeed();
+    
+    post_modal.classList.remove('is-active'); //exits modal
+})
+
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        showFeed();
+        console.log("signed in");
+    } else {
+        console.log("not signed in");
+    }
+});
