@@ -1,0 +1,554 @@
+<html lang="en">
+<header>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cypher Songs</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+
+</header>
+
+<body>
+    <!-- NAV Section-->
+    <div class="navbar has-background-black has-text-white">
+        <div class="navbar-brand">
+                <!-- small logo on top left of screen -->
+                <div class="navbar-item">
+                    <a href="">
+                        <img src="images/smallLogo.png">
+                    </a>
+                </div>
+               
+            <!-- navbar burger for small screens -->
+            <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu" id = "navMenu">
+            <div class="navbar-start">
+                <!-- click to open up user profile modal-->
+                <div class="navbar-item">
+                    <a id="my_profile_button" class="button-is-light has-text-weight-bold has-text-white">Profile</a>
+                </div>
+                <!-- click to open up login modal -->
+                <div class="navbar-item">
+                    <a id="loginbutton" class="has-text-weight-bold has-text-white">Login</a>
+                </div>
+            </div>
+
+            <!-- NEED TO FIND BETTER FONT -->
+            <div class="navbar-item p-0 pr-5">
+                <h1 class="is-size-3 has-text-weight-bold"
+                    style="font-family:'Helvetica Neue', serif; color:lightseagreen"><b>Cypher Songs</b></h1>
+            </div>
+
+            <div class="navbar-end">
+                <!-- click to open up sign up modal -->
+                <div class="navbar-item">
+                    <a class="has-text-weight-bold has-text-white" id="sign_out_button">Sign-Out</a>
+                </div>
+                <div class="navbar-item">
+                    <a class="has-text-weight-bold has-text-white" id="sign_up_button">Sign-Up</a>
+                </div>
+                <!-- click to open up contact modal -->
+                <div class="navbar-item">
+                    <a class="has-text-weight-bold has-text-white" id="contact_button">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END OF NAVBAR -->
+
+
+   <!-- START OF MIDDLE SECTION UNDER NAV -->
+    <section class="hero is-small has-background-info-light">
+        <div class="hero-body has-text-centered">
+            <p class="title">
+                Welcome to <br><b><i>Cypher Songs</i></b>
+            </p>
+            <p class="subtitle mb-2">
+                Have you ever gone on Instagram, Snapchat or any other social media and seen a song posted - you
+                listen to it <br>
+                and like it, but when you go back the next day its gone? This website is the solution! <br>
+                <br> <i> <u>All you have to do is:</u> </i>
+            </p>
+            <div class="columns">
+                <div class="column is-4">
+                    <p><b>1)</b> Find a song you enjoy listening to and want to share with your friends</p>
+                </div>
+                <div class="column is-4">
+                    <p><b>2)</b> Click the "Make a Post" button, fill in all the song details, and post the song</p>
+                </div>
+                <div class="column is-4">
+                    <p><b>3)</b> Scroll through your friends post to see more songs to add to your playlists</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END OF TOP MIDDLE SECTION -->
+    <!-- MAKE A POST BUTTON -->
+    <div class="container">
+        <div class="columns">
+            <div class="section mb-3 column is-three-fifths is-offset-one-fifth pl-6 pr-6">
+                <p class="">
+                    <button id="post_button" class="pl-6 is-outlined has-text-weight-bold button is-size-3 is-rounded"
+                        style="width:100%; font-family:Verdana, Geneva, Tahoma, sans-serif; background:lightseagreen">
+                        <!--lightcoral changed post button from light coral to lightseagreen to match logo colors-->
+                        
+                        <a class="has-text-black">Make a Post</a>
+                    </button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--Main content: Post section plus profile info on the side-->
+    <div class="container">
+        <div class="columns">
+            <div class="column is-2.5">
+                <div style="background-color:lightseagreen; height: 40vh;overflow:hidden;"
+                    class="column message is-hero is-black ">
+                    <div class="message-header" id="my_profile_button">
+                       Add/Remove Friends!
+                    </div>
+                    <div class="mt-2 has-text-weight-bold has-text-black">
+                            <p class="control has-icons-left">
+                              <input class="input" type="text" placeholder="Search">
+                              <span class="icon is-left">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                              </span>
+                            </p>
+                          </div>
+                    </div>
+                
+            </div>
+
+            <!-- MAIN CONTENT IN MIDDLE-->
+            <!--
+                removed from main column to get 3 columns:
+                is-three-fifths is-offset-one-fifth-widescree
+
+                ** commenting them here incase want to change it back
+
+                removed from profile side:
+                is-two-fifths
+
+            -->
+            <div id="main-content" style="height:110vh; overflow:auto;"
+                class="section column is-7 pl-6 pr-6 pt-0">
+                <div class="card mb-6">
+                    <div class="card-image">
+                        <div class="image is-3by2">
+                            <img src="images/song_example.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="media mb-0">
+                        <div class="media-left">
+                            <div class="image is-96x96">
+                                <img src="images/smallLogo.png" alt="">
+                            </div>
+                        </div>
+                        <div class="media-content">
+                            <div class="title">Mason Guell</div>
+                            <div class="subtitle">@mason</div>
+                        </div>
+                    </div>
+                    <div class="card-content has-text-centered">
+                        <ul>
+                            <li><a href="https://www.youtube.com/watch?v=S1kyno4u9cQ" target="_blank">Cold War</a></li>
+                            <li><i>Cautious Clay</i></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="card">
+                    <div class="card-image">
+                        <div class="image is-3by2">
+                            <img src="images/song_example2.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="media mb-0">
+                        <div class="media-left">
+                            <div class="image is-96x96">
+                                <img src="images/smallLogo.png" alt="">
+                            </div>
+                        </div>
+                        <div class="media-content">
+                            <div class="title">Mason Guell</div>
+                            <div class="subtitle">@mason</div>
+                        </div>
+                        <div class="media-right">
+                            <div class="column is-2 has-text-centered mt-5">
+                                <button id = "liked_song_button" class="button is-outlined is-rounded" style = "background-color: lightseagreen;"><i class="far fa-heart"></i><b>Like Song</b></button>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="columns is-centered">
+                    <div class="column is-8 mr-0">
+                        <div class="card-content has-text-centered">
+                            <ul>
+                                <li><a href="https://www.youtube.com/watch?v=L53gjP-TtGE" target="_blank">Power</a></li>
+                                <li><i>Kanye West</i></li>
+                            </ul>
+                        </div>
+                    </div>
+                <!--
+                    ADDED Like Button - could remove words and just do an image - heart or thumbs up? do you like where it is, could move button too
+                -->
+                    
+                </div>
+
+                </div>
+
+                <div class="card mt-6">
+                    <div class="card-image">
+                        <div class="image is-3by2">
+                            <img src="images/runaway_example.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="media mb-0">
+                        <div class="media-left">
+                            <div class="image is-96x96">
+                                <img src="images/smallLogo.png" alt="">
+                            </div>
+                        </div>
+                        <div class="media-content">
+                            <div class="title">Gus Kalivas</div>
+                            <div class="subtitle">@guskalivas</div>
+                        </div>
+                    </div>
+                    <div class="card-content has-text-centered">
+                        <ul>
+                            <li><a href="https://www.youtube.com/watch?v=L53gjP-TtGE" target="_blank">Runaway</a></li>
+                            <li><i>Kanye West</i></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- SIDE PROFILE SECTION -->
+            <div class="column is-2.5">
+                <div style="background-color:lightseagreen; height: 60vh;overflow:hidden;"
+                    class="column message is-hero is-black ">
+                    <div class="message-header" id="my_profile_button">
+                        Your Profile
+                    </div>
+                    <div class="message-body has-text-weight-bold has-text-black">
+                        <p>
+                            <ul>
+                                <li><a id="my_profile_info_button" style="text-decoration:none;">Gus Kalivas</a></li>
+                                <li><a id="my_profile_friends_button" style="text-decoration:none;">20 Friends</a></li>
+                                <li><a id="my_profile_posts_button" style="text-decoration:none;">1 Post</a></li>
+                                <li><a id="my_profile_likes_button" style="text-decoration:none;">20 Liked Songs</a>
+                                </li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- LOGIN MODAL -->
+    <div class="modal" id="my_login_modal">
+        <div class="modal-background" id="modalbg_login"></div>
+        <div class="modal-content p-6 has-background-primary-light has-text-centered">
+            <h1 class="has-size-3 title">Login!</h1>
+            <form id ="login_form">
+                <!--NAME-->
+                <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control">
+                        <input type="text" name="" id="login_username">
+                    </div>
+                </div>
+                <!--Password-->
+                <div class="field">
+                    <label class="label">Password</label>
+                    <div class="control">
+                        <input type="password" name="" id="login_password">
+                    </div>
+                </div>
+                <!-- Submit  -->
+                <div class="has-text-centered">
+                    <div class="control m-3">
+                        <button class="m-3 button is-link">Login</button>
+                    </div>
+                </div>
+                <div id = "login_error" class="error has-text-danger">
+
+                </div>
+                <div class="content has-text-centered">
+                    <a class="has-text-centered"><img src="images/smallLogo.png" width="80" height="90"></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- END OF LOGIN MODAL -->
+
+    <!-- SIGN-UP MODAL -->
+    <div class="modal" id="my_sign_up_modal">
+        <div class="modal-background" id="modalbg_sign_up"></div>
+        <div class="modal-content p-6 has-background-primary-light has-text-centered">
+            <h1 class="has-size-3 title">Sign-up!</h1>
+            <form id="signup_form">
+                <div class="field">
+                    <label class="label">First Name</label>
+                    <div class="control">
+                        <input type="text" name="" id="first_name">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Last Name</label>
+                    <div class="control">
+                        <input type="text" name="" id="last_name">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Username</label>
+                    <div class="control">
+                        <input type="text" name="" id="user_name">
+                    </div>
+                </div>
+                <!--NAME-->
+                <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control">
+                        <input type="text" name="" id="signup_username">
+                    </div>
+                </div>
+                <!--Password-->
+                <div class="field">
+                    <label class="label">Password</label>
+                    <div class="control">
+                        <input type="password" name="" id="signup_password">
+                    </div>
+                </div>
+                <!--Re-enter Password-->
+                <div class="field">
+                    <label class="label">Re-enter your password</label>
+                    <div class="control">
+                        <input type="password" name="" id="signup_password2">
+                    </div>
+                </div>
+                <!-- Submit  -->
+                <div class="has-text-centered">
+                    <div class="control m-3">
+                        <button class="m-3 button is-link">Create Account</button>
+                    </div>
+                </div>
+                <div id = "signup_error" class="error has-text-danger">
+
+                </div>
+                <div class="content has-text-centered">
+                    <a class="has-text-centered"><img src="images/smallLogo.png" width="80" height="90"></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- END OF SIGN-UP MODAL -->
+
+
+    <!-- CONTACT MODAL -->
+    <div class="modal" id="my_contact_modal">
+        <div class="modal-background" id="modalbg_contact"></div>
+        <div class="modal-content p-6 has-background-primary-light has-text-centered">
+            <h1 class="has-size-3 title">Contact Us!</h1>
+            <form>
+                <p>
+                    <a href="mailto:mguell@wisc.edu?cc=wkalivas@wisc.edu&subject=Cypher Inquiry">Send us an email!</a>
+                </p>
+            </form>
+            <div class="">
+                <a class="has-text-centered"><img src="images/logo-full.png" width="275" height="190"></a>
+            </div>
+        </div>
+    </div>
+    <!-- END OF CONTACT MODAL -->
+
+
+    <!-- USER MAKE A POST MODAL -->
+    <div class="modal" id="make_a_post_modal">
+        <div class="modal-background" id="modalbg_post"></div>
+        <div class="modal-content p-6 has-background-primary-light has-text-centered">
+            <h1 class="has-size-3 title">Post a Song!</h1>
+            <h3><b>You must enter a song name, artist, image, and link for the post to work</b></h3>
+            <br>
+            <form>
+                <div class="field">
+                    <label class="label">Song Name</label>
+                    <div class="control">
+                        <input type="text" name="" id="name">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Song Artist</label>
+                    <div class="control">
+                        <input type="text" name="" id="artist">
+                    </div>
+                </div>
+                <!-- <div class="field">
+                    <label class="label">Song Image</label>
+                    <div class="control">
+                        <input type="file" name="" id="" accept="image/png, image/jpeg, image,jpeg">
+                    </div>
+                </div> -->
+                <div class="field">
+                    <label class="label">Song Image</label>
+                    <p>Please copy an image address from the web</p>
+                    <div class="control">
+                        <input type="text" name="" id="song-image">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Song Link</label>
+                    <p>Please upload a Youtube, Spotify, or Apple Music link</p>
+                    <div class="control">
+                        <input type="text" name="" id="song-link">
+                    </div>
+                </div>
+                <div class="has-text-centered">
+                    <div class="control m-3">
+                        <input type="submit" id="psb" class="button mt-0 p-3 is-link has-text-white has-background-link"
+                            value="Post Song">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- END OF MAKE A POST MODAL -->
+
+
+
+    <!-- PROFILE MODAL -->
+    <div class="modal" id="my_profile_modal">
+        <div class="modal-background" id="modalbg_profile"></div>
+        <div class="modal-content p-6 has-background-primary-light has-text-centered">
+            <h1 class="has-size-3 title">Your Profile!</h1>
+            <div class="columns">
+                <div class="column is-4">
+                    <div class="is-flex-grow-0">
+                        <!-- NEED TO FIGURE OUT UPLOAD IMAGES AND DISPLAY MIGHT NEED PHP-->
+                        <!-- **I am not familiar with PHP, but if you can figure out how to upload images, that would be awesome! -Mason** -->
+                        <figure class="image is-128x128 is-align-items-flex-start">
+                            <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+                        </figure>
+                        <br>
+                        <form action="upload.php" method="post" enctype="multipart/form-data">
+                            Select Profile Picture:
+                            <p><input type="file" name="fileToUpload" id="fileToUpload"></p>
+                            <p><input class="has-text-left" type="submit" value="UploadImage" name="submit"></p>
+                        </form>
+
+                    </div>
+                </div>
+                <div class="column is-8">
+                    <div class="tabs is-center is-small  is-toggle" id="tabs">
+                        <ul>
+                            <li class="tablinks"><a href='#' onclick="openPage(event,'Info')"><i
+                                        class="fas fa-info-circle"></i>Your Info</a></li>
+                            <li class="tablinks"><a href='#' onclick="openPage(event, 'Friends')"><i
+                                        class="fas fa-users"></i>Friends</a></li>
+                            <li class="tablinks"><a href='#' onclick="openPage(event, 'Posts')"><i
+                                        class="fas fa-image"></i>Your Posts</a></li>
+                            <li class="tablinks"><a href='#' onclick="openPage(event,'Likes')"><i
+                                        class="fas fa-music"></i>Likes</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- USER UNFO TAB -->
+                    <div id="Info" class="tabcontent is-hidden">
+                        <h3 class="title">Your information</h3>
+                        <p>Name: </p>
+                        <p>Username: </p>
+                        <p>Email: </p>
+                    </div>
+
+                    <!-- USER FRIENDS TAB -->
+                    <div id='Friends' class="tabcontent is-hidden">
+                        <h3 class="title">Friends</h3>
+                        <ul>
+                            <li>Friend 1</li>
+                            <li>Friend 2</li>
+                        </ul>
+                    </div>
+
+                    <!-- USER LIKES TAB -->
+                    <div id='Likes' class="tabcontent is-hidden">
+                        <h3 class="title">Liked Songs</h3>
+                        <ul>
+                            <li>Song1</li>
+                            <li>Song2</li>
+                        </ul>
+                    </div>
+
+                    <!-- USER POSTS TAB -->
+                    <div id='Posts' class="tabcontent is-hidden">
+                        <h3 class="title">Songs Posted</h3>
+                        <ul>
+                            <li>Post 1</li>
+                            <li>Post 2</li>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END OF PROFILE MODAL -->
+
+    <div class="footer">
+        <div class="content has-text-centered">
+            <p class = "has-text-weight-bold">Website By Mason and Gus</p>
+            <a><img src="images/smallLogo.png" width="80" height="90"></a>
+        </div>
+    </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-storage.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+
+
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyD-m4jqYG3K8sN83UE50fCYprLUm6_jzPc",
+            authDomain: "is371project-fa82a.firebaseapp.com",
+            projectId: "is371project-fa82a",
+            storageBucket: "is371project-fa82a.appspot.com",
+            messagingSenderId: "581067633287",
+            appId: "1:581067633287:web:788280552789d8a2c57e22"
+          };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        // define authentication variable
+        let auth = firebase.auth();
+        let db = firebase.firestore();
+    </script>
+</body>
+</html>
+
+<script src="site.js"></script>
