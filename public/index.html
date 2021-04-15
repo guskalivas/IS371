@@ -17,13 +17,13 @@
     <!-- NAV Section-->
     <div class="navbar has-background-black has-text-white">
         <div class="navbar-brand">
-                <!-- small logo on top left of screen -->
-                <div class="navbar-item">
-                    <a href="">
-                        <img src="images/smallLogo.png">
-                    </a>
-                </div>
-               
+            <!-- small logo on top left of screen -->
+            <div class="navbar-item">
+                <a href="">
+                    <img src="images/smallLogo.png">
+                </a>
+            </div>
+
             <!-- navbar burger for small screens -->
             <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
                 <span aria-hidden="true"></span>
@@ -32,16 +32,17 @@
                 <span aria-hidden="true"></span>
             </a>
         </div>
-        <div class="navbar-menu" id = "navMenu">
+        <div class="navbar-menu" id="navMenu">
             <div class="navbar-start">
                 <!-- click to open up user profile modal-->
                 <div class="navbar-item">
                     <a id="my_profile_button" class="button-is-light has-text-weight-bold has-text-white">Profile</a>
                 </div>
-                <!-- click to open up login modal -->
+                <!-- click to open up contact modal -->
                 <div class="navbar-item">
-                    <a id="loginbutton" class="has-text-weight-bold has-text-white">Login</a>
+                    <a class="has-text-weight-bold has-text-white" id="contact_button">Contact Us</a>
                 </div>
+
             </div>
 
             <!-- NEED TO FIND BETTER FONT -->
@@ -51,27 +52,29 @@
             </div>
 
             <div class="navbar-end">
+
+                <div class="navbar-item">
+                    <a class="has-text-weight-bold has-text-white loggedout" id="sign_up_button">Sign-Up</a>
+                </div>
+                <!-- click to open up login modal -->
+                <div class="navbar-item">
+                    <a id="loginbutton" class="has-text-weight-bold has-text-white loggedout">Login</a>
+                </div>
                 <!-- click to open up sign up modal -->
                 <div class="navbar-item">
-                    <a class="has-text-weight-bold has-text-white" id="sign_out_button">Sign-Out</a>
+                    <a class="has-text-weight-bold has-text-white loggedin" id="sign_out_button">Sign-Out</a>
                 </div>
-                <div class="navbar-item">
-                    <a class="has-text-weight-bold has-text-white" id="sign_up_button">Sign-Up</a>
-                </div>
-                <!-- click to open up contact modal -->
-                <div class="navbar-item">
-                    <a class="has-text-weight-bold has-text-white" id="contact_button">Contact Us</a>
-                </div>
+
             </div>
         </div>
     </div>
     <!-- END OF NAVBAR -->
 
 
-   <!-- START OF MIDDLE SECTION UNDER NAV -->
+    <!-- START OF MIDDLE SECTION UNDER NAV -->
     <section class="hero is-small has-background-info-light">
         <div class="hero-body has-text-centered">
-            <p class="title">
+            <p class="title"  id="welcome_content">
                 Welcome to <br><b><i>Cypher Songs</i></b>
             </p>
             <p class="subtitle mb-2">
@@ -102,7 +105,7 @@
                     <button id="post_button" class="pl-6 is-outlined has-text-weight-bold button is-size-3 is-rounded"
                         style="width:100%; font-family:Verdana, Geneva, Tahoma, sans-serif; background:lightseagreen">
                         <!--lightcoral changed post button from light coral to lightseagreen to match logo colors-->
-                        
+
                         <a class="has-text-black">Make a Post</a>
                     </button>
                 </p>
@@ -119,18 +122,31 @@
                 <div style="background-color:lightseagreen; height: 40vh;overflow:hidden;"
                     class="column message is-hero is-black ">
                     <div class="message-header" id="my_profile_button">
-                       Add/Remove Friends!
+                        Add/Remove Friends!
                     </div>
-                    <div class="mt-2 has-text-weight-bold has-text-black">
-                            <p class="control has-icons-left">
-                              <input class="input" type="text" placeholder="Search">
-                              <span class="icon is-left">
-                                <i class="fas fa-search" aria-hidden="true"></i>
-                              </span>
-                            </p>
-                          </div>
-                    </div>
-                
+                    <!-- <div class="mt-2 has-text-weight-bold has-text-black">
+                        <p class="control has-icons-left">
+                            
+                                <input class="input" type="text" id="search_bar"
+                                    placeholder="Search for friends by username">
+                                <span class="icon is-left">
+                                    <i class="fas fa-search" aria-hidden="true"></i>
+                                </span>
+
+                        </p>
+                    </div> -->
+                    <form action="" id="search_friends">
+                        <div class="field has-addons">
+                            <div class="control">
+                                <input class="input" type="text" id="friend_username" placeholder="Search friends by username">
+                            </div>
+                            <div class="control">
+                                <button type="submit" class="button is-link">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
             </div>
 
             <!-- MAIN CONTENT IN MIDDLE-->
@@ -144,8 +160,7 @@
                 is-two-fifths
 
             -->
-            <div id="main-content" style="height:110vh; overflow:auto;"
-                class="section column is-7 pl-6 pr-6 pt-0">
+            <div id="main-content" style="height:110vh; overflow:auto;" class="section column is-7 pl-6 pr-6 pt-0">
                 <div class="card mb-6">
                     <div class="card-image">
                         <div class="image is-3by2">
@@ -190,25 +205,28 @@
                         </div>
                         <div class="media-right">
                             <div class="column is-2 has-text-centered mt-5">
-                                <button id = "liked_song_button" class="button is-outlined is-rounded" style = "background-color: lightseagreen;"><i class="far fa-heart"></i><b>Like Song</b></button>
+                                <button id="liked_song_button" class="button is-outlined is-rounded"
+                                    style="background-color: lightseagreen;"><i class="far fa-heart"></i><b>Like
+                                        Song</b></button>
                             </div>
                         </div>
                     </div>
 
-                <div class="columns is-centered">
-                    <div class="column is-8 mr-0">
-                        <div class="card-content has-text-centered">
-                            <ul>
-                                <li><a href="https://www.youtube.com/watch?v=L53gjP-TtGE" target="_blank">Power</a></li>
-                                <li><i>Kanye West</i></li>
-                            </ul>
+                    <div class="columns is-centered">
+                        <div class="column is-8 mr-0">
+                            <div class="card-content has-text-centered">
+                                <ul>
+                                    <li><a href="https://www.youtube.com/watch?v=L53gjP-TtGE" target="_blank">Power</a>
+                                    </li>
+                                    <li><i>Kanye West</i></li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                <!--
+                        <!--
                     ADDED Like Button - could remove words and just do an image - heart or thumbs up? do you like where it is, could move button too
                 -->
-                    
-                </div>
+
+                    </div>
 
                 </div>
 
@@ -269,7 +287,7 @@
         <div class="modal-background" id="modalbg_login"></div>
         <div class="modal-content p-6 has-background-primary-light has-text-centered">
             <h1 class="has-size-3 title">Login!</h1>
-            <form id ="login_form">
+            <form id="login_form">
                 <!--NAME-->
                 <div class="field">
                     <label class="label">Email</label>
@@ -290,7 +308,7 @@
                         <button class="m-3 button is-link">Login</button>
                     </div>
                 </div>
-                <div id = "login_error" class="error has-text-danger">
+                <div id="login_error" class="error has-text-danger">
 
                 </div>
                 <div class="content has-text-centered">
@@ -352,7 +370,7 @@
                         <button class="m-3 button is-link">Create Account</button>
                     </div>
                 </div>
-                <div id = "signup_error" class="error has-text-danger">
+                <div id="signup_error" class="error has-text-danger">
 
                 </div>
                 <div class="content has-text-centered">
@@ -505,7 +523,7 @@
                             <li>Post 2</li>
                         </ul>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -514,7 +532,7 @@
 
     <div class="footer">
         <div class="content has-text-centered">
-            <p class = "has-text-weight-bold">Website By Mason and Gus</p>
+            <p class="has-text-weight-bold">Website By Mason and Gus</p>
             <a><img src="images/smallLogo.png" width="80" height="90"></a>
         </div>
     </div>
@@ -540,7 +558,7 @@
             storageBucket: "is371project-fa82a.appspot.com",
             messagingSenderId: "581067633287",
             appId: "1:581067633287:web:788280552789d8a2c57e22"
-          };
+        };
 
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
@@ -549,6 +567,7 @@
         let db = firebase.firestore();
     </script>
 </body>
+
 </html>
 
 <script src="site.js"></script>
