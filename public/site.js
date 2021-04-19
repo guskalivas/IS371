@@ -8,7 +8,23 @@
 // 6. figure out how to upload user image for profile/song post
 // 7. functionability with only showing friends posts
 // 8. ???
-//  Anything else you can think of adding for now?
+//  Anything else you can think of adding for now?'
+
+
+// I added a bunch of functionality with js. You will have to sign up again with a new account because i stored the users in a collection
+// Somg things I got working:
+    // Add friends bar
+    // showing posts of friends
+    // welcoming user
+    // showing post was successfuly added
+// Some things to still work on:
+    // design/layout
+    // removing friends
+    // links for profile
+    // error messages for when user adds wrong ufser, bad info
+    // update profile info?
+    // making sure site looks good on mobile
+    
 
 let loggedoutlinks = document.querySelectorAll(".loggedout");
 let loggedinlinks = document.querySelectorAll(".loggedin");
@@ -293,6 +309,22 @@ signup_form.addEventListener('submit', (e) => {
 
 })
 
+function welcome_user(){
+    let content = document.querySelector("#welcome_content")
+    //specifically gets user info to greet user
+    db.collection("Users").get().then((data) => {
+        let userdata = data.docs;
+        userdata.forEach((user) => {
+            if (user.data().id == auth.currentUser.uid) {
+                content.innerHTML = `
+                Welcome ${user.data().fName} ${user.data().lName} to <br><b><i><span style="font-family:'Helvetica Neue', serif; color:lightseagreen">Cypher Songs</span></i></b>
+            `
+                showFeed();
+                showFriends();
+            }
+        })
+    })
+}
 
 // sign in 
 let login_form = document.querySelector('#login_form');
@@ -306,11 +338,7 @@ login_form.addEventListener('submit', (e) => {
             // user_id = userCredentials.user.uid;
             my_login_modal.classList.remove('is-active');
             login_form.reset();
-            showFeed();
-            let content = document.querySelector("#welcome_content")
-            content.innerHTML = `
-                Welcome ${userCredentials.user.email} to <br><b><i>Cypher Songs</i></b>
-            `
+            welcome_user();
         })
         .catch((e) => {
             let login_error = document.querySelector('#login_error');
@@ -320,7 +348,8 @@ login_form.addEventListener('submit', (e) => {
 })
 
 
-// // sign out
+
+// sign out
 let signoutbtn = document.querySelector('#sign_out_button');
 signoutbtn.addEventListener('click', () => {
     auth.signOut()
@@ -333,8 +362,8 @@ let username = "";
 let firstName = "";
 let lastName = "";
 
-function getData() {
-    db.collection("Users").get().then((data) => {
+async function getData() {
+    return await db.collection("Users").get().then((data) => {
         let userdata = data.docs;
         userdata.forEach((findUser) => {
             if (findUser.data().id == auth.currentUser.uid) {
@@ -343,71 +372,72 @@ function getData() {
                 lastName = findUser.data().lName;
             }
         })
+        return "";
     })
 }
 
-function getFriends() {
-    db.collection("Users").get().then((data) => {
+async function getFriends() {
+    return await db.collection("Users").get().then((data) => {
         let userdata = data.docs;
+        let user_friends = [];
         userdata.forEach((findUser) => {
             if (findUser.data().id == auth.currentUser.uid) {
-                const user_friends = findUser.data().friends;
-                return user_friends;
+                user_friends = findUser.data().friends;
             }
         })
+        return user_friends;
     })
 }
 
+// shows user feed of friends posts
 function showFeed() {
 
-    let content = document.querySelector('#main-content');
-    db.collection("Songs").get().then((data) => {
+    let content = document.querySelector('#main-content'); //find man content area
+
+    db.collection("Songs").get().then((data) => { //goes through every song in database to find friends of user
 
         let songdata = data.docs;
         let content_html = "";
-        let friend_posts = [];
-        // songdata.forEach((friend_song) => {
-        //     if (friend_song.data().username == "mason") {
-        //         console.log("found a post");
-        //     }
-        // })
-        // let friends = getFriends();
-        getData();
 
-        songdata.forEach((findUserSongs) => {    
-            post = findUserSongs.data();
-            if (findUserSongs.data().user == auth.currentUser.uid) {
-                let newSong = `
-                            <div class="card mb-6">
-                                <div class="card-image">
-                                    <div class="image is-3by2">
-                                        <img src="${post.image}" alt="">
-                                    </div>
+        getFriends().then((friends) => { //calls method to return array of user friends
+            friends.forEach((friend) => { //goes through each user friend to posts every friend's song
+                // WE WILL NEED TO LIMIR HOW MANY FRIEND POSTS ARE SHOWN AND THE ORDER
+                songdata.forEach((song) => {
+                    post = song.data();
+                    if (friend.username == song.data().username) {
+                        let newSong = `
+                        <div class="card mb-6">
+                            <div class="card-image">
+                                <div class="image is-3by2">
+                                    <img src="${post.image}" alt="">
                                 </div>
-                                <div class="media mb-0">
-                                    <div class="media-left">
-                                        <div class="image is-96x96">
-                                            <img src="images/smallLogo.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="media-content">
-                                        <div class="title">${post.firstName} ${post.lastName}</div>
-                                        <div class="subtitle">@${post.username}</div>
-                                    </div>
-                                </div>
-                                <div class="card-content has-text-centered">
-                                    <ul>
-                                        <li><a href="${post.link}" target="_blank">${post.name}</a></li>
-                                        <li><i>${post.artist}</i></li>
-                                    </ul>
-                                </div>
-            
                             </div>
-                        `
-                content_html += newSong //adds song to main content
-            }
+                            <div class="media mb-0">
+                                <div class="media-left">
+                                    <div class="image is-96x96">
+                                        <img src="images/smallLogo.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="media-content">
+                                    <div class="title">${post.firstName} ${post.lastName}</div>
+                                    <div class="subtitle">@${post.username}</div>
+                                </div>
+                            </div>
+                            <div class="card-content has-text-centered">
+                                <ul>
+                                    <li><a href="${post.link}" target="_blank">${post.name}</a></li>
+                                    <li><i>${post.artist}</i></li>
+                                </ul>
+                            </div>
+        
+                        </div>
+                    `
+                        content_html += newSong //adds song to main content
+                    }
+                })
+            })
+            content.innerHTML = content_html;
         })
-        content.innerHTML = content_html; //puts new song first on timeline
     })
 }
 
@@ -419,93 +449,144 @@ psb.addEventListener('click', (e) => {
     let songImage = document.querySelector('#song-image').value;
     let songLink = document.querySelector('#song-link').value;
 
-    let song_content = {
-        firstName: firstName,
-        lastName: lastName,
-        username: username,
-        user: auth.currentUser.uid,
-        name: name,
-        artist: artist,
-        image: songImage,
-        link: songLink,
-        date: new Date()
-    }
+    getData().then((e) => {
+        let song_content = {
+            firstName: firstName,
+            lastName: lastName,
+            username: username,
+            user: auth.currentUser.uid,
+            name: name,
+            artist: artist,
+            image: songImage,
+            link: songLink,
+            date: new Date()
+        }
 
-    db.collection("Songs").add(song_content).then((data) => {
-        console.log("Song added to database");
+        db.collection("Songs").add(song_content).then((data) => {
+            console.log("Song added to database");
+            let posted_song = document.querySelector("#song_posted"); //adds button to let user know song was added
+            posted_song.classList.add("is-active");
+            posted_song.classList.remove("is-hidden");
+
+        })
+
+        showFeed();
     })
-
-    showFeed();
-
     post_modal.classList.remove('is-active'); //exits modal
 })
 
-
+function showFriends() {
+    let friend_list = document.querySelector("#friends_list");
+    let friends_html = "";
+    getFriends().then((friends) => {
+        friends.forEach((friend) => {
+            friends_html += `<p class="has-text-centered">${friend.fName} ${friend.lName} </p>`
+        })
+        friend_list.innerHTML = friends_html;
+    })
+}
 
 // keep track of user authentication (signed in or signed out)
 auth.onAuthStateChanged((user) => {
     if (user) {
         console.log("signed in");
-        configureNav(user);
-        let content = document.querySelector("#welcome_content")
-            content.innerHTML = `
-                Welcome ${user.email} to <br><b><i>Cypher Songs</i></b>
-            `
-        showFeed();
+        configureNav(user); //changes navbar
+        welcome_user();
     } else {
         console.log("not signed in");
-        configureNav();
+        configureNav(); //changes navbar
+        let content = document.querySelector("#welcome_content")
+        content.innerHTML = `
+                Welcome to <br><b><i><span style="font-family:'Helvetica Neue', serif; color:lightseagreen">Cypher Songs</span></i></b>
+            `
     }
 });
 
+
+// find friend lookup form
 let friend_form = document.querySelector("#search_friends");
 
 friend_form.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    // lookup value of friend username
     let friend_username = document.querySelector("#friend_username").value;
+
+    // goes through users in database to find both users (main and new friend)
     db.collection("Users").get().then((data) => {
-        let main_user = [];
+        let already_friends = false; //prevents adding same friend twice
+        let main_user = []; //current user data
+
         let userdata = data.docs;
+
+        // find data for current user
+        // also specifically finds id just to have
         userdata.forEach((user) => {
             if (auth.currentUser.uid == user.data().id) {
                 main_user = user;
                 main_user_id = db.collection("Users").doc(user.id);
             }
         })
+
+        // looks for new friend to be added
+        let found_friend = false;
         let new_friend = [];
         userdata.forEach((user) => {
             if (friend_username == user.data().username) {
+                found_friend = true;
                 new_friend = user;
                 new_friend_id = db.collection("Users").doc(user.id);
+
+                // can't add self as friend
+                if (user.id == auth.currentUser.uid) {
+                    console.log("cannot be friends with self");
+                    already_friends = true;
+                }
             }
         })
 
-        if (new_friend.data().friends.length == 0 || main_user.data().friends.length == 0) {
-            // will have to still check if they are still friends 
-            let temp_friends = new_friend.data().friends;
-            temp_friends.push(main_user.data());
-            console.log(temp_friends);
-            updateInfo(new_friend_id, temp_friends); 
+        if (found_friend) { //makes sure there is a friend to be added
 
-            temp_friends = main_user.data().friends;
-            temp_friends.push(new_friend.data());
-            updateInfo(main_user_id, temp_friends);
- 
+            if (new_friend.data().friends.length != 0 && main_user.data().friends.length != 0) {
+
+                // checks if friend is already in friends array (don't add twice)
+                new_friend.data().friends.forEach((friend) => {
+                    if (friend.username == main_user.data().username) {
+                        already_friends = true;
+                    }
+                })
+            }
+
+            //pushes friend to past friends and then add new friends array to user info
+            if (!already_friends) {
+                let temp_friends = new_friend.data().friends;
+                temp_friends.push(main_user.data());
+                updateInfo(new_friend_id, temp_friends);
+
+                temp_friends = main_user.data().friends;
+                temp_friends.push(new_friend.data());
+                updateInfo(main_user_id, temp_friends);
+            } else {
+                console.log("users are already friends")
+            }
+
+            showFeed();
+            showFriends();
         }
-        showFeed();
     })
 })
 
-function updateInfo(id,data) {
+
+// creates a new friends with the new friend the user added
+function updateInfo(id, data) {
     return id.update({
-        friends: data
-    })
-    .then(() => {
-        console.log("Document successfully updated!");
-    })
-    .catch((error) => {
-        // The document probably doesn't exist.
-        console.error("Error updating document: ", error);
-    });
+            friends: data
+        })
+        .then(() => {
+            console.log("Document successfully updated!");
+        })
+        .catch((error) => {
+            // The document probably doesn't exist.
+            console.error("Error updating document: ", error);
+        });
 }

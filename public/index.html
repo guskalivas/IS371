@@ -46,10 +46,20 @@
             </div>
 
             <!-- NEED TO FIND BETTER FONT -->
-            <div class="navbar-item p-0 pr-5">
+            <!-- <div class="navbar-item p-0 pr-5">
                 <h1 class="is-size-3 has-text-weight-bold"
                     style="font-family:'Helvetica Neue', serif; color:lightseagreen"><b>Cypher Songs</b></h1>
-            </div>
+            </div> -->
+            <form action="" id="search_friends" class="mb-0 mt-2">
+                <div class="field has-addons">
+                    <div class="control">
+                        <input class="input" type="text" id="friend_username" placeholder="Add friends by username">
+                    </div>
+                    <div class="control">
+                        <button type="submit" class="button is-link">Search</button>
+                    </div>
+                </div>
+            </form>
 
             <div class="navbar-end">
 
@@ -74,8 +84,10 @@
     <!-- START OF MIDDLE SECTION UNDER NAV -->
     <section class="hero is-small has-background-info-light">
         <div class="hero-body has-text-centered">
-            <p class="title"  id="welcome_content">
-                Welcome to <br><b><i>Cypher Songs</i></b>
+            <p class="title" id="welcome_content">
+                Welcome to <br><b><i>
+                        <span style="font-family:'Helvetica Neue', serif; color:lightseagreen">Cypher Songs</span>
+                    </i></b>
             </p>
             <p class="subtitle mb-2">
                 Have you ever gone on Instagram, Snapchat or any other social media and seen a song posted - you
@@ -101,7 +113,7 @@
     <div class="container">
         <div class="columns">
             <div class="section mb-3 column is-three-fifths is-offset-one-fifth pl-6 pr-6">
-                <p class="">
+                <p>
                     <button id="post_button" class="pl-6 is-outlined has-text-weight-bold button is-size-3 is-rounded"
                         style="width:100%; font-family:Verdana, Geneva, Tahoma, sans-serif; background:lightseagreen">
                         <!--lightcoral changed post button from light coral to lightseagreen to match logo colors-->
@@ -112,7 +124,16 @@
             </div>
         </div>
     </div>
-
+    <div class="container is-hidden" id="song_posted">
+        <div class="columns">
+            <div class="has-text-centered section mb-3 column is-three-fifths is-offset-one-fifth pl-6 pr-6">
+                <p class="has-text-centered">Song has been posted</p>
+                <button id="okay_post">
+                    <a href="">OKAY</a>
+                </button>
+            </div>
+        </div>
+    </div>
 
 
     <!--Main content: Post section plus profile info on the side-->
@@ -120,9 +141,9 @@
         <div class="columns">
             <div class="column is-2.5">
                 <div style="background-color:lightseagreen; height: 40vh;overflow:hidden;"
-                    class="column message is-hero is-black ">
+                    class="column message is-hero is-black has-text-centered">
                     <div class="message-header" id="my_profile_button">
-                        Add/Remove Friends!
+                        Your Friends!
                     </div>
                     <!-- <div class="mt-2 has-text-weight-bold has-text-black">
                         <p class="control has-icons-left">
@@ -135,7 +156,7 @@
 
                         </p>
                     </div> -->
-                    <form action="" id="search_friends">
+                    <!-- <form action="" id="search_friends">
                         <div class="field has-addons">
                             <div class="control">
                                 <input class="input" type="text" id="friend_username" placeholder="Search friends by username">
@@ -144,7 +165,10 @@
                                 <button type="submit" class="button is-link">Search</button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
+                    <div id="friends_list">
+
+                    </div>
                 </div>
 
             </div>
@@ -420,7 +444,7 @@
                         <input type="text" name="" id="artist">
                     </div>
                 </div>
-                <!-- <div class="field">
+                <!-- <div class="field"> 
                     <label class="label">Song Image</label>
                     <div class="control">
                         <input type="file" name="" id="" accept="image/png, image/jpeg, image,jpeg">
