@@ -86,7 +86,6 @@ profile_button.addEventListener('click', function () {
 
 // profile info button
 var my_profile_info_button = document.querySelectorAll("#my_profile_info_button");
-console.log(my_profile_info_button);
 var profile_info = document.querySelector('#Info');
 for (const button of my_profile_info_button) {
     button.addEventListener('click', function () {
@@ -94,12 +93,14 @@ for (const button of my_profile_info_button) {
         my_profile_modal.classList.add('is-active');
         profile_info.classList.remove('is-hidden');
         profile_info.classList.add('is-active');
+
     })
 }
 
+
+
 // profile friends button
 var my_profile_friends_button = document.querySelectorAll("#my_profile_friends_button");
-console.log(my_profile_friends_button);
 var profile_friends = document.querySelector('#Friends');
 for (const button of my_profile_friends_button) {
     button.addEventListener('click', function () {
@@ -193,6 +194,34 @@ var modalbg_contact = document.querySelector("#modalbg_contact");
 modalbg_contact.addEventListener('click', function () {
     my_contact_modal.classList.remove('is-active');
 })
+
+//TABS on Profile
+let info_tab = document.querySelector('#info_tab');
+let friends_tab = document.querySelector('#friends_tab');
+let info_tabHTML = ``;
+let friends_tabHTML = ``;
+getData().then((data) =>{
+    info_tabHTML += ` <p>Name: ${firstName} ${lastName}</p>`;
+    info_tabHTML +=` <p>Username: ${username}</p>`;
+    info_tabHTML += `<p>Email: ${email}</p>`;
+    info_tab.innerHTML = info_tabHTML;
+
+    friends.forEach(f => {
+        console.log(f)
+        friends_tabHTML += `<p> <b>Name:</b> ${f.fName} ${f.lName} <b>Username:</b> ${f.username} </p>`;
+        friends_tab.innerHTML = friends_tabHTML;
+    });
+   
+
+
+
+})
+
+
+
+
+
+
 
 
 
@@ -321,6 +350,7 @@ function welcome_user(){
             `
                 showFeed();
                 showFriends();
+                showProfileSummary();
             }
         })
     })
@@ -361,12 +391,16 @@ signoutbtn.addEventListener('click', () => {
 let username = "";
 let firstName = "";
 let lastName = "";
+let emaiil = "";
+let friends = [];
 
 async function getData() {
     return await db.collection("Users").get().then((data) => {
         let userdata = data.docs;
         userdata.forEach((findUser) => {
             if (findUser.data().id == auth.currentUser.uid) {
+                email = findUser.data().email;
+                friends = findUser.data().friends;
                 username = findUser.data().username;
                 firstName = findUser.data().fName;
                 lastName = findUser.data().lName;
@@ -422,6 +456,16 @@ function showFeed() {
                                     <div class="title">${post.firstName} ${post.lastName}</div>
                                     <div class="subtitle">@${post.username}</div>
                                 </div>
+
+                                <div class="media-right">
+                                <div class="column is-2 has-text-centered mt-5">
+                                    <button id="liked_song_button" class="button is-outlined is-rounded"
+                                        style="background-color: lightseagreen;"><i class="far fa-heart"></i><b>
+                                            </b></button>
+                                </div>
+                            </div>    
+
+
                             </div>
                             <div class="card-content has-text-centered">
                                 <ul>
@@ -485,6 +529,22 @@ function showFriends() {
         friend_list.innerHTML = friends_html;
     })
 }
+
+function showProfileSummary() {
+    //let profile_summary = document.querySelector("#profile_summary");
+    let my_profile_info_button = document.querySelector('#my_profile_info_button');
+    let my_profile_friends_button = document.querySelector('#my_profile_friends_button');
+    //let my_profile_posts_button = document.querySelector('#my_profile_posts_button');
+    //let my_profile_likes_button = document.querySelector('#my_profile_likes_button');
+    getData().then((e) =>{
+        my_profile_info_button.innerHTML = `${firstName} ${lastName}`;
+        getFriends().then((friend) =>{
+            my_profile_friends_button.innerHTML = `${friend.length} Friends`; 
+            // ADD MORE to SIDE - NEED to FIgure out likes and number of posts
+        })
+    });
+}
+
 
 // keep track of user authentication (signed in or signed out)
 auth.onAuthStateChanged((user) => {

@@ -173,17 +173,7 @@
 
             </div>
 
-            <!-- MAIN CONTENT IN MIDDLE-->
-            <!--
-                removed from main column to get 3 columns:
-                is-three-fifths is-offset-one-fifth-widescree
-
-                ** commenting them here incase want to change it back
-
-                removed from profile side:
-                is-two-fifths
-
-            -->
+            
             <div id="main-content" style="height:110vh; overflow:auto;" class="section column is-7 pl-6 pr-6 pt-0">
                 <div class="card mb-6">
                     <div class="card-image">
@@ -201,6 +191,15 @@
                             <div class="title">Mason Guell</div>
                             <div class="subtitle">@mason</div>
                         </div>
+
+                        <div class="media-right">
+                            <div class="column is-2 has-text-centered mt-5">
+                                <button id="liked_song_button" class="button is-outlined is-rounded"
+                                    style="background-color: lightseagreen;"><i class="far fa-heart"></i><b>
+                                        </b></button>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="card-content has-text-centered">
                         <ul>
@@ -223,6 +222,7 @@
                                 <img src="images/smallLogo.png" alt="">
                             </div>
                         </div>
+
                         <div class="media-content">
                             <div class="title">Mason Guell</div>
                             <div class="subtitle">@mason</div>
@@ -230,10 +230,11 @@
                         <div class="media-right">
                             <div class="column is-2 has-text-centered mt-5">
                                 <button id="liked_song_button" class="button is-outlined is-rounded"
-                                    style="background-color: lightseagreen;"><i class="far fa-heart"></i><b>Like
-                                        Song</b></button>
+                                    style="background-color: lightseagreen;"><i class="far fa-heart"></i><b>
+                                        </b></button>
                             </div>
                         </div>
+
                     </div>
 
                     <div class="columns is-centered">
@@ -246,10 +247,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <!--
-                    ADDED Like Button - could remove words and just do an image - heart or thumbs up? do you like where it is, could move button too
-                -->
-
+                   
                     </div>
 
                 </div>
@@ -270,6 +268,16 @@
                             <div class="title">Gus Kalivas</div>
                             <div class="subtitle">@guskalivas</div>
                         </div>
+
+                        <div class="media-right">
+                            <div class="column is-2 has-text-centered mt-5">
+                                <button id="liked_song_button" class="button is-outlined is-rounded"
+                                    style="background-color: lightseagreen;"><i class="far fa-heart"></i><b>
+                                        </b></button>
+                            </div>
+                        </div>
+
+
                     </div>
                     <div class="card-content has-text-centered">
                         <ul>
@@ -288,16 +296,19 @@
                     <div class="message-header" id="my_profile_button">
                         Your Profile
                     </div>
-                    <div class="message-body has-text-weight-bold has-text-black">
-                        <p>
+                    <div class="message-body has-text-weight-bold has-text-black" >
                             <ul>
-                                <li><a id="my_profile_info_button" style="text-decoration:none;">Gus Kalivas</a></li>
-                                <li><a id="my_profile_friends_button" style="text-decoration:none;">20 Friends</a></li>
-                                <li><a id="my_profile_posts_button" style="text-decoration:none;">1 Post</a></li>
-                                <li><a id="my_profile_likes_button" style="text-decoration:none;">20 Liked Songs</a>
-                                </li>
+                                <li><a id="my_profile_info_button" style="text-decoration:none;">      </a></li>
+                                <li><a id="my_profile_friends_button" style="text-decoration:none;">   </a></li>
+<!--                                 
+                                <li><a id="my_profile_posts_button" style="text-decoration:none;">     </a></li>
+                                <li><a id="my_profile_likes_button" style="text-decoration:none;">     </a>
+                                </li> -->
                             </ul>
-                        </p>
+                        
+
+
+
                     </div>
                 </div>
             </div>
@@ -515,19 +526,28 @@
 
                     <!-- USER UNFO TAB -->
                     <div id="Info" class="tabcontent is-hidden">
-                        <h3 class="title">Your information</h3>
-                        <p>Name: </p>
+                        <div id="info_tab">
+
+                        <!-- <p>Name: </p>
                         <p>Username: </p>
-                        <p>Email: </p>
+                        <p>Email: </p> -->
+
+                        </div>
+
+
                     </div>
 
                     <!-- USER FRIENDS TAB -->
                     <div id='Friends' class="tabcontent is-hidden">
-                        <h3 class="title">Friends</h3>
-                        <ul>
-                            <li>Friend 1</li>
-                            <li>Friend 2</li>
-                        </ul>
+                        <div id="friends_tab">
+                            <!-- <ul>
+                                <li>Friend 1</li>
+                                <li>Friend 2</li>
+                            </ul> -->
+
+
+                        </div>
+                
                     </div>
 
                     <!-- USER LIKES TAB -->
