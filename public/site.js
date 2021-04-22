@@ -13,18 +13,18 @@
 
 // I added a bunch of functionality with js. You will have to sign up again with a new account because i stored the users in a collection
 // Somg things I got working:
-    // Add friends bar
-    // showing posts of friends
-    // welcoming user
-    // showing post was successfuly added
+// Add friends bar
+// showing posts of friends
+// welcoming user
+// showing post was successfuly added
 // Some things to still work on:
-    // design/layout
-    // removing friends
-    // links for profile
-    // error messages for when user adds wrong ufser, bad info
-    // update profile info?
-    // making sure site looks good on mobile
-    
+// design/layout
+// removing friends
+// links for profile
+// error messages for when user adds wrong ufser, bad info
+// update profile info?
+// making sure site looks good on mobile
+
 
 let loggedoutlinks = document.querySelectorAll(".loggedout");
 let loggedinlinks = document.querySelectorAll(".loggedin");
@@ -272,11 +272,20 @@ signup_form.addEventListener('submit', (e) => {
     let lName = document.querySelector("#last_name").value;
     let username = document.querySelector("#user_name").value;
 
+    let already_user = false;
+    db.collection("Users").get().then((data) =>{
+        if (data.docs.data().username == username) {
+            alert("there is already a user with this username, please pick a new one")
+            already_user = true;
+        }
+    })
 
     if (password != password2) {
         // we need to make sure the two passwords match or throw an error
         // might have to do some exception handling
     }
+    if (!already_user) {
+
 
     auth.createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
@@ -306,12 +315,12 @@ signup_form.addEventListener('submit', (e) => {
             let signup_error = document.querySelector('#signup_error');
             signup_error.innerHTML = `<p>${e.message}</p>`;
         })
-
+    }
 
 })
 
 
-function welcome_user(){
+function welcome_user() {
     let content = document.querySelector("#welcome_content")
     //specifically gets user info to greet user
     db.collection("Users").get().then((data) => {
@@ -335,9 +344,9 @@ let info_tab = document.querySelector('#info_tab');
 let friends_tab = document.querySelector('#friends_tab');
 let info_tabHTML = ``;
 let friends_tabHTML = ``;
-getData().then((data) =>{
+getData().then((data) => {
     info_tabHTML += ` <p><b>Name: </b> ${firstName} ${lastName}</p>`;
-    info_tabHTML +=` <p><b>Username:</b> ${username}</p>`;
+    info_tabHTML += ` <p><b>Username:</b> ${username}</p>`;
     info_tabHTML += `<p><b>Email:</b> ${email}</p>`;
     info_tab.innerHTML = info_tabHTML;
 
@@ -353,33 +362,33 @@ getData().then((data) =>{
 
 // prolly need to put this in a function then call it from show feed
 function tabInfo() {
-let post_tab = document.querySelector('#post_tab');
-let post_tabHTML = ``;
-db.collection("Songs").get().then((data) =>{
-    let songdata = data.docs;
-    let count = 0;
-    songdata.forEach((s) =>{
-        if (s.data().user == auth.currentUser.uid){
-            count+=1;
-            post_tabHTML += `<p>${count}: ${s.data().name} by ${s.data().artist}</p>`
+    let post_tab = document.querySelector('#post_tab');
+    let post_tabHTML = ``;
+    db.collection("Songs").get().then((data) => {
+        let songdata = data.docs;
+        let count = 0;
+        songdata.forEach((s) => {
+            if (s.data().user == auth.currentUser.uid) {
+                count += 1;
+                post_tabHTML += `<p>${count}: ${s.data().name} by ${s.data().artist}</p>`
+            }
+            // post_tab.innerHTML = post_tabHTML;
+
+        })
+        if (count == 0) {
+            post_tabHTML += `<p> You havent posted any songs! </p>`;
         }
-       // post_tab.innerHTML = post_tabHTML;
+        post_tab.innerHTML = post_tabHTML;
 
     })
-    if (count == 0){
-        post_tabHTML += `<p> You havent posted any songs!`;
-    }
-    post_tab.innerHTML = post_tabHTML;
-
-})
 
     let liked_song_button = document.querySelectorAll('#liked_song_button');
-    for (let i =0; i <liked_song_button.length;i++){
-    console.log(liked_song_button[i]);
-    liked_song_button[i].addEventListener('click', function(){
-        console.log('hello');
-    })
-}
+    for (let i = 0; i < liked_song_button.length; i++) {
+        console.log(liked_song_button[i]);
+        liked_song_button[i].addEventListener('click', function () {
+            console.log('hello');
+        })
+    }
 }
 
 
@@ -410,6 +419,7 @@ login_form.addEventListener('submit', (e) => {
             let login_error = document.querySelector('#login_error');
             login_error.innerHTML = `<p>${e.message}</p>`;
         })
+
 
 })
 
@@ -470,52 +480,84 @@ function showFeed() {
         let content_html = "";
 
         getFriends().then((friends) => { //calls method to return array of user friends
+            num_songs_to_show = 10;
+            num_shown = 0;
+            let friend_posts_array = [];
             friends.forEach((friend) => { //goes through each user friend to posts every friend's song
-                // WE WILL NEED TO LIMIR HOW MANY FRIEND POSTS ARE SHOWN AND THE ORDER
+                // WE WILL NEED TO LIMIT HOW MANY FRIEND POSTS ARE SHOWN AND THE ORDER
+
                 songdata.forEach((song) => {
+
                     post = song.data();
-                    if (friend.username == song.data().username || auth.currentUser.uid == song.data().user) {
-                        let newSong = `
-                        <div id = "${song.id}" class="card mb-6">
-                            <div class="card-image">
-                                <div class="image is-3by2">
-                                    <img src="${post.image}" alt="">
-                                </div>
-                            </div>
-                            <div class="media mb-0">
-                                <div class="media-left">
-                                    <div class="image is-96x96">
-                                        <img src="images/smallLogo.png" alt="">
-                                    </div>
-                                </div>
-                                <div class="media-content">
-                                    <div class="title">${post.firstName} ${post.lastName}</div>
-                                    <div class="subtitle">@${post.username}</div>
-                                </div>
-
-                                <div class="media-right">
-                                <div class="column is-2 has-text-centered mt-5">
-                                    <button id="liked_song_button" class="button is-outlined is-rounded"
-                                        style="background-color: lightseagreen;"><i class="far fa-heart"></i><b>
-                                            </b></button>
-                                </div>
-                            </div>    
-
-
-                            </div>
-                            <div class="card-content has-text-centered">
-                                <ul>
-                                    <li><a href="${post.link}" target="_blank">${post.name}</a></li>
-                                    <li><i>${post.artist}</i></li>
-                                </ul>
-                            </div>
-        
-                        </div>
-                    `
-                        content_html += newSong //adds song to main content
+                    post.id = song.id;
+                    if (friend.username == song.data().username) {
+                        friend_posts_array.push(post);
                     }
                 })
+
             })
+
+            let sorted_array = [];
+            while (friend_posts_array.length > 0) {
+                let max = friend_posts_array[0];
+
+                friend_posts_array.forEach((friend_post) => {
+                    if (friend_post.date.seconds > max.date.seconds) {
+                        max = friend_post;
+                    }
+                })
+                sorted_array.push(max);
+                friend_posts_array.splice(friend_posts_array.indexOf(max), 1);
+            }
+
+            num_to_show = 10;
+            if (sorted_array.length < num_to_show) {
+                num_to_show = sorted_array.length;
+            }
+
+            for (let i = 0; i < num_to_show; i++) {
+                content_html += `
+        <div id = "${i}" class="card mb-6">
+            <div class="card-image">
+                <div class="image is-3by2">
+                    <img src="${sorted_array[i].image}" alt="">
+                </div>
+            </div>
+            <div class="media mb-0">
+                <div class="media-left">
+                    <div class="image is-96x96">
+                        <img src="images/smallLogo.png" alt="">
+                    </div>
+                </div>
+                <div class="media-content">
+                    <div class="title">${sorted_array[i].firstName} ${sorted_array[i].lastName}</div>
+                    <div class="subtitle">@${sorted_array[i].username}</div>
+                </div>
+
+                <div class="media-right">
+                <div class="column is-2 has-text-centered mt-5">
+                    <button id="liked_song_button" class="button is-outlined is-rounded"
+                        style="background-color: lightseagreen;"><i class="far fa-heart"></i><b>
+                            </b></button>
+                </div>
+
+            </div>    
+
+
+            </div>
+            <div class="card-content has-text-centered">
+                <ul>
+                    <li><a href="${sorted_array[i].link}" target="_blank">${sorted_array[i].name}</a></li>
+                    <li><i>${sorted_array[i].artist}</i></li>
+                    <li>Date Posted: ${sorted_array[i].month}/${sorted_array[i].day}/${sorted_array[i].year} @
+                     ${sorted_array[i].hour}:${sorted_array[i].minutes} ${sorted_array[i].clock}</li>
+                </ul>
+            </div>
+
+        </div>
+    `
+            }
+
             content.innerHTML = content_html;
         })
     })
@@ -539,15 +581,33 @@ psb.addEventListener('click', (e) => {
             artist: artist,
             image: songImage,
             link: songLink,
-            date: new Date()
+            date: new Date(),
+            month: (new Date()).getMonth(),
+            day: (new Date()).getDate(),
+            year: (new Date()).getFullYear(),
+            hour: (new Date()).getHours(),
+            minutes: (new Date()).getMinutes(),
+            clock: "a.m."
         }
 
-        db.collection("Songs").add(song_content).then((data) => {
-            console.log("Song added to database");
-            let posted_song = document.querySelector("#song_posted"); //adds button to let user know song was added
-            posted_song.classList.add("is-active");
-            posted_song.classList.remove("is-hidden");
+        if (song_content.hour > 12) {
+            song_content.hour = song_content.hour % 12;
+            song_content.clock = "p.m."
+        }
+        if (song_content.hour == 12) {
+            song_content.clock = "p.m."
+        }
+        if (song_content.hour == 0) {
+            song_content.hour = 12;
+            song_content.clock = "a.m."
+        }
+        if (song_content.minutes < 10) {
+            song_content.minutes = "0" + song_content.minutes;
+        }
 
+
+        db.collection("Songs").add(song_content).then((data) => {
+            alert("Song added to database");
         })
 
         showFeed();
@@ -558,35 +618,103 @@ psb.addEventListener('click', (e) => {
 function showFriends() {
     let friend_list = document.querySelector("#friends_list");
     let friends_html = "";
+
     getFriends().then((friends) => {
+        friend_list.innerHTML = "";
         friends.forEach((friend) => {
-            friends_html += `<p class="has-text-centered">${friend.fName} ${friend.lName} </p>`
+            friends_html = `<h1><a class="has-text-centered is-size-5" style="text-decoration:none" id="${friend.username}">${friend.fName} ${friend.lName}</a></h1>`
+            friends_html += `<h4>Username: ${friend.username}</h4>`
+            friend_list.innerHTML += friends_html;
         })
-        friend_list.innerHTML = friends_html;
     })
 }
+
+show_posts.addEventListener('click', (e) => {
+    let content = document.querySelector('#main-content');
+    content.innerHTML = "";
+    showFeed();
+})
 
 function showProfileSummary() {
     //let profile_summary = document.querySelector("#profile_summary");
     let my_profile_info_button = document.querySelector('#my_profile_info_button');
     let my_profile_friends_button = document.querySelector('#my_profile_friends_button');
     let my_profile_posts_button = document.querySelector('#my_profile_posts_button');
+    let my_posts_button = document.querySelector('#my_posts_button');
     //let my_profile_likes_button = document.querySelector('#my_profile_likes_button');
-    getData().then((e) =>{
+    my_posts_button.addEventListener('click', (e) => {
+        let found_user = false;
+        let content = document.querySelector('#main-content');
+        content.innerHTML = "";
+        db.collection("Songs").get().then((data) => {
+            user_data = data.docs;
+            user_data.forEach((song) => {
+                if (song.data().user == auth.currentUser.uid) {
+                    found_user = true;
+                    content.innerHTML += `
+                    <div id = "${song.id}" class="card mb-6">
+                        <div class="card-image">
+                            <div class="image is-3by2">
+                                <img src="${song.data().image}" alt="">
+                            </div>
+                        </div>
+                        <div class="media mb-0">
+                            <div class="media-left">
+                                <div class="image is-96x96">
+                                    <img src="images/smallLogo.png" alt="">
+                                </div>
+                            </div>
+                            <div class="media-content">
+                                <div class="title">${song.data().firstName} ${song.data().lastName}</div>
+                                <div class="subtitle">@${song.data().username}</div>
+                            </div>
+
+                            <div class="media-right">
+                            <div class="column is-2 has-text-centered mt-5">
+                                <button id="liked_song_button" class="button is-outlined is-rounded"
+                                    style="background-color: lightseagreen;"><i class="far fa-heart"></i><b>
+                                        </b></button>
+                            </div>
+                        </div>    
+
+
+                        </div>
+                        <div class="card-content has-text-centered">
+                            <ul>
+                                <li><a href="${song.data().link}" target="_blank">${song.data().name}</a></li>
+                                <li><i>${song.data().artist}</i></li>
+                                <li>Date Posted: ${song.data().month}/${song.data().day}/${song.data().year} @
+                                 ${song.data().hour}:${song.data().minutes} ${song.data().clock}</li>
+                            </ul>
+                        </div>
+    
+                    </div>
+                    `
+                }
+
+            })
+            if (!found_user) {
+                content.innerHTML = `<p class="has-text-centered"> You have not posted any songs</p>`
+            }
+        })
+
+    })
+
+    getData().then((e) => {
         my_profile_info_button.innerHTML = `${firstName} ${lastName}`;
-        getFriends().then((friend) =>{
-            my_profile_friends_button.innerHTML = `${friend.length} Friends`; 
+        getFriends().then((friend) => {
+            my_profile_friends_button.innerHTML = `${friend.length} Friends`;
             // ADD MORE to SIDE - NEED to FIgure out likes and number of posts
         })
-        db.collection('Songs').get().then((data) =>{
+        db.collection('Songs').get().then((data) => {
             let num_posts = data.docs;
             let count = 0;
-            num_posts.forEach((s)=>{
-                if (s.data().user == auth.currentUser.uid){
-                    count+=1;
+            num_posts.forEach((s) => {
+                if (s.data().user == auth.currentUser.uid) {
+                    count += 1;
                 }
             })
-            my_profile_posts_button.innerHTML = `Number of posts ${count}`;
+            my_profile_posts_button.innerHTML = `Number of posts: ${count} posts`;
         })
     });
 }
@@ -596,33 +724,41 @@ function showProfileSummary() {
 
 // keep track of user authentication (signed in or signed out)
 auth.onAuthStateChanged((user) => {
+    let logged_out = document.querySelector("#logged_out")
+    let logged_in = document.querySelector("#logged_in")
     if (user) {
         console.log("signed in");
         configureNav(user); //changes navbar
         welcome_user();
         tabInfo();
+        logged_in.classList.remove("is-hidden");
+        logged_out.classList.add("is-hidden")
     } else {
         console.log("not signed in");
         configureNav(); //changes navbar
-        let content = document.querySelector("#welcome_content")
-        content.innerHTML = `
+        let welcome_content = document.querySelector("#welcome_content")
+        welcome_content.innerHTML = `
                 Welcome to <br><b><i><span style="font-family:'Helvetica Neue', serif; color:lightseagreen">Cypher Songs</span></i></b>
             `
+        logged_in.classList.add("is-hidden")
+        logged_out.classList.remove("is-hidden");
     }
 });
 
 
 // find friend lookup form
-let friend_form = document.querySelector("#search_friends");
+let add_friend_form = document.querySelector("#add_friends");
 
-friend_form.addEventListener('submit', (e) => {
+add_friend_form.addEventListener('submit', (e) => {
     e.preventDefault();
+
 
     // lookup value of friend username
     let friend_username = document.querySelector("#friend_username").value;
 
     // goes through users in database to find both users (main and new friend)
     db.collection("Users").get().then((data) => {
+
         let already_friends = false; //prevents adding same friend twice
         let main_user = []; //current user data
 
@@ -647,8 +783,8 @@ friend_form.addEventListener('submit', (e) => {
                 new_friend_id = db.collection("Users").doc(user.id);
 
                 // can't add self as friend
-                if (user.id == auth.currentUser.uid) {
-                    console.log("cannot be friends with self");
+                if (user.data().id == auth.currentUser.uid) {
+                    alert("cannot follow self");
                     already_friends = true;
                 }
             }
@@ -662,28 +798,93 @@ friend_form.addEventListener('submit', (e) => {
                 new_friend.data().friends.forEach((friend) => {
                     if (friend.username == main_user.data().username) {
                         already_friends = true;
+                        console.log("already following");
                     }
                 })
             }
 
             //pushes friend to past friends and then add new friends array to user info
             if (!already_friends) {
-                let temp_friends = new_friend.data().friends;
-                temp_friends.push(main_user.data());
-                updateInfo(new_friend_id, temp_friends);
-                
+                // let temp_friends = new_friend.data().friends;
+                // temp_friends.push(main_user.data());
+                // updateInfo(new_friend_id, temp_friends);
 
-                temp_friends = main_user.data().friends;
-                temp_friends.push(new_friend.data());
-                updateInfo(main_user_id, temp_friends);
-                alert("You and " + new_friend.data().username + " are now Friends!");
+
+                new_friends = main_user.data().friends;
+                new_friends.push(new_friend.data());
+                updateInfo(main_user_id, new_friends);
+                alert("You are now following: " + new_friend.data().username);
             } else {
-                alert("You and " + new_friend.data().username + " are already friends");
+                alert("You are already following: " + new_friend.data().username);
             }
+        } else {
+            alert("User is not in our database!")
+        }
+        add_friend_form.reset();
+        showFeed();
+        showFriends();
+        showProfileSummary();
+    })
+})
 
-            showFeed();
-            showFriends();
-            showProfileSummary();
+let remove_friend_form = document.querySelector('#remove_friends');
+
+remove_friend_form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    let remove_username = document.querySelector('#remove_username').value;
+     db.collection("Users").get().then((data) =>{
+        let main_user = []; //current user data
+
+        let userdata = data.docs;
+
+        // find data for current user
+        // also specifically finds id just to have
+        userdata.forEach((user) => {
+            if (auth.currentUser.uid == user.data().id) {
+                main_user = user;
+                main_user_id = db.collection("Users").doc(user.id);
+            }
+        })
+        let removed = false;
+        let new_friends = main_user.data().friends
+        if (main_user.data().friends.length != 0) {
+            for (let i = 0; i<main_user.data().friends.length; i++) {              
+                if (main_user.data().friends[i].username == remove_username) {
+                    removed = true;
+                    new_friends.splice(i, 1);
+                    updateInfo(main_user_id, new_friends)
+                    alert(`User with username: "${remove_username}" has been removed from your friends list`)
+                }
+            }
+        }
+        if (removed){
+            alert(`User with username: "${remove_username}" has been removed from your friends list`)
+        } else{
+            alert(`Unable to remove "${remove_username}"`)
+        }
+        remove_friend_form.reset();
+        showFeed();
+        showFriends();
+        showProfileSummary();
+
+     })
+})
+
+let friend_posts = document.querySelector("#search_friends");
+
+friend_posts.addEventListener('submit', (e) =>{
+    e.preventDefault();
+
+    let search_name = document.querySelector('#search_username').value;
+
+    // db.collection("Users").get().then((data) => {
+    //     if(search_name = data.docs.data().username)
+    // })
+
+    db.collection("Songs").get().then((data) => {
+        if (data.docs.data().username == search_name){
+            console.log("here");
         }
     })
 })

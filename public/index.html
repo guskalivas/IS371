@@ -50,16 +50,7 @@
                 <h1 class="is-size-3 has-text-weight-bold"
                     style="font-family:'Helvetica Neue', serif; color:lightseagreen"><b>Cypher Songs</b></h1>
             </div> -->
-            <form action="" id="search_friends" class="mb-0 mt-2">
-                <div class="field has-addons">
-                    <div class="control">
-                        <input class="input" type="text" id="friend_username" placeholder="Add friends by username">
-                    </div>
-                    <div class="control">
-                        <button type="submit" class="button is-link">Search</button>
-                    </div>
-                </div>
-            </form>
+
 
             <div class="navbar-end">
 
@@ -110,208 +101,118 @@
     </section>
     <!-- END OF TOP MIDDLE SECTION -->
     <!-- MAKE A POST BUTTON -->
-    <div class="container">
-        <div class="columns">
-            <div class="section mb-3 column is-three-fifths is-offset-one-fifth pl-6 pr-6">
-                <p>
-                    <button id="post_button" class="pl-6 is-outlined has-text-weight-bold button is-size-3 is-rounded"
-                        style="width:100%; font-family:Verdana, Geneva, Tahoma, sans-serif; background:lightseagreen">
-                        <!--lightcoral changed post button from light coral to lightseagreen to match logo colors-->
+    <div id="logged_out">
+        <h1 class="p-6 has-text-centered is-size-1">You must be logged in to see content!</h1>
+    </div>
+    <div id="logged_in">
+        <div class="container">
+            <div class="columns">
+                <div class="section mb-3 column is-three-fifths is-offset-one-fifth pl-6 pr-6">
+                    <p>
+                        <button id="post_button"
+                            class="pl-6 is-outlined has-text-weight-bold button is-size-3 is-rounded"
+                            style="width:100%; font-family:Verdana, Geneva, Tahoma, sans-serif; background:rgb(89, 184, 179)">
+                            <!--lightcoral changed post button from light coral to lightseagreen to match logo colors-->
 
-                        <a class="has-text-black">Make a Post</a>
-                    </button>
-                </p>
+                            <a class="has-text-black">Make a Post</a>
+                        </button>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container is-hidden" id="song_posted">
-        <div class="columns">
-            <div class="has-text-centered section mb-3 column is-three-fifths is-offset-one-fifth pl-6 pr-6">
-                <p class="has-text-centered">Song has been posted</p>
-                <button id="okay_post">
-                    <a href="">OKAY</a>
-                </button>
-            </div>
-        </div>
-    </div>
 
 
-    <!--Main content: Post section plus profile info on the side-->
-    <div class="container">
-        <div class="columns">
-            <div class="column is-2.5">
-                <div style="background-color:lightseagreen; height: 40vh;overflow:hidden;"
-                    class="column message is-hero is-black has-text-centered">
-                    <div class="message-header" id="my_profile_button">
-                        Your Friends!
-                    </div>
-                    <!-- <div class="mt-2 has-text-weight-bold has-text-black">
-                        <p class="control has-icons-left">
-                            
-                                <input class="input" type="text" id="search_bar"
-                                    placeholder="Search for friends by username">
-                                <span class="icon is-left">
-                                    <i class="fas fa-search" aria-hidden="true"></i>
-                                </span>
 
-                        </p>
-                    </div> -->
-                    <!-- <form action="" id="search_friends">
-                        <div class="field has-addons">
-                            <div class="control">
-                                <input class="input" type="text" id="friend_username" placeholder="Search friends by username">
-                            </div>
-                            <div class="control">
-                                <button type="submit" class="button is-link">Search</button>
-                            </div>
+        <!--Main content: Post section plus profile info on the side-->
+        <div class="container">
+            <div class="columns">
+                <div class="column is-2.5">
+                    <div style="background-color:lightseagreen;"
+                        class="column message is-hero is-black has-text-centered">
+                        <a id="show_posts" style="text-decoration:none;"><b>Show All Friends Posts</b></a>
+                        <div class="message-header" id="my_profile_button">
+                            Your Friends!
                         </div>
-                    </form> -->
-                    <div id="friends_list">
+                        <div id="friends_list" style="height:50vh;overflow:auto;">
 
-                    </div>
-                </div>
-
-            </div>
-
-            
-            <div id="main-content" style="height:110vh; overflow:auto;" class="section column is-7 pl-6 pr-6 pt-0">
-                <div class="card mb-6">
-                    <div class="card-image">
-                        <div class="image is-3by2">
-                            <img src="images/song_example.jpg" alt="">
                         </div>
                     </div>
-                    <div class="media mb-0">
-                        <div class="media-left">
-                            <div class="image is-96x96">
-                                <img src="images/smallLogo.png" alt="">
-                            </div>
+                    <div style="background-color:lightseagreen; overflow:auto;"
+                        class="column message is-hero is-black has-text-centered">
+                        <div class="message-header">
+                            Add/Remove Friends
                         </div>
-                        <div class="media-content">
-                            <div class="title">Mason Guell</div>
-                            <div class="subtitle">@mason</div>
+                        <div>
+                            <form action="" id="add_friends" class="mb-0 mt-2 loggedin">
+                                <div class="field has-addons">
+                                    <div class="control">
+                                        <input class="input" type="text" id="friend_username" placeholder="Add Friend">
+                                    </div>
+                                    <div class="control">
+                                        <button type="submit" class="button is-link">Search</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <form action="" id="remove_friends" class="mb-0 mt-2 loggedin">
+                                <div class="field has-addons">
+                                    <div class="control">
+                                        <input class="input" type="text" id="remove_username" placeholder="Remove Friend">
+                                    </div>
+                                    <div class="control">
+                                        <button type="submit" class="button is-link">Search</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-
-                        <div class="media-right">
-                            <div class="column is-2 has-text-centered mt-5">
-                                <button id="liked_song_button" class="button is-outlined is-rounded"
-                                    style="background-color: lightseagreen;"><i class="far fa-heart"></i><b>
-                                        </b></button>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card-content has-text-centered">
-                        <ul>
-                            <li><a href="https://www.youtube.com/watch?v=S1kyno4u9cQ" target="_blank">Cold War</a></li>
-                            <li><i>Cautious Clay</i></li>
-                        </ul>
                     </div>
 
                 </div>
 
-                <div class="card">
-                    <div class="card-image">
-                        <div class="image is-3by2">
-                            <img src="images/song_example2.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="media mb-0">
-                        <div class="media-left">
-                            <div class="image is-96x96">
-                                <img src="images/smallLogo.png" alt="">
-                            </div>
-                        </div>
 
-                        <div class="media-content">
-                            <div class="title">Mason Guell</div>
-                            <div class="subtitle">@mason</div>
-                        </div>
-                        <div class="media-right">
-                            <div class="column is-2 has-text-centered mt-5">
-                                <button id="liked_song_button" class="button is-outlined is-rounded"
-                                    style="background-color: lightseagreen;"><i class="far fa-heart"></i><b>
-                                        </b></button>
-                            </div>
-                        </div>
+                <div id="main-content" style="height:110vh; overflow:auto;" class="section column is-7 pl-6 pr-6 pt-0">
 
-                    </div>
-
-                    <div class="columns is-centered">
-                        <div class="column is-8 mr-0">
-                            <div class="card-content has-text-centered">
-                                <ul>
-                                    <li><a href="https://www.youtube.com/watch?v=L53gjP-TtGE" target="_blank">Power</a>
-                                    </li>
-                                    <li><i>Kanye West</i></li>
-                                </ul>
-                            </div>
-                        </div>
-                   
-                    </div>
 
                 </div>
 
-                <div class="card mt-6">
-                    <div class="card-image">
-                        <div class="image is-3by2">
-                            <img src="images/runaway_example.jpg" alt="">
+                <!-- SIDE PROFILE SECTION -->
+                <div class="column is-2.5">
+                    <div style="background-color:lightseagreen;overflow:auto;"
+                        class="column message is-hero is-black ">
+                        <div class="message-header" id="my_profile_button">
+                            Your Profile
                         </div>
-                    </div>
-                    <div class="media mb-0">
-                        <div class="media-left">
-                            <div class="image is-96x96">
-                                <img src="images/smallLogo.png" alt="">
-                            </div>
-                        </div>
-                        <div class="media-content">
-                            <div class="title">Gus Kalivas</div>
-                            <div class="subtitle">@guskalivas</div>
-                        </div>
-
-                        <div class="media-right">
-                            <div class="column is-2 has-text-centered mt-5">
-                                <button id="liked_song_button" class="button is-outlined is-rounded"
-                                    style="background-color: lightseagreen;"><i class="far fa-heart"></i><b>
-                                        </b></button>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="card-content has-text-centered">
-                        <ul>
-                            <li><a href="https://www.youtube.com/watch?v=L53gjP-TtGE" target="_blank">Runaway</a></li>
-                            <li><i>Kanye West</i></li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- SIDE PROFILE SECTION -->
-            <div class="column is-2.5">
-                <div style="background-color:lightseagreen; height: 60vh;overflow:hidden;"
-                    class="column message is-hero is-black ">
-                    <div class="message-header" id="my_profile_button">
-                        Your Profile
-                    </div>
-                    <div class="message-body has-text-weight-bold has-text-black" >
+                        <div class="message-body has-text-weight-bold has-text-black">
                             <ul>
-                                <li><a id="my_profile_info_button" style="text-decoration:none;">      </a></li>
-                                <li><a id="my_profile_friends_button" style="text-decoration:none;">   </a></li>
-                                
-                                <li><a id="my_profile_posts_button" style="text-decoration:none;">     </a></li>
+                                <li><a id="my_posts_button" style="text-decoration:none;"><b>My Posts</b></a></li>
+                                <li><a id="my_profile_info_button" style="text-decoration:none;"> </a></li>
+                                <li><a id="my_profile_friends_button" style="text-decoration:none;"> </a></li>
+
+                                <li><a id="my_profile_posts_button" style="text-decoration:none;"> </a></li>
                                 <!-- <li><a id="my_profile_likes_button" style="text-decoration:none;">     </a> </li>  -->
                             </ul>
-                        
-
-
-
+                        </div>
+                    </div>
+                    <div style="background-color:lightseagreen;overflow:auto;"
+                        class="column message is-hero is-black ">
+                        <div class="message-header" id="my_profile_button">
+                            Search User to Display their Posts
+                        </div>
+                        <div class="has-text-weight-bold has-text-black">
+                            <form action="" id="search_friends" class="mt-2 loggedin">
+                                <div class="field has-addons">
+                                    <div class="control">
+                                        <input class="input" type="text" id="search_username" placeholder="Show Friend Posts">
+                                    </div>
+                                    <div class="control">
+                                        <button type="submit" class="button is-link">Search</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
 
@@ -527,7 +428,7 @@
                     <div id="Info" class="tabcontent is-hidden">
                         <div id="info_tab">
 
-                        <!-- <p>Name: </p>
+                            <!-- <p>Name: </p>
                         <p>Username: </p>
                         <p>Email: </p> -->
 
@@ -546,12 +447,12 @@
 
 
                         </div>
-                
+
                     </div>
 
                     <!-- USER LIKES TAB -->
                     <div id='Likes' class="tabcontent is-hidden">
-                        <div id = "like_tab">
+                        <div id="like_tab">
 
                             <!-- <h3 class="title">Liked Songs</h3>
                                 <ul>
@@ -565,7 +466,7 @@
 
                     <!-- USER POSTS TAB -->
                     <div id='Posts' class="tabcontent is-hidden">
-                        <div id = "post_tab">
+                        <div id="post_tab">
 
                             <!-- <h3 class="title">Liked Songs</h3>
                                 <ul>
