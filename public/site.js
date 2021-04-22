@@ -622,7 +622,8 @@ function showFriends() {
     getFriends().then((friends) => {
         friend_list.innerHTML = "";
         friends.forEach((friend) => {
-            friends_html = `<h1><a class="has-text-centered is-size-5" style="text-decoration:none" id="${friend.username}">${friend.fName} ${friend.lName}</a></h1>`
+            friends_html = `<h1><a class="has-text-centered is-size-5" style="text-decoration:none" 
+            id="${friend.username}"><b>${friend.fName} ${friend.lName}</b></a></h1>`
             friends_html += `<h4>Username: ${friend.username}</h4>`
             friend_list.innerHTML += friends_html;
         })
@@ -883,10 +884,60 @@ friend_posts.addEventListener('submit', (e) =>{
     // })
 
     db.collection("Songs").get().then((data) => {
-        if (data.docs.data().username == search_name){
-            console.log("here");
-        }
+        let user_data = data.docs;
+        let content = document.querySelector('#main-content');
+        content.innerHTML = "";
+        let has_songs = false;
+        user_data.forEach((song) =>{
+            if (song.data().username == search_name){
+                has_songs = true;
+                content.innerHTML += `
+                    <div id = "${song.id}" class="card mb-6">
+                        <div class="card-image">
+                            <div class="image is-3by2">
+                                <img src="${song.data().image}" alt="">
+                            </div>
+                        </div>
+                        <div class="media mb-0">
+                            <div class="media-left">
+                                <div class="image is-96x96">
+                                    <img src="images/smallLogo.png" alt="">
+                                </div>
+                            </div>
+                            <div class="media-content">
+                                <div class="title">${song.data().firstName} ${song.data().lastName}</div>
+                                <div class="subtitle">@${song.data().username}</div>
+                            </div>
+
+                            <div class="media-right">
+                            <div class="column is-2 has-text-centered mt-5">
+                                <button id="liked_song_button" class="button is-outlined is-rounded"
+                                    style="background-color: lightseagreen;"><i class="far fa-heart"></i><b>
+                                        </b></button>
+                            </div>
+                        </div>    
+
+
+                        </div>
+                        <div class="card-content has-text-centered">
+                            <ul>
+                                <li><a href="${song.data().link}" target="_blank">${song.data().name}</a></li>
+                                <li><i>${song.data().artist}</i></li>
+                                <li>Date Posted: ${song.data().month}/${song.data().day}/${song.data().year} @
+                                 ${song.data().hour}:${song.data().minutes} ${song.data().clock}</li>
+                            </ul>
+                        </div>
+    
+                    </div>
+                    `
+            }
+        })
+        if (!has_songs) {
+            content.innerHTML = `<h1 class="is-size-4 has-text-centered">There are no songs posts associated with ${search_name}</h1>`
+                }
+
     })
+    friend_posts.reset();
 })
 
 

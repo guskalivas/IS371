@@ -127,23 +127,22 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-2.5">
-                    <div style="background-color:lightseagreen;"
+                    <div style="background-color:lightseagreen; height:60vh;"
                         class="column message is-hero is-black has-text-centered">
-                        <a id="show_posts" style="text-decoration:none;"><b>Show All Friends Posts</b></a>
                         <div class="message-header" id="my_profile_button">
                             Your Friends!
                         </div>
-                        <div id="friends_list" style="height:50vh;overflow:auto;">
+                        <div id="friends_list" style="overflow:auto;">
 
                         </div>
                     </div>
-                    <div style="background-color:lightseagreen; overflow:auto;"
+                    <div style="background-color:lightseagreen; overflow:auto; height:26vh;"
                         class="column message is-hero is-black has-text-centered">
                         <div class="message-header">
                             Add/Remove Friends
                         </div>
                         <div>
-                            <form action="" id="add_friends" class="mb-0 mt-2 loggedin">
+                            <form action="" id="add_friends" class="mb-0 mt-2 loggedin" >
                                 <div class="field has-addons">
                                     <div class="control">
                                         <input class="input" type="text" id="friend_username" placeholder="Add Friend">
@@ -176,14 +175,14 @@
 
                 <!-- SIDE PROFILE SECTION -->
                 <div class="column is-2.5">
-                    <div style="background-color:lightseagreen;overflow:auto;"
+                    <div style="background-color:lightseagreen;overflow:auto; height:60vh;"
                         class="column message is-hero is-black ">
                         <div class="message-header" id="my_profile_button">
                             Your Profile
                         </div>
                         <div class="message-body has-text-weight-bold has-text-black">
                             <ul>
-                                <li><a id="my_posts_button" style="text-decoration:none;"><b>My Posts</b></a></li>
+                                <li></li>
                                 <li><a id="my_profile_info_button" style="text-decoration:none;"> </a></li>
                                 <li><a id="my_profile_friends_button" style="text-decoration:none;"> </a></li>
 
@@ -192,7 +191,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div style="background-color:lightseagreen;overflow:auto;"
+                    <div style="background-color:lightseagreen;overflow:auto; height:26vh;"
                         class="column message is-hero is-black ">
                         <div class="message-header" id="my_profile_button">
                             Search User to Display their Posts
@@ -208,6 +207,8 @@
                                     </div>
                                 </div>
                             </form>
+                            <p><a id="show_posts" style="text-decoration:none;"><b>Show All Friends Posts</b></a></p>
+                            <p><a id="my_posts_button" style="text-decoration:none;"><b>Show My Posts</b></a></p>
                         </div>
                     </div>
                 </div>
