@@ -195,34 +195,6 @@ modalbg_contact.addEventListener('click', function () {
     my_contact_modal.classList.remove('is-active');
 })
 
-//TABS on Profile
-let info_tab = document.querySelector('#info_tab');
-let friends_tab = document.querySelector('#friends_tab');
-let info_tabHTML = ``;
-let friends_tabHTML = ``;
-getData().then((data) =>{
-    info_tabHTML += ` <p>Name: ${firstName} ${lastName}</p>`;
-    info_tabHTML +=` <p>Username: ${username}</p>`;
-    info_tabHTML += `<p>Email: ${email}</p>`;
-    info_tab.innerHTML = info_tabHTML;
-
-    friends.forEach(f => {
-        console.log(f)
-        friends_tabHTML += `<p> <b>Name:</b> ${f.fName} ${f.lName} <b>Username:</b> ${f.username} </p>`;
-        friends_tab.innerHTML = friends_tabHTML;
-    });
-   
-
-
-
-})
-
-
-
-
-
-
-
 
 
 // posting a song and updating main page content
@@ -338,6 +310,7 @@ signup_form.addEventListener('submit', (e) => {
 
 })
 
+
 function welcome_user(){
     let content = document.querySelector("#welcome_content")
     //specifically gets user info to greet user
@@ -355,6 +328,69 @@ function welcome_user(){
         })
     })
 }
+
+//TABS on Profile
+// Info and Friends
+let info_tab = document.querySelector('#info_tab');
+let friends_tab = document.querySelector('#friends_tab');
+let info_tabHTML = ``;
+let friends_tabHTML = ``;
+getData().then((data) =>{
+    info_tabHTML += ` <p><b>Name: </b> ${firstName} ${lastName}</p>`;
+    info_tabHTML +=` <p><b>Username:</b> ${username}</p>`;
+    info_tabHTML += `<p><b>Email:</b> ${email}</p>`;
+    info_tab.innerHTML = info_tabHTML;
+
+    friends.forEach(f => {
+        friends_tabHTML += `<p> <b>Name:</b> ${f.fName} ${f.lName} <b>Username:</b> ${f.username} </p>`;
+        friends_tab.innerHTML = friends_tabHTML;
+    });
+
+})
+// Post of profile tab
+
+
+
+// prolly need to put this in a function then call it from show feed
+function tabInfo() {
+let post_tab = document.querySelector('#post_tab');
+let post_tabHTML = ``;
+db.collection("Songs").get().then((data) =>{
+    let songdata = data.docs;
+    let count = 0;
+    songdata.forEach((s) =>{
+        if (s.data().user == auth.currentUser.uid){
+            count+=1;
+            post_tabHTML += `<p>${count}: ${s.data().name} by ${s.data().artist}</p>`
+        }
+       // post_tab.innerHTML = post_tabHTML;
+
+    })
+    if (count == 0){
+        post_tabHTML += `<p> You havent posted any songs!`;
+    }
+    post_tab.innerHTML = post_tabHTML;
+
+})
+
+    let liked_song_button = document.querySelectorAll('#liked_song_button');
+    for (let i =0; i <liked_song_button.length;i++){
+    console.log(liked_song_button[i]);
+    liked_song_button[i].addEventListener('click', function(){
+        console.log('hello');
+    })
+}
+}
+
+
+// liked_song_button.forEach((btn) =>{
+//     console.log("Hello: ",btn.parentNode.id);
+//     let button= document.querySelector('#liked_song_button');
+//     btn.addEventListener('click', (e)=>{
+//         console.log("HELLOOOOO");
+//     })
+// })
+
 
 // sign in 
 let login_form = document.querySelector('#login_form');
@@ -438,9 +474,9 @@ function showFeed() {
                 // WE WILL NEED TO LIMIR HOW MANY FRIEND POSTS ARE SHOWN AND THE ORDER
                 songdata.forEach((song) => {
                     post = song.data();
-                    if (friend.username == song.data().username) {
+                    if (friend.username == song.data().username || auth.currentUser.uid == song.data().user) {
                         let newSong = `
-                        <div class="card mb-6">
+                        <div id = "${song.id}" class="card mb-6">
                             <div class="card-image">
                                 <div class="image is-3by2">
                                     <img src="${post.image}" alt="">
@@ -534,7 +570,7 @@ function showProfileSummary() {
     //let profile_summary = document.querySelector("#profile_summary");
     let my_profile_info_button = document.querySelector('#my_profile_info_button');
     let my_profile_friends_button = document.querySelector('#my_profile_friends_button');
-    //let my_profile_posts_button = document.querySelector('#my_profile_posts_button');
+    let my_profile_posts_button = document.querySelector('#my_profile_posts_button');
     //let my_profile_likes_button = document.querySelector('#my_profile_likes_button');
     getData().then((e) =>{
         my_profile_info_button.innerHTML = `${firstName} ${lastName}`;
@@ -542,8 +578,20 @@ function showProfileSummary() {
             my_profile_friends_button.innerHTML = `${friend.length} Friends`; 
             // ADD MORE to SIDE - NEED to FIgure out likes and number of posts
         })
+        db.collection('Songs').get().then((data) =>{
+            let num_posts = data.docs;
+            let count = 0;
+            num_posts.forEach((s)=>{
+                if (s.data().user == auth.currentUser.uid){
+                    count+=1;
+                }
+            })
+            my_profile_posts_button.innerHTML = `Number of posts ${count}`;
+        })
     });
 }
+
+
 
 
 // keep track of user authentication (signed in or signed out)
@@ -552,6 +600,7 @@ auth.onAuthStateChanged((user) => {
         console.log("signed in");
         configureNav(user); //changes navbar
         welcome_user();
+        tabInfo();
     } else {
         console.log("not signed in");
         configureNav(); //changes navbar
@@ -622,16 +671,19 @@ friend_form.addEventListener('submit', (e) => {
                 let temp_friends = new_friend.data().friends;
                 temp_friends.push(main_user.data());
                 updateInfo(new_friend_id, temp_friends);
+                
 
                 temp_friends = main_user.data().friends;
                 temp_friends.push(new_friend.data());
                 updateInfo(main_user_id, temp_friends);
+                alert("You and " + new_friend.data().username + " are now Friends!");
             } else {
-                console.log("users are already friends")
+                alert("You and " + new_friend.data().username + " are already friends");
             }
 
             showFeed();
             showFriends();
+            showProfileSummary();
         }
     })
 })
