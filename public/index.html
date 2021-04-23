@@ -22,6 +22,8 @@
                 <a href="">
                     <img src="images/smallLogo.png">
                 </a>
+                <a style="font-family:'Helvetica Neue', serif; color:lightseagreen" class="has-text-weight-bold is-size-4">Cypher Songs</a>
+
             </div>
 
             <!-- navbar burger for small screens -->
@@ -54,16 +56,16 @@
 
             <div class="navbar-end">
 
-                <div class="navbar-item">
-                    <a class="has-text-weight-bold has-text-white loggedout" id="sign_up_button">Sign-Up</a>
+                <div class="navbar-item loggedout">
+                    <a class="has-text-weight-bold has-text-white" id="sign_up_button">Sign-Up</a>
                 </div>
                 <!-- click to open up login modal -->
-                <div class="navbar-item">
-                    <a id="loginbutton" class="has-text-weight-bold has-text-white loggedout">Login</a>
+                <div class="navbar-item  loggedout">
+                    <a id="loginbutton" class="has-text-weight-bold has-text-white">Login</a>
                 </div>
                 <!-- click to open up sign up modal -->
-                <div class="navbar-item">
-                    <a class="has-text-weight-bold has-text-white loggedin" id="sign_out_button">Sign-Out</a>
+                <div class="navbar-item  loggedin">
+                    <a class="has-text-weight-bold has-text-white  is-primary is-hovered" id="sign_out_button">Sign-Out</a>
                 </div>
 
             </div>
@@ -129,8 +131,8 @@
                 <div class="column is-2.5">
                     <div style="background-color:lightseagreen; height:60vh;"
                         class="column message is-hero is-black has-text-centered">
-                        <div class="message-header" id="my_profile_button">
-                            Your Friends!
+                        <div class="message-header is-centered" id="my_profile_button">
+                            Friends
                         </div>
                         <div id="friends_list" style="overflow:auto;">
 
@@ -178,7 +180,7 @@
                     <div style="background-color:lightseagreen;overflow:auto; height:60vh;"
                         class="column message is-hero is-black ">
                         <div class="message-header" id="my_profile_button">
-                            Your Profile
+                            Profile
                         </div>
                         <div class="message-body has-text-weight-bold has-text-black">
                             <ul>
@@ -194,7 +196,7 @@
                     <div style="background-color:lightseagreen;overflow:auto; height:26vh;"
                         class="column message is-hero is-black ">
                         <div class="message-header" id="my_profile_button">
-                            Search User to Display their Posts
+                            Search Users for Posts
                         </div>
                         <div class="has-text-weight-bold has-text-black">
                             <form action="" id="search_friends" class="mt-2 loggedin">
@@ -356,19 +358,19 @@
                         <input type="text" name="" id="artist">
                     </div>
                 </div>
-                <!-- <div class="field"> 
+                <div class="field"> 
                     <label class="label">Song Image</label>
                     <div class="control">
-                        <input type="file" name="" id="" accept="image/png, image/jpeg, image,jpeg">
+                        <input type = "file" id="upload" placeholder = "Choose Image" >
                     </div>
-                </div> -->
-                <div class="field">
+                </div>
+                <!-- <div class="field">
                     <label class="label">Song Image</label>
                     <p>Please copy an image address from the web</p>
                     <div class="control">
                         <input type="text" name="" id="song-image">
                     </div>
-                </div>
+                </div> -->
                 <div class="field">
                     <label class="label">Song Link</label>
                     <p>Please upload a Youtube, Spotify, or Apple Music link</p>
@@ -520,6 +522,9 @@
         // define authentication variable
         let auth = firebase.auth();
         let db = firebase.firestore();
+
+        // define a storage reference
+        let ref = firebase.storage().ref();
     </script>
 </body>
 

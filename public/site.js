@@ -273,7 +273,7 @@ signup_form.addEventListener('submit', (e) => {
     let username = document.querySelector("#user_name").value;
 
     let already_user = false;
-    db.collection("Users").get().then((data) =>{
+    db.collection("Users").get().then((data) => {
         if (data.docs.data().username == username) {
             alert("there is already a user with this username, please pick a new one")
             already_user = true;
@@ -287,34 +287,34 @@ signup_form.addEventListener('submit', (e) => {
     if (!already_user) {
 
 
-    auth.createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
 
-            console.log('user created successfully');
+                console.log('user created successfully');
 
-            // we should ask for this information so we can display it on the user profile
-            user = {
-                fName: fName,
-                lName: lName,
-                username: username,
-                id: userCredential.user.uid,
-                email: email,
-                friends: []
-            };
+                // we should ask for this information so we can display it on the user profile
+                user = {
+                    fName: fName,
+                    lName: lName,
+                    username: username,
+                    id: userCredential.user.uid,
+                    email: email,
+                    friends: []
+                };
 
-            db.collection("Users").add(user).then((data) => {
-                console.log("User added to database");
+                db.collection("Users").add(user).then((data) => {
+                    console.log("User added to database");
+                })
+                //close modal
+                signupModal.classList.remove('is-active');
+                //rest form
+                signup_form.reset();
+
             })
-            //close modal
-            signupModal.classList.remove('is-active');
-            //rest form
-            signup_form.reset();
-
-        })
-        .catch((e) => {
-            let signup_error = document.querySelector('#signup_error');
-            signup_error.innerHTML = `<p>${e.message}</p>`;
-        })
+            .catch((e) => {
+                let signup_error = document.querySelector('#signup_error');
+                signup_error.innerHTML = `<p>${e.message}</p>`;
+            })
     }
 
 })
@@ -520,7 +520,7 @@ function showFeed() {
         <div id = "${i}" class="card mb-6">
             <div class="card-image">
                 <div class="image is-3by2">
-                    <img src="${sorted_array[i].image}" alt="">
+                    <img src="${sorted_array[i].url}" alt="">
                 </div>
             </div>
             <div class="media mb-0">
@@ -568,50 +568,58 @@ psb.addEventListener('click', (e) => {
 
     let name = document.querySelector("#name").value;
     let artist = document.querySelector('#artist').value;
-    let songImage = document.querySelector('#song-image').value;
+    let file = document.querySelector('#upload').files[0];
     let songLink = document.querySelector('#song-link').value;
-
-    getData().then((e) => {
-        let song_content = {
-            firstName: firstName,
-            lastName: lastName,
-            username: username,
-            user: auth.currentUser.uid,
-            name: name,
-            artist: artist,
-            image: songImage,
-            link: songLink,
-            date: new Date(),
-            month: (new Date()).getMonth(),
-            day: (new Date()).getDate(),
-            year: (new Date()).getFullYear(),
-            hour: (new Date()).getHours(),
-            minutes: (new Date()).getMinutes(),
-            clock: "a.m."
-        }
-
-        if (song_content.hour > 12) {
-            song_content.hour = song_content.hour % 12;
-            song_content.clock = "p.m."
-        }
-        if (song_content.hour == 12) {
-            song_content.clock = "p.m."
-        }
-        if (song_content.hour == 0) {
-            song_content.hour = 12;
-            song_content.clock = "a.m."
-        }
-        if (song_content.minutes < 10) {
-            song_content.minutes = "0" + song_content.minutes;
-        }
-
-
-        db.collection("Songs").add(song_content).then((data) => {
-            alert("Song added to database");
+    let image = (new Date() + "_" + file.name);
+    const task = ref.child(image).put(file);
+    console.log(task);
+    task
+        .then(snapshot => snapshot.ref.getDownloadURL())
+        .then(url => {
+            getData().then((e) => {
+                let song_content = {
+                    firstName: firstName,
+                    lastName: lastName,
+                    username: username,
+                    user: auth.currentUser.uid,
+                    name: name,
+                    artist: artist,
+                    url: url,
+                    link: songLink,
+                    date: new Date(),
+                    month: (new Date()).getMonth(),
+                    day: (new Date()).getDate(),
+                    year: (new Date()).getFullYear(),
+                    hour: (new Date()).getHours(),
+                    minutes: (new Date()).getMinutes(),
+                    clock: "a.m."
+                }
+        
+                if (song_content.hour > 12) {
+                    song_content.hour = song_content.hour % 12;
+                    song_content.clock = "p.m."
+                }
+                if (song_content.hour == 12) {
+                    song_content.clock = "p.m."
+                }
+                if (song_content.hour == 0) {
+                    song_content.hour = 12;
+                    song_content.clock = "a.m."
+                }
+                if (song_content.minutes < 10) {
+                    song_content.minutes = "0" + song_content.minutes;
+                }
+        
+        
+                db.collection("Songs").add(song_content).then((data) => {
+                    alert("Song added to database");
+                })
+                showProfileSummary();
+                showFeed();
+            })
         })
 
-        showFeed();
-    })
+    
     post_modal.classList.remove('is-active'); //exits modal
 })
 
@@ -656,7 +664,7 @@ function showProfileSummary() {
                     <div id = "${song.id}" class="card mb-6">
                         <div class="card-image">
                             <div class="image is-3by2">
-                                <img src="${song.data().image}" alt="">
+                                <img src="${song.data().url}" alt="">
                             </div>
                         </div>
                         <div class="media mb-0">
@@ -834,7 +842,7 @@ remove_friend_form.addEventListener('submit', (e) => {
     e.preventDefault();
 
     let remove_username = document.querySelector('#remove_username').value;
-     db.collection("Users").get().then((data) =>{
+    db.collection("Users").get().then((data) => {
         let main_user = []; //current user data
 
         let userdata = data.docs;
@@ -850,7 +858,7 @@ remove_friend_form.addEventListener('submit', (e) => {
         let removed = false;
         let new_friends = main_user.data().friends
         if (main_user.data().friends.length != 0) {
-            for (let i = 0; i<main_user.data().friends.length; i++) {              
+            for (let i = 0; i < main_user.data().friends.length; i++) {
                 if (main_user.data().friends[i].username == remove_username) {
                     removed = true;
                     new_friends.splice(i, 1);
@@ -859,9 +867,9 @@ remove_friend_form.addEventListener('submit', (e) => {
                 }
             }
         }
-        if (removed){
+        if (removed) {
             alert(`User with username: "${remove_username}" has been removed from your friends list`)
-        } else{
+        } else {
             alert(`Unable to remove "${remove_username}"`)
         }
         remove_friend_form.reset();
@@ -869,12 +877,12 @@ remove_friend_form.addEventListener('submit', (e) => {
         showFriends();
         showProfileSummary();
 
-     })
+    })
 })
 
 let friend_posts = document.querySelector("#search_friends");
 
-friend_posts.addEventListener('submit', (e) =>{
+friend_posts.addEventListener('submit', (e) => {
     e.preventDefault();
 
     let search_name = document.querySelector('#search_username').value;
@@ -888,14 +896,14 @@ friend_posts.addEventListener('submit', (e) =>{
         let content = document.querySelector('#main-content');
         content.innerHTML = "";
         let has_songs = false;
-        user_data.forEach((song) =>{
-            if (song.data().username == search_name){
+        user_data.forEach((song) => {
+            if (song.data().username == search_name) {
                 has_songs = true;
                 content.innerHTML += `
                     <div id = "${song.id}" class="card mb-6">
                         <div class="card-image">
                             <div class="image is-3by2">
-                                <img src="${song.data().image}" alt="">
+                                <img src="${song.data().url}" alt="">
                             </div>
                         </div>
                         <div class="media mb-0">
@@ -934,7 +942,7 @@ friend_posts.addEventListener('submit', (e) =>{
         })
         if (!has_songs) {
             content.innerHTML = `<h1 class="is-size-4 has-text-centered">There are no songs posts associated with ${search_name}</h1>`
-                }
+        }
 
     })
     friend_posts.reset();
