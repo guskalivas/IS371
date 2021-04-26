@@ -129,7 +129,7 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-2.5">
-                    <div style="background-color:lightseagreen; height:60vh;"
+                    <div style="background-color:lightseagreen; height:45vh;"
                         class="column message is-hero is-black has-text-centered">
                         <div class="message-header is-centered" id="my_profile_button">
                             Friends
@@ -138,7 +138,7 @@
 
                         </div>
                     </div>
-                    <div style="background-color:lightseagreen; overflow:auto; height:26vh;"
+                    <div style="background-color:lightseagreen; overflow:auto; height:30vh;"
                         class="column message is-hero is-black has-text-centered">
                         <div class="message-header">
                             Add/Remove Friends
@@ -177,7 +177,7 @@
 
                 <!-- SIDE PROFILE SECTION -->
                 <div class="column is-2.5">
-                    <div style="background-color:lightseagreen;overflow:auto; height:60vh;"
+                    <div style="background-color:lightseagreen;overflow:auto; height: 45vh;"
                         class="column message is-hero is-black ">
                         <div class="message-header" id="my_profile_button">
                             Profile
@@ -193,7 +193,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div style="background-color:lightseagreen;overflow:auto; height:26vh;"
+                    <div style="background-color:lightseagreen;overflow:auto; height:30vh;"
                         class="column message is-hero is-black ">
                         <div class="message-header" id="my_profile_button">
                             Search Users for Posts
@@ -399,17 +399,30 @@
             <div class="columns">
                 <div class="column is-4">
                     <div class="is-flex-grow-0">
-                        <!-- NEED TO FIGURE OUT UPLOAD IMAGES AND DISPLAY MIGHT NEED PHP-->
-                        <!-- **I am not familiar with PHP, but if you can figure out how to upload images, that would be awesome! -Mason** -->
                         <figure class="image is-128x128 is-align-items-flex-start">
-                            <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+                            <p id = "pic"></p>
                         </figure>
-                        <br>
-                        <form action="upload.php" method="post" enctype="multipart/form-data">
-                            Select Profile Picture:
+
+                            <br>
+                            <br>
+
+                            <form id = "submitProfilePicture">
+                            <div class="field">
+                                <label class="label">Profile Picture</label>
+                                <div class="control">
+                                 <input class = "input" type = "file" id="profile_image" placeholder = "" >
+                                </div>
+                              </div>
+                              <div class="field is-grouped">
+                                <div class="control">
+                                  <button id = "profile_sub" class="button is-link">Submit</button>
+                                </div>
+                              </div>
+                            </form>
+<!-- 
                             <p><input type="file" name="fileToUpload" id="fileToUpload"></p>
-                            <p><input class="has-text-left" type="submit" value="UploadImage" name="submit"></p>
-                        </form>
+                            <p><input class="has-text-left" type="submit" value="UploadImage" name="submit"></p> -->
+                      
 
                     </div>
                 </div>
@@ -419,7 +432,7 @@
                             <li class="tablinks"><a href='#' onclick="openPage(event,'Info')"><i
                                         class="fas fa-info-circle"></i>Your Info</a></li>
                             <li class="tablinks"><a href='#' onclick="openPage(event, 'Friends')"><i
-                                        class="fas fa-users"></i>Friends</a></li>
+                                        class="fas fa-users"></i>Following</a></li>
                             <li class="tablinks"><a href='#' onclick="openPage(event, 'Posts')"><i
                                         class="fas fa-image"></i>Your Posts</a></li>
                             <li class="tablinks"><a href='#' onclick="openPage(event,'Likes')"><i
@@ -431,10 +444,6 @@
                     <div id="Info" class="tabcontent is-hidden">
                         <div id="info_tab">
 
-                            <!-- <p>Name: </p>
-                        <p>Username: </p>
-                        <p>Email: </p> -->
-
                         </div>
 
 
@@ -443,12 +452,7 @@
                     <!-- USER FRIENDS TAB -->
                     <div id='Friends' class="tabcontent is-hidden">
                         <div id="friends_tab">
-                            <!-- <ul>
-                                <li>Friend 1</li>
-                                <li>Friend 2</li>
-                            </ul> -->
-
-
+                      
                         </div>
 
                     </div>
@@ -457,26 +461,12 @@
                     <div id='Likes' class="tabcontent is-hidden">
                         <div id="like_tab">
 
-                            <!-- <h3 class="title">Liked Songs</h3>
-                                <ul>
-                                    <li>Song1</li>
-                                    <li>Song2</li>
-                                </ul> -->
-
-
                         </div>
                     </div>
 
                     <!-- USER POSTS TAB -->
                     <div id='Posts' class="tabcontent is-hidden">
                         <div id="post_tab">
-
-                            <!-- <h3 class="title">Liked Songs</h3>
-                                <ul>
-                                    <li>Song1</li>
-                                    <li>Song2</li>
-                                </ul> -->
-
 
                         </div>
                     </div>

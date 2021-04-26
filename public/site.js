@@ -2,9 +2,6 @@
 
 // 2. like button/functionality => added button, need functionality still id = liked_song_button
 // 6. figure out how to upload user image for profile/song post
-// 7. functionability with only showing friends posts
-// 8. ???
-//  Anything else you can think of adding for now?'
 
 
 // I added a bunch of functionality with js. You will have to sign up again with a new account because i stored the users in a collection
@@ -22,13 +19,13 @@
 // making sure site looks good on mobile
 
 // PROJECT DUE THIS WEEK - THINGS STILL NEEDING TO BE DONE
-// - prolile photo upload
+// - prolile photo upload - almost there
 // - sorting user posts in order
 // - design / layout
-// - Likes?????
+// - Likes????? - i think can figure out on tuesday
 // - add username in profile section
 // - maybe make the 1) 2) 3) step process on top look more professional using bulma
-// - change friends to "following" instead of "friends" because i made it only add the person to the users list not both user and friend
+// - Changed in tab is that all? => change friends to "following" instead of "friends" because i made it only add the person to the users list not both user and friend
 // - make it responsive on different size devices
 // - anything else you think should be added or improved
 
@@ -279,6 +276,7 @@ signup_form.addEventListener('submit', (e) => {
     let lName = document.querySelector("#last_name").value;
     let username = document.querySelector("#user_name").value;
 
+
     let already_user = false;
     db.collection("Users").get().then((data) => {
         if (data.docs.data().username == username) {
@@ -306,7 +304,8 @@ signup_form.addEventListener('submit', (e) => {
                     username: username,
                     id: userCredential.user.uid,
                     email: email,
-                    friends: []
+                    friends: [],
+                    prof_url: ""
                 };
 
                 db.collection("Users").add(user).then((data) => {
@@ -388,15 +387,45 @@ function tabInfo() {
         post_tab.innerHTML = post_tabHTML;
 
     })
-
-    let liked_song_button = document.querySelectorAll('#liked_song_button');
-    for (let i = 0; i < liked_song_button.length; i++) {
-        console.log(liked_song_button[i]);
-        liked_song_button[i].addEventListener('click', function () {
-            console.log('hello');
-        })
-    }
+   
 }
+    // let liked_song_button = document.querySelectorAll('#liked_song_button');
+    // for (let i = 0; i < liked_song_button.length; i++) {
+    //     console.log(liked_song_button[i]);
+    //     liked_song_button[i].addEventListener('click', function () {
+    //         console.log('hello');
+    //     })
+    // }
+    
+
+
+// need to fix to only submit once if refresh page need to resubmit
+
+let submitProfilePicture = document.querySelector('#submitProfilePicture');
+submitProfilePicture.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    let pro_img = document.querySelector('#profile_image').files[0];
+    let img = new Date + "_" + pro_img.name;
+    const task = ref.child(img).put(pro_img);
+    task
+    .then(snapshot => snapshot.ref.getDownloadURL())
+    .then((url) =>{
+        var profile_url = db.collection('Users').doc(auth.currentUser.uid);
+
+        // var setWithMerge = profile_url.set({
+        // prof_url: url
+        // }, { merge: true });
+
+        let pic = document.querySelector('#pic');
+        pic.innerHTML = `<img class="is-rounded" src = "${url}"/>`
+        let profile_image =document.querySelector('#profile_image');
+        profile_image.classList.add('is-hidden');
+        let profile_sub =document.querySelector('#profile_sub');
+        profile_sub.classList.add('is-hidden');
+
+    })
+
+})
 
 
 // liked_song_button.forEach((btn) =>{
@@ -406,6 +435,8 @@ function tabInfo() {
 //         console.log("HELLOOOOO");
 //     })
 // })
+
+
 
 
 // sign in 
@@ -657,12 +688,9 @@ show_posts.addEventListener('click', (e) => {
 })
 
 function showProfileSummary() {
-    //let profile_summary = document.querySelector("#profile_summary");
     let my_profile_info_button = document.querySelector('#my_profile_info_button');
     let my_profile_friends_button = document.querySelector('#my_profile_friends_button');
     let my_profile_posts_button = document.querySelector('#my_profile_posts_button');
-
-
 
     getData().then((e) => {
         my_profile_info_button.innerHTML = `${firstName} ${lastName}`;
