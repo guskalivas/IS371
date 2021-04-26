@@ -485,6 +485,7 @@ function showFeed() {
 
         let songdata = data.docs;
         let content_html = "";
+        let one_song = false;
 
         getFriends().then((friends) => { //calls method to return array of user friends
             num_songs_to_show = 10;
@@ -494,36 +495,35 @@ function showFeed() {
                 // WE WILL NEED TO LIMIT HOW MANY FRIEND POSTS ARE SHOWN AND THE ORDER
 
                 songdata.forEach((song) => {
-
                     post = song.data();
                     post.id = song.id;
                     if (friend.username == song.data().username) {
+                        one_song = true;
                         friend_posts_array.push(post);
                     }
                 })
-
             })
+            if (one_song) {
+                let sorted_array = [];
+                while (friend_posts_array.length > 0) {
+                    let max = friend_posts_array[0];
 
-            let sorted_array = [];
-            while (friend_posts_array.length > 0) {
-                let max = friend_posts_array[0];
+                    friend_posts_array.forEach((friend_post) => {
+                        if (friend_post.date.seconds > max.date.seconds) {
+                            max = friend_post;
+                        }
+                    })
+                    sorted_array.push(max);
+                    friend_posts_array.splice(friend_posts_array.indexOf(max), 1);
+                }
 
-                friend_posts_array.forEach((friend_post) => {
-                    if (friend_post.date.seconds > max.date.seconds) {
-                        max = friend_post;
-                    }
-                })
-                sorted_array.push(max);
-                friend_posts_array.splice(friend_posts_array.indexOf(max), 1);
-            }
+                num_to_show = 10;
+                if (sorted_array.length < num_to_show) {
+                    num_to_show = sorted_array.length;
+                }
 
-            num_to_show = 10;
-            if (sorted_array.length < num_to_show) {
-                num_to_show = sorted_array.length;
-            }
-
-            for (let i = 0; i < num_to_show; i++) {
-                content_html += `
+                for (let i = 0; i < num_to_show; i++) {
+                    content_html += `
         <div id = "${i}" class="card mb-6">
             <div class="card-image">
                 <div class="image is-3by2">
@@ -563,10 +563,15 @@ function showFeed() {
 
         </div>
     `
+                }
+                content.innerHTML = content_html;
+            } else {
+                content.innerHTML = `<p class=" has-text-centered is-size-4">There is no content to be shown</p>`
             }
 
-            content.innerHTML = content_html;
+
         })
+
     })
 }
 
@@ -601,7 +606,7 @@ psb.addEventListener('click', (e) => {
                     minutes: (new Date()).getMinutes(),
                     clock: "a.m."
                 }
-        
+
                 if (song_content.hour > 12) {
                     song_content.hour = song_content.hour % 12;
                     song_content.clock = "p.m."
@@ -616,8 +621,8 @@ psb.addEventListener('click', (e) => {
                 if (song_content.minutes < 10) {
                     song_content.minutes = "0" + song_content.minutes;
                 }
-        
-        
+
+
                 db.collection("Songs").add(song_content).then((data) => {
                     alert("Song added to database");
                 })
@@ -626,7 +631,7 @@ psb.addEventListener('click', (e) => {
             })
         })
 
-    
+
     post_modal.classList.remove('is-active'); //exits modal
 })
 
@@ -656,65 +661,8 @@ function showProfileSummary() {
     let my_profile_info_button = document.querySelector('#my_profile_info_button');
     let my_profile_friends_button = document.querySelector('#my_profile_friends_button');
     let my_profile_posts_button = document.querySelector('#my_profile_posts_button');
-    let my_posts_button = document.querySelector('#my_posts_button');
-    //let my_profile_likes_button = document.querySelector('#my_profile_likes_button');
-    my_posts_button.addEventListener('click', (e) => {
-        let found_user = false;
-        let content = document.querySelector('#main-content');
-        content.innerHTML = "";
-        db.collection("Songs").get().then((data) => {
-            user_data = data.docs;
-            user_data.forEach((song) => {
-                if (song.data().user == auth.currentUser.uid) {
-                    found_user = true;
-                    content.innerHTML += `
-                    <div id = "${song.id}" class="card mb-6">
-                        <div class="card-image">
-                            <div class="image is-3by2">
-                                <img src="${song.data().url}" alt="">
-                            </div>
-                        </div>
-                        <div class="media mb-0">
-                            <div class="media-left">
-                                <div class="image is-96x96">
-                                    <img src="images/smallLogo.png" alt="">
-                                </div>
-                            </div>
-                            <div class="media-content">
-                                <div class="title">${song.data().firstName} ${song.data().lastName}</div>
-                                <div class="subtitle">@${song.data().username}</div>
-                            </div>
-
-                            <div class="media-right">
-                            <div class="column is-2 has-text-centered mt-5">
-                                <button id="liked_song_button" class="button is-outlined is-rounded"
-                                    style="background-color: lightseagreen;"><i class="far fa-heart"></i><b>
-                                        </b></button>
-                            </div>
-                        </div>    
 
 
-                        </div>
-                        <div class="card-content has-text-centered">
-                            <ul>
-                                <li><a href="${song.data().link}" target="_blank">${song.data().name}</a></li>
-                                <li><i>${song.data().artist}</i></li>
-                                <li>Date Posted: ${song.data().month}/${song.data().day}/${song.data().year} @
-                                 ${song.data().hour}:${song.data().minutes} ${song.data().clock}</li>
-                            </ul>
-                        </div>
-    
-                    </div>
-                    `
-                }
-
-            })
-            if (!found_user) {
-                content.innerHTML = `<p class="has-text-centered"> You have not posted any songs</p>`
-            }
-        })
-
-    })
 
     getData().then((e) => {
         my_profile_info_button.innerHTML = `${firstName} ${lastName}`;
@@ -955,7 +903,65 @@ friend_posts.addEventListener('submit', (e) => {
     friend_posts.reset();
 })
 
+let my_posts_button = document.querySelector('#my_posts_button');
+//let my_profile_likes_button = document.querySelector('#my_profile_likes_button');
+my_posts_button.addEventListener('click', (e) => {
+    let found_user = false;
+    let content = document.querySelector('#main-content');
+    content.innerHTML = "";
+    db.collection("Songs").get().then((data) => {
+        user_data = data.docs;
+        user_data.forEach((song) => {
+            if (song.data().user == auth.currentUser.uid) {
+                console.log("here");
+                found_user = true;
+                content.innerHTML += `
+                <div id = "${song.id}" class="card mb-6">
+                    <div class="card-image">
+                        <div class="image is-3by2">
+                            <img src="${song.data().url}" alt="">
+                        </div>
+                    </div>
+                    <div class="media mb-0">
+                        <div class="media-left">
+                            <div class="image is-96x96">
+                                <img src="images/smallLogo.png" alt="">
+                            </div>
+                        </div>
+                        <div class="media-content">
+                            <div class="title">${song.data().firstName} ${song.data().lastName}</div>
+                            <div class="subtitle">@${song.data().username}</div>
+                        </div>
 
+                        <div class="media-right">
+                        <div class="column is-2 has-text-centered mt-5">
+                            <button id="liked_song_button" class="button is-outlined is-rounded"
+                                style="background-color: lightseagreen;"><i class="far fa-heart"></i><b>
+                                    </b></button>
+                        </div>
+                    </div>    
+
+
+                    </div>
+                    <div class="card-content has-text-centered">
+                        <ul>
+                            <li><a href="${song.data().link}" target="_blank">${song.data().name}</a></li>
+                            <li><i>${song.data().artist}</i></li>
+                            <li>Date Posted: ${song.data().month}/${song.data().day}/${song.data().year} @
+                             ${song.data().hour}:${song.data().minutes} ${song.data().clock}</li>
+                        </ul>
+                    </div>
+
+                </div>
+                `
+            }
+
+        })
+        if (!found_user) {
+            content.innerHTML = `<p class="has-text-centered"> You have not posted any songs</p>`
+        }
+    })
+})
 // creates a new friends with the new friend the user added
 function updateInfo(id, data) {
     return id.update({
