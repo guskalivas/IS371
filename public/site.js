@@ -1,10 +1,6 @@
 // ******** THINGS WE STILL NEED TO DO ********
-// 1. add friend/delete friend button => added on side? can move it to profile maybe? or on profile side bar
-// 2. like button/functionality => added button, need functionality still id = liked_song_button
-// 3. maybe find something to add to the left side of the screen that is kind of empty =>can change back if want
-// 4. implement sign up features for users like we did in class => should be working - might need db for more then email & password
 
-// 5. make the navbar-burger work to show the navbar content when clicked => DONE can change colors etc.
+// 2. like button/functionality => added button, need functionality still id = liked_song_button
 // 6. figure out how to upload user image for profile/song post
 // 7. functionability with only showing friends posts
 // 8. ???
@@ -24,6 +20,17 @@
 // error messages for when user adds wrong ufser, bad info
 // update profile info?
 // making sure site looks good on mobile
+
+// PROJECT DUE THIS WEEK - THINGS STILL NEEDING TO BE DONE
+// - prolile photo upload
+// - sorting user posts in order
+// - design / layout
+// - Likes?????
+// - add username in profile section
+// - maybe make the 1) 2) 3) step process on top look more professional using bulma
+// - change friends to "following" instead of "friends" because i made it only add the person to the users list not both user and friend
+// - make it responsive on different size devices
+// - anything else you think should be added or improved
 
 
 let loggedoutlinks = document.querySelectorAll(".loggedout");
