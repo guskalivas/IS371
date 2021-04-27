@@ -730,6 +730,7 @@ function showProfileSummary() {
     let my_profile_info_button = document.querySelector('#my_profile_info_button');
     let my_profile_friends_button = document.querySelector('#my_profile_friends_button');
     let my_profile_posts_button = document.querySelector('#my_profile_posts_button');
+    let my_profile_likes_button = document.querySelector('#my_profile_likes_button');
 
     getData().then((e) => {
         my_profile_info_button.innerHTML = `${firstName} ${lastName}`;
@@ -745,9 +746,19 @@ function showProfileSummary() {
                     count += 1;
                 }
             })
-            my_profile_posts_button.innerHTML = `Number of posts: ${count} posts`;
+            my_profile_posts_button.innerHTML = `Number of posts: ${count}`;
         })
     });
+    db.collection('Likes').get().then((data)=>{
+        let likes = data.docs;
+        let c = 0;
+        likes.forEach((l) =>{
+            if (l.data().user_like == auth.currentUser.uid){
+                c+=1;
+            }
+        })
+        my_profile_likes_button.innerHTML = `${c} songs liked`;
+    })
 }
 
 
