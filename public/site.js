@@ -79,6 +79,7 @@ var profile_modal = document.querySelector("#my_profile_modal");
 var profile_button = document.querySelector("#my_profile_button");
 profile_button.addEventListener('click', function () {
     profile_modal.classList.add('is-active');
+    tabInfo();
 })
 
 // exit out of profile modal
@@ -338,6 +339,7 @@ function welcome_user() {
             `
                 showFeed();
                 showFriends();
+                tabInfo();
                 showProfileSummary();
             }
         })
@@ -346,22 +348,22 @@ function welcome_user() {
 
 //TABS on Profile
 // Info and Friends
-let info_tab = document.querySelector('#info_tab');
-let friends_tab = document.querySelector('#friends_tab');
-let info_tabHTML = ``;
-let friends_tabHTML = ``;
-getData().then((data) => {
-    info_tabHTML += ` <p><b>Name: </b> ${firstName} ${lastName}</p>`;
-    info_tabHTML += ` <p><b>Username:</b> ${username}</p>`;
-    info_tabHTML += `<p><b>Email:</b> ${email}</p>`;
-    info_tab.innerHTML = info_tabHTML;
+// let info_tab = document.querySelector('#info_tab');
+// let friends_tab = document.querySelector('#friends_tab');
+// let info_tabHTML = ``;
+// let friends_tabHTML = ``;
+// getData().then((data) => {
+//     info_tabHTML += ` <p><b>Name: </b> ${firstName} ${lastName}</p>`;
+//     info_tabHTML += ` <p><b>Username:</b> ${username}</p>`;
+//     info_tabHTML += `<p><b>Email:</b> ${email}</p>`;
+//     info_tab.innerHTML = info_tabHTML;
 
-    friends.forEach(f => {
-        friends_tabHTML += `<p> <b>Name:</b> ${f.fName} ${f.lName} <b>Username:</b> ${f.username} </p>`;
-        friends_tab.innerHTML = friends_tabHTML;
-    });
+//     friends.forEach(f => {
+//         friends_tabHTML += `<p> <b>Name:</b> ${f.fName} ${f.lName} <b>Username:</b> ${f.username} </p>`;
+//         friends_tab.innerHTML = friends_tabHTML;
+//     });
 
-})
+// })
 // Post of profile tab
 
 
@@ -394,11 +396,38 @@ function tabInfo() {
         let likes= data.docs;
         like_tabHTML += `<p><b>You have liked: </b></p>`;
         likes.forEach((l) =>{
-            like_tabHTML += `<p>${c}. ${l.data().songName} by ${l.data().songArtist} posted by ${l.data().user_posted}</p>`;
-            c+=1;
+            if (l.data().user_like == auth.currentUser.uid){
+                like_tabHTML += `<p>${c}. ${l.data().songName} by ${l.data().songArtist} posted by ${l.data().user_posted}</p>`;
+                c+=1;
+            }
+            
         })
         like_tab.innerHTML = like_tabHTML;
 
+    })
+    let info_tab = document.querySelector('#info_tab');
+    let friends_tab = document.querySelector('#friends_tab');
+    let info_tabHTML = ``;
+    let friends_tabHTML = ``;
+    getData().then((data) => {
+        info_tabHTML += ` <p><b>Name: </b> ${firstName} ${lastName}</p>`;
+        info_tabHTML += ` <p><b>Username:</b> ${username}</p>`;
+        info_tabHTML += `<p><b>Email:</b> ${email}</p>`;
+        info_tab.innerHTML = info_tabHTML;
+    })
+
+    db.collection('Users').get().then((data1) =>{
+        let following = data1.docs;
+        following.forEach((f)=>{
+            if(f.data().id == auth.currentUser.uid){
+                f.data().friends.forEach((user)=>{
+                    friends_tabHTML += `<p> <b>Name:</b> ${user.fName} ${user.lName} <b>Username:</b> ${user.username} </p>`;
+
+                })
+            }
+            friends_tab.innerHTML = friends_tabHTML;
+        })
+       
     })
    
 }
@@ -433,14 +462,6 @@ submitProfilePicture.addEventListener('submit', (e)=>{
 
 })
 
-
-// liked_song_button.forEach((btn) =>{
-//     console.log("Hello: ",btn.parentNode.id);
-//     let button= document.querySelector('#liked_song_button');
-//     btn.addEventListener('click', (e)=>{
-//         console.log("HELLOOOOO");
-//     })
-// })
 
 
 
@@ -698,6 +719,7 @@ psb.addEventListener('click', (e) => {
                 })
                 showProfileSummary();
                 showFeed();
+                tabInfo();
             })
         })
 
@@ -724,6 +746,7 @@ show_posts.addEventListener('click', (e) => {
     let content = document.querySelector('#main-content');
     content.innerHTML = "";
     showFeed();
+    
 })
 
 function showProfileSummary() {
@@ -866,6 +889,7 @@ add_friend_form.addEventListener('submit', (e) => {
         showFeed();
         showFriends();
         showProfileSummary();
+        tabInfo();
     })
 })
 
@@ -909,6 +933,7 @@ remove_friend_form.addEventListener('submit', (e) => {
         showFeed();
         showFriends();
         showProfileSummary();
+        tabInfo();
 
     })
 })
