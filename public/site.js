@@ -370,6 +370,8 @@ getData().then((data) => {
 function tabInfo() {
     let post_tab = document.querySelector('#post_tab');
     let post_tabHTML = ``;
+    let like_tab = document.querySelector('#like_tab');
+    let like_tabHTML = ``;
     db.collection("Songs").get().then((data) => {
         let songdata = data.docs;
         let count = 0;
@@ -387,15 +389,19 @@ function tabInfo() {
         post_tab.innerHTML = post_tabHTML;
 
     })
+    db.collection('Likes').get().then((data) =>{
+        let c = 1;
+        let likes= data.docs;
+        like_tabHTML += `<p><b>You have liked: </b></p>`;
+        likes.forEach((l) =>{
+            like_tabHTML += `<p>${c}. ${l.data().songName} by ${l.data().songArtist} posted by ${l.data().user_posted}</p>`;
+            c+=1;
+        })
+        like_tab.innerHTML = like_tabHTML;
+
+    })
    
 }
-    // let liked_song_button = document.querySelectorAll('#liked_song_button');
-    // for (let i = 0; i < liked_song_button.length; i++) {
-    //     console.log(liked_song_button[i]);
-    //     liked_song_button[i].addEventListener('click', function () {
-    //         console.log('hello');
-    //     })
-    // }
     
 
 
@@ -552,8 +558,13 @@ function showFeed() {
                 if (sorted_array.length < num_to_show) {
                     num_to_show = sorted_array.length;
                 }
-
+               
                 for (let i = 0; i < num_to_show; i++) {
+                    let arr = [];
+                    arr.push(sorted_array[i].username);
+                    arr.push(sorted_array[i].name);
+                    arr.push(sorted_array[i].artist);    
+
                     content_html += `
         <div id = "${i}" class="card mb-6">
             <div class="card-image">
@@ -574,7 +585,7 @@ function showFeed() {
 
                 <div class="media-right">
                 <div class="column is-2 has-text-centered mt-5">
-                    <button id="liked_song_button" class="button is-outlined is-rounded"
+                    <button onclick = "likeButton(\``+ arr+ `\`)" id="liked_song_button" class="button is-outlined is-rounded"
                         style="background-color: lightseagreen;"><i class="far fa-heart"></i><b>
                             </b></button>
                 </div>
@@ -605,6 +616,34 @@ function showFeed() {
 
     })
 }
+
+function likeButton(data){
+    let arr = data.split(",");
+    console.log(arr);
+    let like_content = {
+        songArtist: arr[2],
+        songName: arr[1],
+        user_posted: arr[0],
+        user_like: auth.currentUser.uid
+    }
+    console.log(like_content);
+    db.collection('Likes').get().then((data) =>{
+        all_likes = data.docs;
+        for (let i = 0; i < all_likes.length; i++){
+            // console.log("check if statement");
+            // console.log(all_likes[i].data().user_like, like_content.user_like, all_likes[i].data().songName, like_content.songName);
+            if (all_likes[i].data().user_like == like_content.user_like && all_likes[i].data().songName == like_content.songName){
+                alert("You have already liked this Song");
+                return "";
+            }
+    
+        }
+    db.collection("Likes").add(like_content).then((data) => {
+        alert(`You liked this song!`);
+    })  
+    })
+}
+
 
 psb.addEventListener('click', (e) => {
     e.preventDefault();
