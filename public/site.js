@@ -335,7 +335,7 @@ function welcome_user() {
         userdata.forEach((user) => {
             if (user.data().id == auth.currentUser.uid) {
                 content.innerHTML = `
-                Welcome ${user.data().fName} ${user.data().lName} to <br><b><i><span style="font-family:'Helvetica Neue', serif; color:lightseagreen">Cypher Songs</span></i></b>
+                Welcome ${user.data().fName} ${user.data().lName} to <br><b><i><span class="is-size-1" style="font-family:'Helvetica Neue', serif; color:lightseagreen">Cypher Songs</span></i></b>
             `
                 showFeed();
                 showFriends();
@@ -660,9 +660,12 @@ function likeButton(data){
     
         }
     db.collection("Likes").add(like_content).then((data) => {
+        showProfileSummary();
+        tabInfo();
         alert(`You liked this song!`);
     })  
     })
+    
 }
 
 
@@ -803,7 +806,7 @@ auth.onAuthStateChanged((user) => {
         configureNav(); //changes navbar
         let welcome_content = document.querySelector("#welcome_content")
         welcome_content.innerHTML = `
-                Welcome to <br><b><i><span style="font-family:'Helvetica Neue', serif; color:lightseagreen">Cypher Songs</span></i></b>
+                Welcome to <br><b><i><span class="is-size-1" style="font-family:'Helvetica Neue', serif; color:lightseagreen">Cypher Songs</span></i></b>
             `
         logged_in.classList.add("is-hidden")
         logged_out.classList.remove("is-hidden");
@@ -860,8 +863,8 @@ add_friend_form.addEventListener('submit', (e) => {
             if (new_friend.data().friends.length != 0 && main_user.data().friends.length != 0) {
 
                 // checks if friend is already in friends array (don't add twice)
-                new_friend.data().friends.forEach((friend) => {
-                    if (friend.username == main_user.data().username) {
+                main_user.data().friends.forEach((friend) => {
+                    if (friend.username == new_friend.data().username) {
                         already_friends = true;
                         console.log("already following");
                     }
@@ -1061,7 +1064,7 @@ my_posts_button.addEventListener('click', (e) => {
 
         })
         if (!found_user) {
-            content.innerHTML = `<p class="has-text-centered"> You have not posted any songs</p>`
+            content.innerHTML = `<p class=" has-text-centered is-size-4">There is no content to be shown</p>`
         }
     })
 })

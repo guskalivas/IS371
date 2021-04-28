@@ -22,7 +22,7 @@
                 <a href="">
                     <img src="images/smallLogo.png">
                 </a>
-                <a style="font-family:'Helvetica Neue', serif; color:lightseagreen" class="has-text-weight-bold is-size-4">Cypher Songs</a>
+                <a style="font-family:'Helvetica Neue', serif; color:lightseagreen" class="has-text-weight-bold is-size-4"><i><b>Cypher Songs</b></i></a>
 
             </div>
 
@@ -79,23 +79,23 @@
         <div class="hero-body has-text-centered">
             <p class="title" id="welcome_content">
                 Welcome to <br><b><i>
-                        <span style="font-family:'Helvetica Neue', serif; color:lightseagreen">Cypher Songs</span>
+                        <span class="is-size-1" style="font-family:'Helvetica Neue', serif; color:lightseagreen;">Cypher Songs</span>
                     </i></b>
             </p>
-            <p class="subtitle mb-2">
+            <p class="subtitle mb-5">
                 Have you ever gone on Instagram, Snapchat or any other social media and seen a song posted - you
                 listen to it <br>
                 and like it, but when you go back the next day its gone? This website is the solution! <br>
                 <br> <i> <u>All you have to do is:</u> </i>
             </p>
             <div class="columns">
-                <div class="column is-4">
+                <div class="column is-3.5 box mr-2 p-2" style="height:84px">
                     <p><b>1)</b> Find a song you enjoy listening to and want to share with your friends</p>
                 </div>
-                <div class="column is-4">
-                    <p><b>2)</b> Click the "Make a Post" button, fill in all the song details, and post the song</p>
+                <div class="column is-3.5 box mr-2" style="height:84px">
+                    <p><b>2)</b> Click the <b>"Make a Post"</b> button, fill in all the song details, and post the song</p>
                 </div>
-                <div class="column is-4">
+                <div class="column is-3.5 box mr-2" style="height:84px">
                     <p><b>3)</b> Scroll through your friends post to see more songs to add to your playlists</p>
                 </div>
             </div>
@@ -129,25 +129,25 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-2.5">
-                    <div style="background-color:lightseagreen; height:45vh;"
+                    <div style="background-color:lightseagreen; height: 45vh;"
                         class="column message is-hero is-black has-text-centered">
                         <div class="message-header is-centered" id="my_profile_button">
-                            Friends
+                            Friends Following
                         </div>
-                        <div id="friends_list" style="overflow:auto;">
+                        <div id="friends_list" style="height:35vh; overflow:auto;">
 
                         </div>
                     </div>
-                    <div style="background-color:lightseagreen; overflow:auto; height:30vh;"
+                    <div style="background-color:lightseagreen; overflow:auto; height:24vh;"
                         class="column message is-hero is-black has-text-centered">
                         <div class="message-header">
-                            Add/Remove Friends
+                            Add/Remove Users
                         </div>
                         <div>
                             <form action="" id="add_friends" class="mb-0 mt-2 loggedin" >
                                 <div class="field has-addons">
                                     <div class="control">
-                                        <input class="input" type="text" id="friend_username" placeholder="Add Friend">
+                                        <input class="input" type="text" id="friend_username" placeholder="Add User">
                                     </div>
                                     <div class="control">
                                         <button type="submit" class="button is-link">Search</button>
@@ -157,7 +157,7 @@
                             <form action="" id="remove_friends" class="mb-0 mt-2 loggedin">
                                 <div class="field has-addons">
                                     <div class="control">
-                                        <input class="input" type="text" id="remove_username" placeholder="Remove Friend">
+                                        <input class="input" type="text" id="remove_username" placeholder="Remove User">
                                     </div>
                                     <div class="control">
                                         <button type="submit" class="button is-link">Search</button>
@@ -193,7 +193,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div style="background-color:lightseagreen;overflow:auto; height:30vh;"
+                    <div style="background-color:lightseagreen;overflow:auto; height:25vh;"
                         class="column message is-hero is-black ">
                         <div class="message-header" id="my_profile_button">
                             Search Users for Posts
@@ -202,14 +202,14 @@
                             <form action="" id="search_friends" class="mt-2 loggedin">
                                 <div class="field has-addons">
                                     <div class="control">
-                                        <input class="input" type="text" id="search_username" placeholder="Show Friend Posts">
+                                        <input class="input" type="text" id="search_username" placeholder="Show User Posts">
                                     </div>
                                     <div class="control">
                                         <button type="submit" class="button is-link">Search</button>
                                     </div>
                                 </div>
                             </form>
-                            <p><a id="show_posts" style="text-decoration:none;"><b>Show All Friends Posts</b></a></p>
+                            <p><a id="show_posts" style="text-decoration:none;"><b>Show Friend Posts (max:10)</b></a></p>
                             <p><a id="my_posts_button" style="text-decoration:none;"><b>Show My Posts</b></a></p>
                         </div>
                     </div>
@@ -364,13 +364,6 @@
                         <input type = "file" id="upload" placeholder = "Choose Image" >
                     </div>
                 </div>
-                <!-- <div class="field">
-                    <label class="label">Song Image</label>
-                    <p>Please copy an image address from the web</p>
-                    <div class="control">
-                        <input type="text" name="" id="song-image">
-                    </div>
-                </div> -->
                 <div class="field">
                     <label class="label">Song Link</label>
                     <p>Please upload a Youtube, Spotify, or Apple Music link</p>
@@ -379,8 +372,8 @@
                     </div>
                 </div>
                 <div class="has-text-centered">
-                    <div class="control m-3">
-                        <input type="submit" id="psb" class="button mt-0 p-3 is-link has-text-white has-background-link"
+                    <div class="control">
+                        <input type="submit" id="psb" class="button mt-0 p-2 is-link has-text-white has-background-link"
                             value="Post Song">
                     </div>
                 </div>
