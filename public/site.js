@@ -306,7 +306,6 @@ signup_form.addEventListener('submit', (e) => {
                     id: userCredential.user.uid,
                     email: email,
                     friends: [],
-                    prof_url: ""
                 };
 
                 db.collection("Users").add(user).then((data) => {
@@ -370,6 +369,25 @@ function welcome_user() {
 
 // prolly need to put this in a function then call it from show feed
 function tabInfo() {
+    db.collection('UserPicture').get().then((data) =>{
+        let user = data.docs;
+        user.forEach((u) =>{
+            if (u.data().user_id == auth.currentUser.uid){
+                if (u.data().url != ""){
+                    let pic = document.querySelector('#pic');
+                    pic.innerHTML = `<img class="is-rounded" src = "${u.data().url}"/>`
+                    let profile_image =document.querySelector('#profile_image');
+                    profile_image.classList.add('is-hidden');
+                    let profile_sub =document.querySelector('#profile_sub');
+                    profile_sub.classList.add('is-hidden');
+
+                }
+               
+            }
+        })
+    })
+   
+
     let post_tab = document.querySelector('#post_tab');
     let post_tabHTML = ``;
     let like_tab = document.querySelector('#like_tab');
@@ -445,11 +463,13 @@ submitProfilePicture.addEventListener('submit', (e)=>{
     task
     .then(snapshot => snapshot.ref.getDownloadURL())
     .then((url) =>{
-        var profile_url = db.collection('Users').doc(auth.currentUser.uid);
-
-        // var setWithMerge = profile_url.set({
-        // prof_url: url
-        // }, { merge: true });
+        let pic_content = {
+            url: url,
+            user_id: auth.currentUser.uid
+        }
+        db.collection("UserPicture").add(pic_content).then((data) => {
+            alert("Added picture!");
+        })
 
         let pic = document.querySelector('#pic');
         pic.innerHTML = `<img class="is-rounded" src = "${url}"/>`
@@ -461,8 +481,6 @@ submitProfilePicture.addEventListener('submit', (e)=>{
     })
 
 })
-
-
 
 
 
@@ -647,12 +665,9 @@ function likeButton(data){
         user_posted: arr[0],
         user_like: auth.currentUser.uid
     }
-    console.log(like_content);
     db.collection('Likes').get().then((data) =>{
         all_likes = data.docs;
         for (let i = 0; i < all_likes.length; i++){
-            // console.log("check if statement");
-            // console.log(all_likes[i].data().user_like, like_content.user_like, all_likes[i].data().songName, like_content.songName);
             if (all_likes[i].data().user_like == like_content.user_like && all_likes[i].data().songName == like_content.songName){
                 alert("You have already liked this Song");
                 return "";
