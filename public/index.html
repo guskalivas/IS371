@@ -22,7 +22,8 @@
                 <a href="">
                     <img src="images/smallLogo.png">
                 </a>
-                <a style="font-family:'Helvetica Neue', serif; color:lightseagreen" class="has-text-weight-bold is-size-4"><i><b>Cypher Songs</b></i></a>
+                <a style="font-family:'Helvetica Neue', serif; color:lightseagreen"
+                    class="has-text-weight-bold is-size-4"><i><b>Cypher Songs</b></i></a>
 
             </div>
 
@@ -65,7 +66,8 @@
                 </div>
                 <!-- click to open up sign up modal -->
                 <div class="navbar-item  loggedin">
-                    <a class="has-text-weight-bold has-text-white  is-primary is-hovered" id="sign_out_button">Sign-Out</a>
+                    <a class="has-text-weight-bold has-text-white  is-primary is-hovered"
+                        id="sign_out_button">Sign-Out</a>
                 </div>
 
             </div>
@@ -79,7 +81,8 @@
         <div class="hero-body has-text-centered">
             <p class="title" id="welcome_content">
                 Welcome to <br><b><i>
-                        <span class="is-size-1" style="font-family:'Helvetica Neue', serif; color:lightseagreen;">Cypher Songs</span>
+                        <span class="is-size-1" style="font-family:'Helvetica Neue', serif; color:lightseagreen;">Cypher
+                            Songs</span>
                     </i></b>
             </p>
             <p class="subtitle mb-5">
@@ -89,15 +92,52 @@
                 <br> <i> <u>All you have to do is:</u> </i>
             </p>
             <div class="columns">
-                <div class="column is-3.5 box mr-2 p-2" style="height:84px">
+                <div class="column is-3.5 mr-2">
+                    <div class="card">
+                        <div class="card-image pt-2">
+                            <i class="fas fa-headphones-alt is-size-1"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="content">
+                                <p><b>1)</b> Find a song you enjoy listening to and you want to share with your friends</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-3.5 mr-2">
+                    <div class="card">
+                        <div class="card-image pt-2">
+                            <i class="fas fa-mouse is-size-1"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="content">
+                                <p><b>2)</b> Click the <b>"Make a Post"</b> button, fill in the song details, and post the song
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-3.5 mr-2">
+                    <div class="card">
+                        <div class="card-image pt-2">
+                            <i class="fas fa-heart is-size-1"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="content">
+                                <p><b>3)</b> Scroll through your friends post to see more songs to add to your playlists</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <di class="column is-3.5 box mr-2 p-2" style="height:84px">
                     <p><b>1)</b> Find a song you enjoy listening to and want to share with your friends</p>
+                </div> -->
+                <!-- <div class="column is-3.5 box mr-2" style="height:84px">
+                   
                 </div>
                 <div class="column is-3.5 box mr-2" style="height:84px">
-                    <p><b>2)</b> Click the <b>"Make a Post"</b> button, fill in all the song details, and post the song</p>
-                </div>
-                <div class="column is-3.5 box mr-2" style="height:84px">
-                    <p><b>3)</b> Scroll through your friends post to see more songs to add to your playlists</p>
-                </div>
+                   
+                </div> -->
             </div>
         </div>
     </section>
@@ -144,7 +184,7 @@
                             Add/Remove Users
                         </div>
                         <div>
-                            <form action="" id="add_friends" class="mb-0 mt-2 loggedin" >
+                            <form action="" id="add_friends" class="mb-0 mt-2 loggedin">
                                 <div class="field has-addons">
                                     <div class="control">
                                         <input class="input" type="text" id="friend_username" placeholder="Add User">
@@ -189,7 +229,7 @@
                                 <li><a id="my_profile_friends_button" style="text-decoration:none;"> </a></li>
 
                                 <li><a id="my_profile_posts_button" style="text-decoration:none;"> </a></li>
-                                <li><a id="my_profile_likes_button" style="text-decoration:none;">     </a> </li>
+                                <li><a id="my_profile_likes_button" style="text-decoration:none;"> </a> </li>
                             </ul>
                         </div>
                     </div>
@@ -202,14 +242,16 @@
                             <form action="" id="search_friends" class="mt-2 loggedin">
                                 <div class="field has-addons">
                                     <div class="control">
-                                        <input class="input" type="text" id="search_username" placeholder="Show User Posts">
+                                        <input class="input" type="text" id="search_username"
+                                            placeholder="Show User Posts">
                                     </div>
                                     <div class="control">
                                         <button type="submit" class="button is-link">Search</button>
                                     </div>
                                 </div>
                             </form>
-                            <p><a id="show_posts" style="text-decoration:none;"><b>Show Friend Posts (max:10)</b></a></p>
+                            <p><a id="show_posts" style="text-decoration:none;"><b>Show Friend Posts (max:10)</b></a>
+                            </p>
                             <p><a id="my_posts_button" style="text-decoration:none;"><b>Show My Posts</b></a></p>
                         </div>
                     </div>
@@ -358,10 +400,10 @@
                         <input type="text" name="" id="artist">
                     </div>
                 </div>
-                <div class="field"> 
+                <div class="field">
                     <label class="label">Song Image</label>
                     <div class="control">
-                        <input type = "file" id="upload" placeholder = "Choose Image" >
+                        <input type="file" id="upload" placeholder="Choose Image">
                     </div>
                 </div>
                 <div class="field">
@@ -393,29 +435,29 @@
                 <div class="column is-4">
                     <div class="is-flex-grow-0">
                         <figure class="image is-128x128 is-align-items-flex-start">
-                            <p id = "pic"></p>
+                            <p id="pic"></p>
                         </figure>
 
-                            <br>
-                            <br>
+                        <br>
+                        <br>
 
-                            <form id = "submitProfilePicture">
+                        <form id="submitProfilePicture">
                             <div class="field">
                                 <label class="label">Profile Picture</label>
                                 <div class="control">
-                                 <input class = "input" type = "file" id="profile_image" placeholder = "" >
+                                    <input class="input" type="file" id="profile_image" placeholder="">
                                 </div>
-                              </div>
-                              <div class="field is-grouped">
+                            </div>
+                            <div class="field is-grouped">
                                 <div class="control">
-                                  <button id = "profile_sub" class="button is-link">Submit</button>
+                                    <button id="profile_sub" class="button is-link">Submit</button>
                                 </div>
-                              </div>
-                            </form>
-<!-- 
+                            </div>
+                        </form>
+                        <!-- 
                             <p><input type="file" name="fileToUpload" id="fileToUpload"></p>
                             <p><input class="has-text-left" type="submit" value="UploadImage" name="submit"></p> -->
-                      
+
 
                     </div>
                 </div>
@@ -445,7 +487,7 @@
                     <!-- USER FRIENDS TAB -->
                     <div id='Friends' class="tabcontent is-hidden">
                         <div id="friends_tab">
-                      
+
                         </div>
 
                     </div>
