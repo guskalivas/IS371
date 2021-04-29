@@ -489,9 +489,6 @@ async function getFriends() {
 
 // shows user feed of friends posts
 function showFeed() {
-    let picture_user_id = '';
-    let picture_user_url = '';
-
     let content = document.querySelector('#main-content'); //find man content area
 
     db.collection("Songs").get().then((data) => { //goes through every song in database to find friends of user
@@ -508,19 +505,22 @@ function showFeed() {
                 songdata.forEach((song) => {
                     post = song.data();
                     post.id = song.id;
+                    picture_user_id = song.data().user;
                     if (friend.username == song.data().username) {
                         one_song = true;
                         friend_posts_array.push(post);
-                        picture_user_id = song.data().user;                    
-                    
+                   
                     }
 
-                })
+           
+            }) 
+
             })
 
             if (one_song) {
                 let sorted_array = [];
                 while (friend_posts_array.length > 0) {
+                   // console.log(friend_posts_array[0],picture_user_url, picture_user_id );
                     let max = friend_posts_array[0];
 
                     friend_posts_array.forEach((friend_post) => {
@@ -536,13 +536,14 @@ function showFeed() {
                 if (sorted_array.length < num_to_show) {
                     num_to_show = sorted_array.length;
                 }
+
+                
                
                 for (let i = 0; i < num_to_show; i++) {
                     let arr = [];
                     arr.push(sorted_array[i].username);
                     arr.push(sorted_array[i].name);
-                    arr.push(sorted_array[i].artist);    
-
+                    arr.push(sorted_array[i].artist);   
 
                     content_html += `
         <div id = "${i}" class="card mb-6">
@@ -590,11 +591,17 @@ function showFeed() {
             } else {
                 content.innerHTML = `<p class=" has-text-centered is-size-4">There is no content to be shown</p>`
             }
+      
+    
+    
+    
+    })
 
 
-        })
 
     })
+
+
 }
 
 function likeButton(data){
