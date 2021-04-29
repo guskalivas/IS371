@@ -1,35 +1,3 @@
-// ******** THINGS WE STILL NEED TO DO ********
-
-// 2. like button/functionality => added button, need functionality still id = liked_song_button
-// 6. figure out how to upload user image for profile/song post
-
-
-// I added a bunch of functionality with js. You will have to sign up again with a new account because i stored the users in a collection
-// Somg things I got working:
-// Add friends bar
-// showing posts of friends
-// welcoming user
-// showing post was successfuly added
-// Some things to still work on:
-// design/layout
-// removing friends
-// links for profile
-// error messages for when user adds wrong ufser, bad info
-// update profile info?
-// making sure site looks good on mobile
-
-// PROJECT DUE THIS WEEK - THINGS STILL NEEDING TO BE DONE
-// - prolile photo upload - almost there
-// - sorting user posts in order
-// - design / layout
-// - Likes????? - i think can figure out on tuesday
-// - add username in profile section
-// - maybe make the 1) 2) 3) step process on top look more professional using bulma
-// - Changed in tab is that all? => change friends to "following" instead of "friends" because i made it only add the person to the users list not both user and friend
-// - make it responsive on different size devices
-// - anything else you think should be added or improved
-
-
 let loggedoutlinks = document.querySelectorAll(".loggedout");
 let loggedinlinks = document.querySelectorAll(".loggedin");
 
@@ -58,8 +26,6 @@ function configureNav(user) {
     }
 }
 
-// const all_posts = []; //stores all posts from users
-// const users = [];
 
 // make a post button
 var make_a_post = document.querySelector("#post_button");
@@ -82,11 +48,6 @@ profile_button.addEventListener('click', function () {
     tabInfo();
 })
 
-// exit out of profile modal
-// var modalbg_profile = document.querySelector("#modalbg_profile");
-// modalbg_profile.addEventListener('click', function () {
-//     profile_modal.classList.remove('is-active');
-// })
 
 
 // profile info button
@@ -246,12 +207,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const target = el.dataset.target;
                 const $target = document.getElementById(target);
 
-                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                
                 el.classList.toggle('is-active');
                 $target.classList.toggle('is-active');
                 $target.style.backgroundColor = "black";
 
-                //$target.classList.add('has-text-black', 'has-text-weight-bold');
+               
 
             });
         });
@@ -287,8 +248,8 @@ signup_form.addEventListener('submit', (e) => {
     })
 
     if (password != password2) {
-        // we need to make sure the two passwords match or throw an error
-        // might have to do some exception handling
+        alert("Your passwords dont match");
+        
     }
     if (!already_user) {
 
@@ -345,29 +306,7 @@ function welcome_user() {
     })
 }
 
-//TABS on Profile
-// Info and Friends
-// let info_tab = document.querySelector('#info_tab');
-// let friends_tab = document.querySelector('#friends_tab');
-// let info_tabHTML = ``;
-// let friends_tabHTML = ``;
-// getData().then((data) => {
-//     info_tabHTML += ` <p><b>Name: </b> ${firstName} ${lastName}</p>`;
-//     info_tabHTML += ` <p><b>Username:</b> ${username}</p>`;
-//     info_tabHTML += `<p><b>Email:</b> ${email}</p>`;
-//     info_tab.innerHTML = info_tabHTML;
 
-//     friends.forEach(f => {
-//         friends_tabHTML += `<p> <b>Name:</b> ${f.fName} ${f.lName} <b>Username:</b> ${f.username} </p>`;
-//         friends_tab.innerHTML = friends_tabHTML;
-//     });
-
-// })
-// Post of profile tab
-
-
-
-// prolly need to put this in a function then call it from show feed
 function tabInfo() {
     db.collection('UserPicture').get().then((data) =>{
         let user = data.docs;
@@ -450,10 +389,6 @@ function tabInfo() {
    
 }
     
-
-
-// need to fix to only submit once if refresh page need to resubmit
-
 let submitProfilePicture = document.querySelector('#submitProfilePicture');
 submitProfilePicture.addEventListener('submit', (e)=>{
     e.preventDefault();
@@ -554,11 +489,13 @@ async function getFriends() {
 
 // shows user feed of friends posts
 function showFeed() {
+    let picture_user_id = '';
+    let picture_user_url = '';
 
     let content = document.querySelector('#main-content'); //find man content area
 
     db.collection("Songs").get().then((data) => { //goes through every song in database to find friends of user
-
+    
         let songdata = data.docs;
         let content_html = "";
         let one_song = false;
@@ -568,17 +505,19 @@ function showFeed() {
             num_shown = 0;
             let friend_posts_array = [];
             friends.forEach((friend) => { //goes through each user friend to posts every friend's song
-                // WE WILL NEED TO LIMIT HOW MANY FRIEND POSTS ARE SHOWN AND THE ORDER
-
                 songdata.forEach((song) => {
                     post = song.data();
                     post.id = song.id;
                     if (friend.username == song.data().username) {
                         one_song = true;
                         friend_posts_array.push(post);
+                        picture_user_id = song.data().user;                    
+                    
                     }
+
                 })
             })
+
             if (one_song) {
                 let sorted_array = [];
                 while (friend_posts_array.length > 0) {
@@ -604,6 +543,7 @@ function showFeed() {
                     arr.push(sorted_array[i].name);
                     arr.push(sorted_array[i].artist);    
 
+
                     content_html += `
         <div id = "${i}" class="card mb-6">
             <div class="card-image">
@@ -614,7 +554,8 @@ function showFeed() {
             <div class="media mb-0">
                 <div class="media-left">
                     <div class="image is-96x96">
-                        <img src="images/smallLogo.png" alt="">
+
+                    <img src="images/smallLogo.png" alt="">
                     </div>
                 </div>
                 <div class="media-content">
@@ -1030,11 +971,16 @@ my_posts_button.addEventListener('click', (e) => {
     let found_user = false;
     let content = document.querySelector('#main-content');
     content.innerHTML = "";
+
+
+
+
     db.collection("Songs").get().then((data) => {
         user_data = data.docs;
         user_data.forEach((song) => {
             if (song.data().user == auth.currentUser.uid) {
-                console.log("here");
+                console.log("here");     
+
                 found_user = true;
                 content.innerHTML += `
                 <div id = "${song.id}" class="card mb-6">
@@ -1046,7 +992,9 @@ my_posts_button.addEventListener('click', (e) => {
                     <div class="media mb-0">
                         <div class="media-left">
                             <div class="image is-96x96">
-                                <img src="images/smallLogo.png" alt="">
+                            <img src="images/smallLogo.png" alt="">
+
+
                             </div>
                         </div>
                         <div class="media-content">
@@ -1061,7 +1009,6 @@ my_posts_button.addEventListener('click', (e) => {
                                     </b></button>
                         </div>
                     </div>    
-
 
                     </div>
                     <div class="card-content has-text-centered">
